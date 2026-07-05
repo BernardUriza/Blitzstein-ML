@@ -6,9 +6,14 @@
 
 - **Fase**: arranque (2026-07-05)
 - **Capítulo activo**: cap 1 — Probability and Counting (no iniciado)
-- **edX Stat110x**: ⏳ registro PENDIENTE de Bernard (tab quedó lista en authn.edx.org;
-  audit del run actual expira **Sep 13 2026**)
-- **Siguiente acción**: confirmar registro edX → leer cap 1 §1.1-1.3 + Strategic Practice 1
+- **edX Stat110x**: ✅ inscrito en audit (2026-07-05, run 2T2025). Fechas verificadas en
+  learning.edx.org/…/dates: **course ends Ago 5 2026** (contenido se archiva), **audit
+  access expira Sep 13 2026** (se pierde todo, incluido progreso). La página de Dates NO
+  muestra deadline de upgrade a verificado → para certificado en ESTE run habría que
+  comprar y completar graded antes de ~Ago 5, inviable con el plan jul–dic. Plan: audit
+  este run para contenido; si a mitad del bootcamp el certificado se justifica,
+  re-inscribirse al siguiente run y comprarlo ahí ($209; hoy había promo GOALS2026 15%).
+- **Siguiente acción**: leer cap 1 §1.1-1.3 + Strategic Practice 1
 
 ## Capítulos
 
@@ -31,3 +36,6 @@
 ## Log de sesiones
 
 - **2026-07-05** — scaffold del repo, plan definido, tab de registro edX preparada.
+- **2026-07-05 (2)** — inscripción audit confirmada en STAT110x 2T2025 (gratis, $0 hoy).
+  Bot de edX confirmó: se puede upgradear a verificado después, sujeto a deadline. Fechas
+  reales verificadas: fin del run Ago 5 2026, audit expira Sep 13 2026.
