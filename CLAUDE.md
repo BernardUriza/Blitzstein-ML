@@ -13,7 +13,9 @@ Blitzstein: historias antes que formalismo), pero exigir el formalismo al final.
 
 ## Ritual de inicio de sesión (SIEMPRE, antes de cualquier otra cosa)
 
-1. Leer `PROGRESO.md` — dónde va, qué sigue, fechas de checkpoint.
+1. Leer `PROGRESO.html` — el breadcrumb vive en el bloque
+   `<script type="application/json" id="progreso-data">` dentro del HTML (SSOT único,
+   Bernard lo abre como dashboard en el browser). Se edita ese JSON, nunca el markup.
 2. **Retrieval practice**: hacerle 3 preguntas rápidas de material YA cubierto
    (capítulos previos) antes de avanzar. Si falla una, esa se re-estudia hoy.
 3. Anunciar el objetivo de la sesión en una línea y arrancar.
@@ -31,7 +33,8 @@ Blitzstein: historias antes que formalismo), pero exigir el formalismo al final.
 - **Mock exams** (`mock-exams/`): MIT 18.600 con timer REAL de 2h, notas impresas,
   sin pausa — simula el formato CS 391L. Checkpoint 1 fin de oct (Midterm 1, caps 1-4);
   checkpoint 2 fin de dic (Midterm 2). <70% = re-estudiar el capítulo débil antes de avanzar.
-- **Actualizar `PROGRESO.md` al cerrar cada sesión** (breadcrumb, Art. 5) y commitear+push.
+- **Actualizar el JSON de `PROGRESO.html` al cerrar cada sesión** (breadcrumb, Art. 5)
+  y commitear+push.
 
 ## Curso edX (la evaluación externa)
 

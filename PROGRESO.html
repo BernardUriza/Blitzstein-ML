@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="es">
+<meta charset="utf-8">
+<title>Progreso — Blitzstein Bootcamp</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script type="application/json" id="progreso-data">
+{
+  "fase": "arranque",
+  "actualizado": "2026-07-05",
+  "capituloActivo": 1,
+  "siguienteAccion": "Leer cap 1 §1.1–1.3 + Strategic Practice 1 (intento propio antes de ver soluciones)",
+  "fechas": {
+    "finRunEdx": "2026-08-05",
+    "auditExpira": "2026-09-13",
+    "checkpoint1": "2026-10-31",
+    "checkpoint2": "2026-12-31"
+  },
+  "edx": {
+    "estado": "Inscrito en audit (2026-07-05, run 2T2025, $0)",
+    "nota": "El run termina Ago 5 2026 y Dates no muestra deadline de upgrade → certificado en ESTE run inviable con el plan jul–dic. Si a mitad del bootcamp el proof-of-work lo amerita: re-inscribirse al siguiente run (gratis) y comprar ahí ($209; el 2026-07-05 había promo GOALS2026 −15%). Audit expira Sep 13 2026: se pierde todo el progreso en la plataforma (los ejercicios viven en este repo, no en edX)."
+  },
+  "capitulos": [
+    { "num": 1, "tema": "Probability & Counting",            "edx": "U1",    "impl": null,                  "notas": 0, "ejercicios": 0, "implPct": null },
+    { "num": 2, "tema": "Conditional Probability / Bayes",   "edx": "U2",    "impl": null,                  "notas": 0, "ejercicios": 0, "implPct": null },
+    { "num": 3, "tema": "Random Variables",                  "edx": "U3",    "impl": null,                  "notas": 0, "ejercicios": 0, "implPct": null },
+    { "num": 4, "tema": "Expectation",                       "edx": "U5",    "impl": "regresión logística", "notas": 0, "ejercicios": 0, "implPct": 0 },
+    { "num": 5, "tema": "Continuous (normal, exponencial)",  "edx": "U4-U5", "impl": "MLE",                 "notas": 0, "ejercicios": 0, "implPct": 0 },
+    { "num": 7, "tema": "Joint Distributions",               "edx": "U6",    "impl": "GMM / EM",            "notas": 0, "ejercicios": 0, "implPct": 0 }
+  ],
+  "checkpoints": [
+    { "fecha": "2026-10-31", "examen": "MIT 18.600 Midterm 1 (F19)", "cubre": "caps 1–4", "condiciones": "timer real 2h, notas impresas, sin pausa", "resultado": null },
+    { "fecha": "2026-12-31", "examen": "MIT 18.600 Midterm 2 (F19)", "cubre": "caps 5, 7", "condiciones": "timer real 2h, notas impresas, sin pausa", "resultado": null }
+  ],
+  "sesiones": [
+    { "fecha": "2026-07-05", "resumen": "Scaffold del repo, plan definido, tab de registro edX preparada." },
+    { "fecha": "2026-07-05", "resumen": "Inscripción audit confirmada en STAT110x 2T2025 ($0). Bot edX confirmó upgrade posible con deadline. Fechas reales verificadas: fin del run Ago 5, audit expira Sep 13. PROGRESO migrado de .md a este HTML (SSOT único)." }
+  ]
+}
+</script>
+
+<style>
+  :root {
+    --surface-1: #fcfcfb;
+    --plane: #f9f9f7;
+    --ink-1: #0b0b0b;
+    --ink-2: #52514e;
+    --muted: #898781;
+    --grid: #e1e0d9;
+    --baseline: #c3c2b7;
+    --border: rgba(11,11,11,0.10);
+    --seq-100: #cde2fb;
+    --seq-250: #86b6ef;
+    --seq-450: #2a78d6;
+    --seq-600: #184f95;
+    --good: #0ca30c;
+    --good-text: #006300;
+    --warning: #fab219;
+    --serious: #ec835a;
+    --critical: #d03b3b;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --surface-1: #1a1a19;
+      --plane: #0d0d0d;
+      --ink-1: #ffffff;
+      --ink-2: #c3c2b7;
+      --muted: #898781;
+      --grid: #2c2c2a;
+      --baseline: #383835;
+      --border: rgba(255,255,255,0.10);
+      --seq-100: #16324f;
+      --seq-250: #1c5cab;
+      --seq-450: #3987e5;
+      --seq-600: #86b6ef;
+      --good-text: #0ca30c;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--plane);
+    color: var(--ink-1);
+    font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 32px 20px 64px; }
+  header h1 { font-size: 26px; margin: 0 0 4px; letter-spacing: -0.01em; }
+  header .sub { color: var(--ink-2); margin: 0 0 6px; }
+  header .meta { color: var(--muted); font-size: 13px; }
+  .accion {
+    margin: 20px 0 28px;
+    padding: 14px 18px;
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--seq-450);
+    border-radius: 8px;
+  }
+  .accion .k { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+  .accion .v { font-weight: 600; }
+  h2 { font-size: 16px; margin: 36px 0 12px; }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+  .tile {
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .tile .label { font-size: 13px; color: var(--ink-2); }
+  .tile .value { font-size: 34px; font-weight: 600; line-height: 1.15; margin: 2px 0; }
+  .tile .value .unit { font-size: 15px; font-weight: 400; color: var(--ink-2); }
+  .tile .detail { font-size: 12.5px; color: var(--muted); }
+  .tile .status { display: inline-flex; align-items: center; gap: 5px; font-size: 12.5px; font-weight: 600; margin-top: 6px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+  .timeline { margin-top: 16px; background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px; padding: 22px 20px 14px; }
+  .tl-track { position: relative; height: 6px; background: var(--grid); border-radius: 3px; margin: 26px 8px 34px; }
+  .tl-fill { position: absolute; left: 0; top: 0; bottom: 0; background: var(--seq-450); border-radius: 3px 0 0 3px; }
+  .tl-mark { position: absolute; top: 50%; transform: translate(-50%, -50%); }
+  .tl-mark .pin { width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--surface-1); }
+  .tl-mark .cap { position: absolute; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 11.5px; color: var(--ink-2); }
+  .tl-mark .cap.above { bottom: 14px; }
+  .tl-mark .cap.below { top: 14px; }
+  .tl-months { display: flex; justify-content: space-between; font-size: 11.5px; color: var(--muted); padding: 0 8px; }
+  .caps { display: grid; gap: 10px; }
+  .cap-row {
+    display: grid;
+    grid-template-columns: 44px 1fr 220px;
+    gap: 14px;
+    align-items: center;
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 16px;
+  }
+  .cap-num { font-size: 20px; font-weight: 600; color: var(--ink-2); }
+  .cap-tema { font-weight: 600; }
+  .cap-sub { font-size: 12.5px; color: var(--muted); }
+  .meter { height: 10px; background: var(--seq-100); border-radius: 5px; overflow: hidden; }
+  .meter .fill { height: 100%; background: var(--seq-450); border-radius: 5px 0 0 5px; }
+  .meter-label { font-size: 12px; color: var(--ink-2); margin-top: 4px; text-align: right; font-variant-numeric: tabular-nums; }
+  .chips { display: flex; gap: 6px; margin-top: 4px; flex-wrap: wrap; }
+  .chip { font-size: 11px; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--grid); color: var(--muted); }
+  .chip.on { border-color: var(--good); color: var(--good-text); }
+  table { width: 100%; border-collapse: collapse; background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  th, td { text-align: left; padding: 10px 14px; font-size: 14px; }
+  th { font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); border-bottom: 1px solid var(--grid); font-weight: 600; }
+  tbody tr + tr td { border-top: 1px solid var(--grid); }
+  td.num { font-variant-numeric: tabular-nums; }
+  .edx-card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; }
+  .edx-card .estado { font-weight: 600; display: flex; align-items: center; gap: 8px; }
+  .edx-card .nota { font-size: 13.5px; color: var(--ink-2); margin-top: 8px; }
+  .log { list-style: none; margin: 0; padding: 0; }
+  .log li { display: grid; grid-template-columns: 100px 1fr; gap: 14px; padding: 10px 4px; }
+  .log li + li { border-top: 1px solid var(--grid); }
+  .log .f { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+  .log .r { color: var(--ink-2); font-size: 14px; }
+  @media (max-width: 640px) {
+    .cap-row { grid-template-columns: 36px 1fr; }
+    .cap-meter { grid-column: 1 / -1; }
+  }
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>Blitzstein Bootcamp — Probabilidad</h1>
+    <p class="sub">Prep para CS 391L Machine Learning · UT Austin MSAI (Fall 2027) · jul–dic 2026</p>
+    <p class="meta" id="meta"></p>
+  </header>
+
+  <div class="accion">
+    <div class="k">Siguiente acción</div>
+    <div class="v" id="accion"></div>
+  </div>
+
+  <h2>Deadlines</h2>
+  <div class="tiles" id="tiles"></div>
+
+  <div class="timeline">
+    <div class="tl-track" id="tl-track"></div>
+    <div class="tl-months" id="tl-months"></div>
+  </div>
+
+  <h2>Capítulos</h2>
+  <div class="caps" id="caps"></div>
+
+  <h2>edX — HarvardX Stat110x</h2>
+  <div class="edx-card" id="edx"></div>
+
+  <h2>Checkpoints (mock exams)</h2>
+  <table>
+    <thead>
+      <tr><th>Fecha objetivo</th><th>Examen</th><th>Cubre</th><th>Condiciones</th><th>Resultado</th></tr>
+    </thead>
+    <tbody id="checkpoints"></tbody>
+  </table>
+
+  <h2>Log de sesiones</h2>
+  <ul class="log" id="log"></ul>
+</div>
+
+<script>
+  const D = JSON.parse(document.getElementById('progreso-data').textContent);
+  const hoy = new Date();
+  const fmt = f => new Date(f + 'T12:00:00').toLocaleDateString('es-MX', { day: 'numeric', month: 'short', year: 'numeric' });
+  const dias = f => Math.ceil((new Date(f + 'T23:59:59') - hoy) / 86400000);
+
+  const capsDone = D.capitulos.filter(c => c.notas >= 100 && c.ejercicios >= 100 && (c.implPct === null || c.implPct >= 100)).length;
+  document.getElementById('meta').textContent =
+    `Fase: ${D.fase} · Capítulo activo: ${D.capituloActivo} · Actualizado: ${fmt(D.actualizado)} · Hoy: ${hoy.toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' })}`;
+  document.getElementById('accion').textContent = D.siguienteAccion;
+
+  function urgencia(d) {
+    if (d <= 7)  return { color: 'var(--critical)', texto: 'crítico',  icono: '✖' };
+    if (d <= 30) return { color: 'var(--warning)',  texto: 'cerca',    icono: '▲' };
+    return         { color: 'var(--good)',     texto: 'en rango', icono: '✔' };
+  }
+
+  const deadlines = [
+    { label: 'Fin del run edX (2T2025)', fecha: D.fechas.finRunEdx,   detail: 'Contenido se archiva; sin upgrade después' },
+    { label: 'Expira acceso audit',      fecha: D.fechas.auditExpira, detail: 'Se pierde todo el progreso en la plataforma' },
+    { label: 'Checkpoint 1 — Midterm 1', fecha: D.fechas.checkpoint1, detail: 'Caps 1–4 · <70% = re-estudiar' },
+    { label: 'Checkpoint 2 — Midterm 2', fecha: D.fechas.checkpoint2, detail: 'Caps 5 y 7 · cierre del bootcamp' }
+  ];
+
+  document.getElementById('tiles').innerHTML = deadlines.map(t => {
+    const d = dias(t.fecha);
+    const u = urgencia(d);
+    return `<div class="tile">
+      <div class="label">${t.label}</div>
+      <div class="value">${d} <span class="unit">días</span></div>
+      <div class="detail">${fmt(t.fecha)} · ${t.detail}</div>
+      <div class="status" style="color:${u.color}"><span class="dot" style="background:${u.color}"></span>${u.icono} ${u.texto}</div>
+    </div>`;
+  }).join('') + `<div class="tile">
+      <div class="label">Capítulos completados</div>
+      <div class="value">${capsDone} <span class="unit">de ${D.capitulos.length}</span></div>
+      <div class="detail">notas + ejercicios + implementación</div>
+    </div>`;
+
+  const t0 = new Date('2026-07-01T00:00:00');
+  const t1 = new Date('2027-01-01T00:00:00');
+  const pos = f => Math.min(100, Math.max(0, (new Date(f + 'T12:00:00') - t0) / (t1 - t0) * 100));
+  const posHoy = Math.min(100, Math.max(0, (hoy - t0) / (t1 - t0) * 100));
+
+  const marks = [
+    { f: D.fechas.finRunEdx,   n: 'fin run edX', lado: 'above', color: 'var(--serious)' },
+    { f: D.fechas.auditExpira, n: 'audit expira', lado: 'below', color: 'var(--warning)' },
+    { f: D.fechas.checkpoint1, n: 'Midterm 1', lado: 'above', color: 'var(--seq-600)' },
+    { f: D.fechas.checkpoint2, n: 'Midterm 2', lado: 'above', color: 'var(--seq-600)' }
+  ];
+  document.getElementById('tl-track').innerHTML =
+    `<div class="tl-fill" style="width:${posHoy}%"></div>` +
+    `<div class="tl-mark" style="left:${posHoy}%"><div class="pin" style="background:var(--seq-450)"></div><div class="cap below" style="font-weight:600;color:var(--ink-1)">hoy</div></div>` +
+    marks.map(m =>
+      `<div class="tl-mark" style="left:${pos(m.f)}%"><div class="pin" style="background:${m.color}"></div><div class="cap ${m.lado}">${m.n}</div></div>`
+    ).join('');
+  document.getElementById('tl-months').innerHTML =
+    ['jul', 'ago', 'sep', 'oct', 'nov', 'dic', ''].map(m => `<span>${m}</span>`).join('');
+
+  document.getElementById('caps').innerHTML = D.capitulos.map(c => {
+    const partes = [c.notas, c.ejercicios].concat(c.implPct === null ? [] : [c.implPct]);
+    const pct = Math.round(partes.reduce((a, b) => a + b, 0) / partes.length);
+    const activo = c.num === D.capituloActivo;
+    return `<div class="cap-row" ${activo ? 'style="border-color:var(--seq-450)"' : ''}>
+      <div class="cap-num">${c.num}</div>
+      <div>
+        <div class="cap-tema">${c.tema}</div>
+        <div class="cap-sub">edX ${c.edx}${c.impl ? ` · impl numpy: ${c.impl}` : ''}</div>
+        <div class="chips">
+          <span class="chip ${c.notas >= 100 ? 'on' : ''}">notas ${c.notas}%</span>
+          <span class="chip ${c.ejercicios >= 100 ? 'on' : ''}">ejercicios ${c.ejercicios}%</span>
+          ${c.implPct === null ? '' : `<span class="chip ${c.implPct >= 100 ? 'on' : ''}">impl ${c.implPct}%</span>`}
+        </div>
+      </div>
+      <div class="cap-meter">
+        <div class="meter"><div class="fill" style="width:${pct}%"></div></div>
+        <div class="meter-label">${pct}%</div>
+      </div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('edx').innerHTML =
+    `<div class="estado"><span class="dot" style="background:var(--good)"></span>${D.edx.estado}</div>
+     <div class="nota">${D.edx.nota}</div>`;
+
+  document.getElementById('checkpoints').innerHTML = D.checkpoints.map(c =>
+    `<tr>
+      <td class="num">${fmt(c.fecha)}</td>
+      <td>${c.examen}</td>
+      <td>${c.cubre}</td>
+      <td>${c.condiciones}</td>
+      <td>${c.resultado === null ? '—' : c.resultado + '%'}</td>
+    </tr>`
+  ).join('');
+
+  document.getElementById('log').innerHTML = D.sesiones.map(s =>
+    `<li><span class="f">${s.fecha}</span><span class="r">${s.resumen}</span></li>`
+  ).join('');
+</script>
