@@ -185,7 +185,8 @@ class LessonRenderer:
             'code': self._render_code_section,
             'warning': self._render_warning_section,
             'note': self._render_note_section,
-            'quiz': self._render_quiz_section
+            'quiz': self._render_quiz_section,
+            'viz3d': self._render_viz3d_section
         }
 
         renderer = renderers.get(section_type, self._render_text_section)
@@ -338,6 +339,29 @@ class LessonRenderer:
         code_block <= code_content
 
         container <= code_block
+
+        return container
+
+    def _render_viz3d_section(self, section):
+        """Renderiza una visualización 3D interactiva (three.js)."""
+        from browser import timer
+        from engine.three import build_viz
+
+        container = html.DIV(Class="my-6")
+
+        title = section.get('title')
+        if title:
+            container <= html.H3(title, Class="text-lg font-semibold text-gray-800 mb-3")
+
+        holder = html.DIV()
+        container <= holder
+
+        scene = build_viz(section.get('viz', {}))
+        timer.set_timeout(lambda: scene.mount(holder), 50)
+
+        caption = section.get('caption')
+        if caption:
+            container <= html.P(caption, Class="text-sm text-gray-500 mt-2 italic")
 
         return container
 
