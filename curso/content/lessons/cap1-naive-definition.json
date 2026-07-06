@@ -29,6 +29,72 @@
       "content": "1. **S es finito.** Con infinitas piedras, |A|/|S| no significa nada.\n\n2. **Todos los outcomes son equiprobables** — todas las piedras pesan igual. Se justifica por **simetría** (un dado justo no distingue sus caras; una baraja bien barajada no distingue órdenes) o por **diseño** (muestreo aleatorio deliberado, como una encuesta bien hecha)."
     },
     {
+      "type": "viz3d",
+      "title": "El espacio muestral de dos dados, en 3D",
+      "caption": "36 barras, todas de altura P = 1/36. La definición naive ES esta uniformidad: si el paisaje no fuera plano, dividir favorables/totales sería ilegal. Arrastra para orbitar, scroll para zoom.",
+      "viz": {
+        "kind": "bars",
+        "values": [
+          [
+            0.02778,
+            0.02778,
+            0.02778,
+            0.02778,
+            0.02778,
+            0.02778
+          ],
+          [
+            0.02778,
+            0.02778,
+            0.02778,
+            0.02778,
+            0.02778,
+            0.02778
+          ],
+          [
+            0.02778,
+            0.02778,
+            0.02778,
+            0.02778,
+            0.02778,
+            0.02778
+          ],
+          [
+            0.02778,
+            0.02778,
+            0.02778,
+            0.02778,
+            0.02778,
+            0.02778
+          ],
+          [
+            0.02778,
+            0.02778,
+            0.02778,
+            0.02778,
+            0.02778,
+            0.02778
+          ],
+          [
+            0.02778,
+            0.02778,
+            0.02778,
+            0.02778,
+            0.02778,
+            0.02778
+          ]
+        ],
+        "z_scale": 72,
+        "gap": 0.2,
+        "camera": [
+          8,
+          6,
+          10
+        ],
+        "grid_size": 8
+      }
+    },
+    {
       "type": "warning",
       "content": "El abuso clásico: «¿Hay vida en otros planetas? Dos posibilidades — sí o no — así que 1/2». Con ese argumento, ganarte la lotería también sería 1/2: te la ganas o no. La fórmula no falla por aritmética; falla porque le metiste piedras de pesos distintos y ella asume balanza perfecta. Sin equiprobabilidad, el resultado es un invento con disfraz de matemática."
     },
