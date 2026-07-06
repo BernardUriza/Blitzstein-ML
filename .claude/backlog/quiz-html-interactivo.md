@@ -1,6 +1,6 @@
 # Quiz HTML interactivo para retrieval practice
 
-Status: Proposed
+Status: Done
 Proposed: 2026-07-05 by Bernard
 
 ## What it is
@@ -26,5 +26,8 @@ del quiz se registra a mano en PROGRESO.html o el quiz genera un blob para pegar
 
 ## Status / next step
 
-No construido. Se arranca cuando Bernard lo pida en una sesión de estudio (el primer
-candidato natural: retrieval practice del cap 1 al abrir la sesión del cap 2).
+Done (2026-07-05, mismo día): se construyó como parte del template
+cwc-cool-workshop-course (github.com/BernardUriza/cwc-cool-workshop-course) y vive
+instanciado en `curso/` — quiz con muestreo 1+2+2, KaTeX self-hosted, XP y registro
+de runs. Superó la propuesta original: en vez de un HTML suelto por quiz, es el
+módulo retrieval del motor del curso.
