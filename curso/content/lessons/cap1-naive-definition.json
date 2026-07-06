@@ -95,6 +95,121 @@
       }
     },
     {
+      "type": "viz3d",
+      "title": "Un evento vive DENTRO del espacio: A = «la suma es 7»",
+      "caption": "Las 6 barras ámbar son los favorables: (1,6), (2,5), (3,4), (4,3), (5,2), (6,1). P(A) = |A|/|S| = 6/36 = 1/6. La definición naive es literalmente contar barras ámbar y dividir entre todas.",
+      "viz": {
+        "kind": "bars",
+        "values": [
+          [
+            0.02778,
+            0.02778,
+            0.02778,
+            0.02778,
+            0.02778,
+            0.02778
+          ],
+          [
+            0.02778,
+            0.02778,
+            0.02778,
+            0.02778,
+            0.02778,
+            0.02778
+          ],
+          [
+            0.02778,
+            0.02778,
+            0.02778,
+            0.02778,
+            0.02778,
+            0.02778
+          ],
+          [
+            0.02778,
+            0.02778,
+            0.02778,
+            0.02778,
+            0.02778,
+            0.02778
+          ],
+          [
+            0.02778,
+            0.02778,
+            0.02778,
+            0.02778,
+            0.02778,
+            0.02778
+          ],
+          [
+            0.02778,
+            0.02778,
+            0.02778,
+            0.02778,
+            0.02778,
+            0.02778
+          ]
+        ],
+        "z_scale": 72,
+        "gap": 0.2,
+        "camera": [
+          8,
+          6,
+          10
+        ],
+        "grid_size": 8,
+        "highlight": [
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            0
+          ]
+        ],
+        "highlight_color": 16096779,
+        "labels": [
+          {
+            "text": "dado 1 →",
+            "pos": [
+              0,
+              0.4,
+              4.2
+            ],
+            "scale": 1.1,
+            "color": "#93c5fd"
+          },
+          {
+            "text": "dado 2 →",
+            "pos": [
+              4.2,
+              0.4,
+              0
+            ],
+            "scale": 1.1,
+            "color": "#fca5a5"
+          }
+        ]
+      }
+    },
+    {
       "type": "warning",
       "content": "El abuso clásico: «¿Hay vida en otros planetas? Dos posibilidades — sí o no — así que 1/2». Con ese argumento, ganarte la lotería también sería 1/2: te la ganas o no. La fórmula no falla por aritmética; falla porque le metiste piedras de pesos distintos y ella asume balanza perfecta. Sin equiprobabilidad, el resultado es un invento con disfraz de matemática."
     },
@@ -108,6 +223,266 @@
       "good_example": {
         "prompt": "Dos monedas justas → S = {AA, AS, SA, SS} → P(exactamente 1 águila) = 2/4 = 1/2",
         "why": "Cuatro outcomes equiprobables por simetría. Elegir el sample space donde las piedras pesan igual ES la habilidad de esta sección — y suele ser el espacio grande, por eso §1.4 enseña a contarlos."
+      }
+    },
+    {
+      "type": "viz3d",
+      "title": "Contar favorables para CADA suma: nace el triángulo",
+      "caption": "Misma técnica, once eventos: A_s = «la suma es s» para s = 2, …, 12. El 7 gana porque tiene más formas de fabricarse (6 parejas ordenadas). Esto es la definición naive aplicada en serie — y una probadita de la forma que verás renacer en capítulos posteriores.",
+      "viz": {
+        "kind": "bars",
+        "values": [
+          [
+            0.02778,
+            0.05556,
+            0.08333,
+            0.11111,
+            0.13889,
+            0.16667,
+            0.13889,
+            0.11111,
+            0.08333,
+            0.05556,
+            0.02778
+          ]
+        ],
+        "z_scale": 24,
+        "gap": 0.25,
+        "camera": [
+          0,
+          5,
+          13
+        ],
+        "grid_size": 14,
+        "highlight": [
+          [
+            0,
+            5
+          ]
+        ],
+        "highlight_color": 16096779,
+        "labels": [
+          {
+            "text": "2",
+            "pos": [
+              -5,
+              1.2166666666666668,
+              0
+            ],
+            "scale": 0.8,
+            "color": "#e5e7eb"
+          },
+          {
+            "text": "1/36",
+            "pos": [
+              -5,
+              1.9166666666666665,
+              0
+            ],
+            "scale": 0.65,
+            "color": "#9ca3af"
+          },
+          {
+            "text": "3",
+            "pos": [
+              -4,
+              1.8833333333333333,
+              0
+            ],
+            "scale": 0.8,
+            "color": "#e5e7eb"
+          },
+          {
+            "text": "2/36",
+            "pos": [
+              -4,
+              2.583333333333333,
+              0
+            ],
+            "scale": 0.65,
+            "color": "#9ca3af"
+          },
+          {
+            "text": "4",
+            "pos": [
+              -3,
+              2.55,
+              0
+            ],
+            "scale": 0.8,
+            "color": "#e5e7eb"
+          },
+          {
+            "text": "3/36",
+            "pos": [
+              -3,
+              3.25,
+              0
+            ],
+            "scale": 0.65,
+            "color": "#9ca3af"
+          },
+          {
+            "text": "5",
+            "pos": [
+              -2,
+              3.216666666666667,
+              0
+            ],
+            "scale": 0.8,
+            "color": "#e5e7eb"
+          },
+          {
+            "text": "4/36",
+            "pos": [
+              -2,
+              3.9166666666666665,
+              0
+            ],
+            "scale": 0.65,
+            "color": "#9ca3af"
+          },
+          {
+            "text": "6",
+            "pos": [
+              -1,
+              3.8833333333333337,
+              0
+            ],
+            "scale": 0.8,
+            "color": "#e5e7eb"
+          },
+          {
+            "text": "5/36",
+            "pos": [
+              -1,
+              4.583333333333334,
+              0
+            ],
+            "scale": 0.65,
+            "color": "#9ca3af"
+          },
+          {
+            "text": "7",
+            "pos": [
+              0,
+              4.55,
+              0
+            ],
+            "scale": 0.8,
+            "color": "#e5e7eb"
+          },
+          {
+            "text": "6/36",
+            "pos": [
+              0,
+              5.25,
+              0
+            ],
+            "scale": 0.65,
+            "color": "#9ca3af"
+          },
+          {
+            "text": "8",
+            "pos": [
+              1,
+              3.8833333333333337,
+              0
+            ],
+            "scale": 0.8,
+            "color": "#e5e7eb"
+          },
+          {
+            "text": "5/36",
+            "pos": [
+              1,
+              4.583333333333334,
+              0
+            ],
+            "scale": 0.65,
+            "color": "#9ca3af"
+          },
+          {
+            "text": "9",
+            "pos": [
+              2,
+              3.216666666666667,
+              0
+            ],
+            "scale": 0.8,
+            "color": "#e5e7eb"
+          },
+          {
+            "text": "4/36",
+            "pos": [
+              2,
+              3.9166666666666665,
+              0
+            ],
+            "scale": 0.65,
+            "color": "#9ca3af"
+          },
+          {
+            "text": "10",
+            "pos": [
+              3,
+              2.55,
+              0
+            ],
+            "scale": 0.8,
+            "color": "#e5e7eb"
+          },
+          {
+            "text": "3/36",
+            "pos": [
+              3,
+              3.25,
+              0
+            ],
+            "scale": 0.65,
+            "color": "#9ca3af"
+          },
+          {
+            "text": "11",
+            "pos": [
+              4,
+              1.8833333333333333,
+              0
+            ],
+            "scale": 0.8,
+            "color": "#e5e7eb"
+          },
+          {
+            "text": "2/36",
+            "pos": [
+              4,
+              2.583333333333333,
+              0
+            ],
+            "scale": 0.65,
+            "color": "#9ca3af"
+          },
+          {
+            "text": "12",
+            "pos": [
+              5,
+              1.2166666666666668,
+              0
+            ],
+            "scale": 0.8,
+            "color": "#e5e7eb"
+          },
+          {
+            "text": "1/36",
+            "pos": [
+              5,
+              1.9166666666666665,
+              0
+            ],
+            "scale": 0.65,
+            "color": "#9ca3af"
+          }
+        ]
       }
     },
     {

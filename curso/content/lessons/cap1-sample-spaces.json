@@ -34,6 +34,206 @@
       "content": "Las operaciones de conjuntos SON las operaciones lógicas sobre eventos:\n\n• **A ∩ B** (intersección) = «A **y** B» — las piedras en ambos. El conjunto se *encoge*.\n• **A ∪ B** (unión) = «A **o** B» (o inclusivo) — las piedras en al menos uno. El conjunto se *crece*.\n• **Aᶜ** (complemento) = «**no** A» — las piedras fuera de A.\n\nMnemotecnia: ∪ tiene forma de U de **U**nión y junta todo; ∩ es el puente angosto donde solo pasa lo que está en los dos."
     },
     {
+      "type": "viz3d",
+      "title": "Tres volados = las 8 esquinas de un cubo",
+      "caption": "S = {A,S}³ tiene estructura geométrica: cada volado es una dimensión y cada arista cambia UN volado. El evento B = «al menos 2 águilas» son las 4 esquinas ámbar {AAA, AAS, ASA, SAA} — un evento es un SUBCONJUNTO de esquinas. Su complemento Bᶜ son las 4 moradas: cuenta las que te convenga (el truco del complemento).",
+      "viz": {
+        "kind": "points",
+        "points": [
+          [
+            -1,
+            -1,
+            -1
+          ],
+          [
+            -1,
+            -1,
+            1
+          ],
+          [
+            -1,
+            1,
+            -1
+          ],
+          [
+            -1,
+            1,
+            1
+          ],
+          [
+            1,
+            -1,
+            -1
+          ],
+          [
+            1,
+            -1,
+            1
+          ],
+          [
+            1,
+            1,
+            -1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ],
+        "size": 0.22,
+        "point_colors": [
+          8490232,
+          8490232,
+          8490232,
+          16096779,
+          8490232,
+          16096779,
+          16096779,
+          16096779
+        ],
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            6,
+            7
+          ]
+        ],
+        "edge_color": 7041664,
+        "grid": false,
+        "camera": [
+          3.2,
+          2.6,
+          4.2
+        ],
+        "labels": [
+          {
+            "text": "SSS",
+            "pos": [
+              -1.38,
+              -1.2599999999999998,
+              -1.38
+            ],
+            "scale": 0.75,
+            "color": "#c7d2fe"
+          },
+          {
+            "text": "SSA",
+            "pos": [
+              -1.38,
+              -1.2599999999999998,
+              1.38
+            ],
+            "scale": 0.75,
+            "color": "#c7d2fe"
+          },
+          {
+            "text": "SAS",
+            "pos": [
+              -1.38,
+              1.5,
+              -1.38
+            ],
+            "scale": 0.75,
+            "color": "#c7d2fe"
+          },
+          {
+            "text": "SAA",
+            "pos": [
+              -1.38,
+              1.5,
+              1.38
+            ],
+            "scale": 0.75,
+            "color": "#fbbf24"
+          },
+          {
+            "text": "ASS",
+            "pos": [
+              1.38,
+              -1.2599999999999998,
+              -1.38
+            ],
+            "scale": 0.75,
+            "color": "#c7d2fe"
+          },
+          {
+            "text": "ASA",
+            "pos": [
+              1.38,
+              -1.2599999999999998,
+              1.38
+            ],
+            "scale": 0.75,
+            "color": "#fbbf24"
+          },
+          {
+            "text": "AAS",
+            "pos": [
+              1.38,
+              1.5,
+              -1.38
+            ],
+            "scale": 0.75,
+            "color": "#fbbf24"
+          },
+          {
+            "text": "AAA",
+            "pos": [
+              1.38,
+              1.5,
+              1.38
+            ],
+            "scale": 0.75,
+            "color": "#fbbf24"
+          }
+        ]
+      }
+    },
+    {
       "type": "example",
       "title": "Contando piedras en la Figura 1.1",
       "bad_example": {
