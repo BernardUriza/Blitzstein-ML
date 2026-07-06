@@ -30,9 +30,19 @@ DEFAULTS = {
 }
 
 
+_CACHE_BUST = str(int(window.Date.now()))
+
+
+def bust_url(url):
+    """Chrome cachea heurísticamente los JSON de content/ (http.server no
+    manda Cache-Control); un v= por sesión fuerza contenido fresco por boot."""
+    separator = '&' if '?' in url else '?'
+    return url + separator + 'v=' + _CACHE_BUST
+
+
 def http_get_json(url):
     req = window.XMLHttpRequest.new()
-    req.open('GET', url, False)
+    req.open('GET', bust_url(url), False)
     req.send()
     if req.status == 200:
         return json.loads(req.responseText)

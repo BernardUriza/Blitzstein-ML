@@ -2,6 +2,8 @@
 # Carga y gestión de puzzles
 
 from browser import ajax, window
+
+from ..config import bust_url
 import json
 
 DIFFICULTY_LEVELS = {'easy': 1, 'medium': 3, 'hard': 5}
@@ -59,7 +61,7 @@ def load_puzzle(puzzle_id, callback=None):
 
     req = ajax.ajax()
     req.bind('complete', on_complete)
-    req.open('GET', url, True)
+    req.open('GET', bust_url(url), True)
     req.send()
 
     return None
@@ -101,7 +103,7 @@ def load_all_puzzles(callback=None):
 
     req = ajax.ajax()
     req.bind('complete', on_complete)
-    req.open('GET', url, True)
+    req.open('GET', bust_url(url), True)
     req.send()
 
     return None
