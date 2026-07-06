@@ -1,0 +1,65 @@
+{
+  "id": "cap1-sample-spaces",
+  "title": "Sample spaces y Pebble World (§1.1–1.2)",
+  "category": "cap1",
+  "difficulty": "beginner",
+  "duration": 45,
+  "xp_reward": 50,
+  "icon": "🪨",
+  "description": "El marco de conjuntos para la probabilidad: experimentos, outcomes, eventos, y las operaciones ∩ ∪ complemento como lógica.",
+  "questions": [
+    "¿Qué es un sample space y qué es un evento, en lenguaje de conjuntos?",
+    "¿Cómo se traducen ∩, ∪ y el complemento a 'y', 'o', 'no'?",
+    "Si conoces |A|, |B| y |A ∩ B|, ¿cuántas piedras tiene A ∪ B y por qué?"
+  ],
+  "objectives": [
+    "Modelar un experimento como sample space S y sus eventos como subconjuntos",
+    "Usar Pebble World como imagen mental: outcome = piedra, evento = conjunto de piedras",
+    "Traducir operaciones de conjuntos a operaciones lógicas sobre eventos",
+    "Derivar inclusión-exclusión contando piedras"
+  ],
+  "sections": [
+    {
+      "type": "text",
+      "title": "El experimento y sus piedras",
+      "content": "El marco matemático de la probabilidad se construye sobre **conjuntos**. Un experimento produce exactamente un outcome de un conjunto de posibles; antes de realizarlo no sabemos cuál, después el resultado «cristaliza».\n\n**Definición (sample space y evento).** El *sample space* S de un experimento es el conjunto de todos los outcomes posibles. Un *evento* A es un subconjunto de S, y decimos que A **ocurrió** si el outcome real está en A.\n\nCuando S es finito, píntalo como **Pebble World**: cada piedra es un outcome, y un evento es un conjunto de piedras. Realizar el experimento = elegir una piedra al azar."
+    },
+    {
+      "type": "tip",
+      "content": "Si todas las piedras pesan lo mismo, todas son igual de probables — ese caso especial es la definición naive (§1.3). La definición general (§1.6) deja que las piedras pesen distinto."
+    },
+    {
+      "type": "text",
+      "title": "Conjuntos = lógica",
+      "content": "Las operaciones de conjuntos SON las operaciones lógicas sobre eventos:\n\n• **A ∩ B** (intersección) = «A **y** B» — las piedras en ambos. El conjunto se *encoge*.\n• **A ∪ B** (unión) = «A **o** B» (o inclusivo) — las piedras en al menos uno. El conjunto se *crece*.\n• **Aᶜ** (complemento) = «**no** A» — las piedras fuera de A.\n\nMnemotecnia: ∪ tiene forma de U de **U**nión y junta todo; ∩ es el puente angosto donde solo pasa lo que está en los dos."
+    },
+    {
+      "type": "example",
+      "title": "Contando piedras en la Figura 1.1",
+      "bad_example": {
+        "prompt": "|A ∪ B| = |A| + |B| = 5 + 4 = 9",
+        "issue": "La piedra compartida se contó DOS veces — una como parte de A y otra como parte de B."
+      },
+      "good_example": {
+        "prompt": "|A ∪ B| = |A| + |B| − |A ∩ B| = 5 + 4 − 1 = 8",
+        "why": "Restar la intersección corrige la doble contada. Eso es inclusión-exclusión (Teorema 1.6.1) — y contar la misma cosa de dos maneras es el germen de las story proofs (§1.5)."
+      }
+    },
+    {
+      "type": "text",
+      "title": "El truco del complemento",
+      "content": "De |Aᶜ| = |S| − |A| sale, en probabilidad, $$P(A^c) = 1 - P(A)$$\n\n«Cuenta lo contrario» es una de las armas más usadas del curso — el birthday problem (§1.4) la explota a fondo: es mucho más fácil calcular la probabilidad de que NADIE comparta cumpleaños."
+    },
+    {
+      "type": "note",
+      "title": "Vocabulario de teoremas",
+      "content": "Definiciones = vocabulario acordado. Axiomas = reglas del juego aceptadas sin demostración. Teorema = afirmación DEMOSTRADA desde definiciones y axiomas; la demostración es el test exhaustivo hecho con lógica. Lema = teorema-escalón; corolario = consecuencia inmediata; proposición = teorema de rango medio."
+    }
+  ],
+  "keypoints": [
+    "Evento = conjunto de piedras; las operaciones de conjuntos son la lógica de eventos (∩ = y, ∪ = o, ᶜ = no)",
+    "|A ∪ B| = |A| + |B| − |A ∩ B|: restar la intersección corrige la doble contada",
+    "P(Aᶜ) = 1 − P(A): contar lo contrario suele ser más fácil",
+    "Un teorema es una afirmación demostrada — la proof es el test que cubre todos los inputs"
+  ]
+}

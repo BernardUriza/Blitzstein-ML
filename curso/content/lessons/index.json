@@ -1,0 +1,14 @@
+{
+  "categories": [
+    {
+      "id": "cap1",
+      "name": "Capítulo 1 — Probability and Counting",
+      "icon": "🪨",
+      "description": "Sample spaces, la definición naive y counting",
+      "order": 1
+    }
+  ],
+  "lessons": [
+    "cap1-sample-spaces"
+  ]
+}

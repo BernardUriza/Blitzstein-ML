@@ -1,0 +1,18 @@
+{
+  "id": "blitzstein-ml",
+  "name": "Blitzstein Bootcamp",
+  "logo": "🎲",
+  "tagline": "Probabilidad (Blitzstein & Hwang) → CS 391L Machine Learning",
+  "description": "Bootcamp jul–dic 2026. Lecciones = material ya cubierto en sesiones de estudio; el quiz de repaso es el ritual de retrieval practice.",
+  "language": "es",
+  "footer": "Construido con cwc-cool-workshop-course · UT Austin MSAI prep",
+  "features": {
+    "lessons": true,
+    "practice": false,
+    "assessment": false,
+    "puzzles": false,
+    "playground": false,
+    "retrieval": true,
+    "final_project": false
+  }
+}

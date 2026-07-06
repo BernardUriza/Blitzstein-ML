@@ -18,6 +18,11 @@ Blitzstein: historias antes que formalismo), pero exigir el formalismo al final.
    Bernard lo abre como dashboard en el browser). Se edita ese JSON, nunca el markup.
 2. **Retrieval practice**: hacerle 3 preguntas rápidas de material YA cubierto
    (capítulos previos) antes de avanzar. Si falla una, esa se re-estudia hoy.
+   El quiz interactivo vive en `curso/` (instancia de cwc-cool-workshop-course):
+   `cd curso && python3 -m http.server 8000` → `#quiz`. Al cerrar cada sesión de
+   estudio, agregar la lección del material cubierto a `curso/content/lessons/`
+   y sus preguntas a `curso/content/quizzes.json` — así el banco crece y el
+   muestreo 1+2+2 tiene de dónde jalar.
 3. Anunciar el objetivo de la sesión en una línea y arrancar.
 
 ## Reglas de trabajo

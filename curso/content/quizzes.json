@@ -1,0 +1,54 @@
+{
+  "cap1-sample-spaces": [
+    {
+      "question": "En Pebble World, una piedra cae dentro de los rectángulos A y B a la vez. ¿Qué ocurrió y cómo se llama ese conjunto?",
+      "options": [
+        "Ocurrió solo el evento más grande; el conjunto es la unión",
+        "Ocurrieron ambos eventos; el conjunto es la intersección A ∩ B",
+        "No ocurrió ninguno; el conjunto es el complemento",
+        "Ocurrieron ambos; el conjunto se llama concurrente"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "A ∪ B se lee…",
+      "options": [
+        "«A y B» — solo las piedras en ambos",
+        "«A o B» (o inclusivo) — las piedras en al menos uno",
+        "«A pero no B»",
+        "«ni A ni B»"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "Con 9 piedras en total, |A| = 5, |B| = 4 y |A ∩ B| = 1: ¿cuántas piedras tiene A ∪ B?",
+      "options": ["9", "8", "10", "7"],
+      "answer": 1
+    },
+    {
+      "question": "Con las mismas 9 piedras y |B| = 4, ¿cuántas piedras tiene Bᶜ?",
+      "options": ["4", "5", "6", "3"],
+      "answer": 1
+    },
+    {
+      "question": "¿Qué es un teorema?",
+      "options": [
+        "Una regla aceptada sin demostración como punto de partida",
+        "Una afirmación demostrada con lógica desde definiciones y axiomas",
+        "Una observación que funciona en los casos probados",
+        "El vocabulario que acordamos usar"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "La identidad |A ∪ B| = |A| + |B| − |A ∩ B| se llama…",
+      "options": [
+        "Ley de los grandes números",
+        "Inclusión-exclusión",
+        "Regla de la multiplicación",
+        "Teorema de Bayes"
+      ],
+      "answer": 1
+    }
+  ]
+}
