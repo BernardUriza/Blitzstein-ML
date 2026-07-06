@@ -24,28 +24,28 @@ class BadgeDisplay(Component):
 
     RARITY_COLORS = {
         'common': {
-            'bg': 'bg-gray-100',
-            'border': 'border-gray-300',
-            'text': 'text-gray-600',
+            'bg': 'bg-gray-800',
+            'border': 'border-gray-600',
+            'text': 'text-gray-400',
             'glow': '',
         },
         'rare': {
-            'bg': 'bg-blue-100',
+            'bg': 'bg-blue-900/40',
             'border': 'border-blue-400',
-            'text': 'text-blue-700',
-            'glow': 'ring-2 ring-blue-200',
+            'text': 'text-blue-300',
+            'glow': 'ring-2 ring-blue-500/40',
         },
         'epic': {
-            'bg': 'bg-purple-100',
+            'bg': 'bg-purple-900/40',
             'border': 'border-purple-400',
-            'text': 'text-purple-700',
-            'glow': 'ring-2 ring-purple-200',
+            'text': 'text-purple-300',
+            'glow': 'ring-2 ring-purple-500/40',
         },
         'legendary': {
-            'bg': 'bg-gradient-to-br from-yellow-100 to-amber-200',
+            'bg': 'bg-gradient-to-br from-yellow-900/40 to-amber-900/40',
             'border': 'border-yellow-400',
-            'text': 'text-amber-700',
-            'glow': 'ring-2 ring-yellow-300 shadow-lg shadow-yellow-200',
+            'text': 'text-amber-300',
+            'glow': 'ring-2 ring-yellow-400/50 shadow-lg shadow-yellow-500/20',
         },
     }
 
@@ -85,7 +85,7 @@ class BadgeDisplay(Component):
         if unlocked:
             badge_classes = f"{size_config['container']} {size_config['padding']} rounded-full {rarity_config['bg']} border-2 {rarity_config['border']} {rarity_config['glow']} flex items-center justify-center"
         else:
-            badge_classes = f"{size_config['container']} {size_config['padding']} rounded-full bg-gray-200 border-2 border-gray-300 flex items-center justify-center opacity-50"
+            badge_classes = f"{size_config['container']} {size_config['padding']} rounded-full bg-gray-700 border-2 border-gray-600 flex items-center justify-center opacity-50"
 
         badge_elem = html.DIV(
             html.SPAN(badge_icon if unlocked else '🔒', Class=size_config['icon']),
@@ -209,11 +209,11 @@ class BadgeProgress(Component):
         is_complete = current >= target
 
         container = html.DIV(
-            Class="flex items-center gap-4 p-3 bg-white rounded-lg border border-gray-100"
+            Class="flex items-center gap-4 p-3 bg-gray-800 rounded-lg border border-gray-700"
         )
 
         # Badge icon
-        icon_bg = "bg-green-100" if is_complete else "bg-gray-100"
+        icon_bg = "bg-green-900/40" if is_complete else "bg-gray-700"
         icon_wrapper = html.DIV(
             html.SPAN(badge_icon, Class="text-2xl"),
             Class=f"w-12 h-12 rounded-full flex items-center justify-center {icon_bg}"
@@ -222,8 +222,8 @@ class BadgeProgress(Component):
 
         # Info and progress
         info = html.DIV(Class="flex-1")
-        info <= html.P(name, Class="font-medium text-gray-800")
-        info <= html.P(description, Class="text-sm text-gray-500")
+        info <= html.P(name, Class="font-medium text-gray-100")
+        info <= html.P(description, Class="text-sm text-gray-400")
 
         # Progress bar
         progress_bar = html.DIV(Class="mt-2 flex items-center gap-2")
@@ -233,11 +233,11 @@ class BadgeProgress(Component):
                 Class=f"h-full rounded-full transition-all {bar_color}",
                 style=f"width: {progress}%"
             ),
-            Class="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden"
+            Class="flex-1 h-2 bg-gray-700 rounded-full overflow-hidden"
         )
         progress_bar <= html.SPAN(
             f"{current}/{target}",
-            Class="text-xs text-gray-500 font-medium min-w-[40px] text-right"
+            Class="text-xs text-gray-400 font-medium min-w-[40px] text-right"
         )
 
         info <= progress_bar

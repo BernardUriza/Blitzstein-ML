@@ -47,11 +47,11 @@ class CodeEditor(Component):
 
         # Label
         if label:
-            container <= html.LABEL(label, Class="block text-sm font-medium text-gray-700 mb-2")
+            container <= html.LABEL(label, Class="block text-sm font-medium text-gray-300 mb-2")
 
         # Editor container
         editor_container = html.DIV(
-            Class="relative border border-gray-200 rounded-lg overflow-hidden bg-gray-900 focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500"
+            Class="relative border border-gray-700 rounded-lg overflow-hidden bg-gray-900 focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500"
         )
 
         # Header con lenguaje
@@ -78,7 +78,7 @@ class CodeEditor(Component):
         if show_line_numbers:
             lines = value.split('\n') if value else ['']
             line_nums = html.DIV(
-                Class="text-right pr-3 py-3 text-gray-500 text-sm font-mono select-none bg-gray-800 border-r border-gray-700",
+                Class="text-right pr-3 py-3 text-gray-400 text-sm font-mono select-none bg-gray-800 border-r border-gray-700",
                 id="line-numbers"
             )
             for i in range(1, len(lines) + 1):
@@ -110,7 +110,7 @@ class CodeEditor(Component):
         # Caracteres count
         char_count = html.DIV(
             html.SPAN(f"{len(value)} caracteres", id="char-count"),
-            Class="text-xs text-gray-500 mt-1 text-right"
+            Class="text-xs text-gray-400 mt-1 text-right"
         )
         container <= char_count
 
@@ -188,14 +188,14 @@ class PromptEditor(CodeEditor):
 
     def _render_variables_panel(self, variables):
         """Renderiza panel de variables disponibles."""
-        panel = html.DIV(Class="mt-3 p-3 bg-gray-50 rounded-lg border border-gray-200")
-        panel <= html.P("Variables disponibles:", Class="text-sm font-medium text-gray-700 mb-2")
+        panel = html.DIV(Class="mt-3 p-3 bg-gray-900 rounded-lg border border-gray-700")
+        panel <= html.P("Variables disponibles:", Class="text-sm font-medium text-gray-300 mb-2")
 
         vars_container = html.DIV(Class="flex flex-wrap gap-2")
         for var_name, var_desc in variables.items():
             var_chip = html.BUTTON(
                 f"{{{{{var_name}}}}}",
-                Class="text-xs px-2 py-1 bg-indigo-100 text-indigo-700 rounded hover:bg-indigo-200 cursor-pointer font-mono",
+                Class="text-xs px-2 py-1 bg-indigo-900/40 text-indigo-300 rounded hover:bg-indigo-800 cursor-pointer font-mono",
                 title=var_desc
             )
             var_chip.bind('click', lambda e, v=var_name: self._insert_variable(v))

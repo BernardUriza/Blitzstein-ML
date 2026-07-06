@@ -16,21 +16,21 @@ def quiz_page(params):
     container = html.DIV(Class="max-w-3xl mx-auto")
 
     header = html.DIV(Class="mb-8")
-    header <= html.H1("🧠 Quiz de Repaso", Class="text-3xl font-bold text-gray-800 mb-2")
+    header <= html.H1("🧠 Quiz de Repaso", Class="text-3xl font-bold text-gray-100 mb-2")
     header <= html.P(
         "Retrieval practice: recordar activamente vence a re-leer. "
         "Mezcla de lo último que cubriste con material más viejo.",
-        Class="text-gray-600"
+        Class="text-gray-400"
     )
     container <= header
 
     if not questions:
         container <= html.DIV(
             html.SPAN("📭", Class="text-5xl block mb-4") +
-            html.P("Todavía no hay nada que repasar.", Class="text-gray-600 font-medium") +
-            html.P("Completa tu primera lección y regresa.", Class="text-gray-500 text-sm mt-1") +
-            html.A("→ Ir a Lecciones", href="#lessons", Class="inline-block mt-4 text-indigo-600 hover:text-indigo-800"),
-            Class="bg-white rounded-xl p-10 border border-gray-100 text-center"
+            html.P("Todavía no hay nada que repasar.", Class="text-gray-400 font-medium") +
+            html.P("Completa tu primera lección y regresa.", Class="text-gray-400 text-sm mt-1") +
+            html.A("→ Ir a Lecciones", href="#lessons", Class="inline-block mt-4 text-indigo-400 hover:text-indigo-200"),
+            Class="bg-gray-800 rounded-xl p-10 border border-gray-700 text-center"
         )
         return container
 
@@ -39,15 +39,15 @@ def quiz_page(params):
     quiz_box = html.DIV(Class="space-y-6")
 
     for i, q in enumerate(questions):
-        card = html.DIV(Class="bg-white rounded-xl p-6 border border-gray-100")
+        card = html.DIV(Class="bg-gray-800 rounded-xl p-6 border border-gray-700")
         card <= html.P(f"Pregunta {i + 1} de {len(questions)}", Class="text-xs text-gray-400 mb-2")
-        card <= html.H3(q['question'], Class="text-lg font-medium text-gray-800 mb-4")
+        card <= html.H3(q['question'], Class="text-lg font-medium text-gray-100 mb-4")
 
         options_box = html.DIV(Class="space-y-2", id=f"quiz-q{i}")
         for j, option in enumerate(q['options']):
             opt = html.BUTTON(
                 option,
-                Class="w-full text-left px-4 py-3 rounded-lg border border-gray-200 hover:border-indigo-300 hover:bg-indigo-50 transition-colors text-gray-700"
+                Class="w-full text-left px-4 py-3 rounded-lg border border-gray-700 hover:border-indigo-500 hover:bg-indigo-900/40 transition-colors text-gray-300"
             )
 
             def on_pick(e, qi=i, oi=j):
@@ -55,9 +55,9 @@ def quiz_page(params):
                 box = document.getElementById(f"quiz-q{qi}")
                 for k, child in enumerate(box.children):
                     if k == oi:
-                        child.className = "w-full text-left px-4 py-3 rounded-lg border-2 border-indigo-500 bg-indigo-50 text-indigo-800 font-medium"
+                        child.className = "w-full text-left px-4 py-3 rounded-lg border-2 border-indigo-500 bg-indigo-950/40 text-indigo-200 font-medium"
                     else:
-                        child.className = "w-full text-left px-4 py-3 rounded-lg border border-gray-200 hover:border-indigo-300 hover:bg-indigo-50 transition-colors text-gray-700"
+                        child.className = "w-full text-left px-4 py-3 rounded-lg border border-gray-700 hover:border-indigo-500 hover:bg-indigo-900/40 transition-colors text-gray-300"
 
             opt.bind('click', on_pick)
             options_box <= opt
@@ -80,7 +80,7 @@ def quiz_page(params):
             result_box.innerHTML = ""
             result_box <= html.P(
                 f"Te faltan {missing} pregunta(s) por contestar.",
-                Class="text-amber-600 text-center font-medium"
+                Class="text-amber-400 text-center font-medium"
             )
             return
 
@@ -93,9 +93,9 @@ def quiz_page(params):
                 correct += 1
             for k, child in enumerate(box.children):
                 if k == right:
-                    child.className = "w-full text-left px-4 py-3 rounded-lg border-2 border-green-500 bg-green-50 text-green-800 font-medium"
+                    child.className = "w-full text-left px-4 py-3 rounded-lg border-2 border-green-500 bg-green-950/40 text-green-200 font-medium"
                 elif k == picked:
-                    child.className = "w-full text-left px-4 py-3 rounded-lg border-2 border-red-400 bg-red-50 text-red-700"
+                    child.className = "w-full text-left px-4 py-3 rounded-lg border-2 border-red-400 bg-red-950/40 text-red-300"
                 child.disabled = True
 
         score_pct = round(correct / len(questions) * 100)
@@ -109,7 +109,7 @@ def quiz_page(params):
             award_xp(state, 'quiz_complete', base_amount=xp, reason="Quiz de repaso")
 
         result_box.innerHTML = ""
-        verdict_color = "text-green-700 bg-green-50 border-green-200" if score_pct >= 70 else "text-amber-700 bg-amber-50 border-amber-200"
+        verdict_color = "text-green-300 bg-green-950/40 border-green-800" if score_pct >= 70 else "text-amber-300 bg-amber-950/40 border-amber-800"
         verdict_msg = "Sólido. El material sigue vivo." if score_pct >= 70 else "Menos de 70%: re-estudia las lecciones de las preguntas falladas antes de avanzar."
         result_box <= html.DIV(
             html.P(f"{correct}/{len(questions)} correctas ({score_pct}%) · +{xp} XP", Class="text-xl font-bold mb-1") +

@@ -27,13 +27,13 @@ def lesson_detail_page(params):
     breadcrumb = html.DIV(Class="mb-6")
     breadcrumb <= html.A(
         "← Volver a Lecciones", href="#lessons",
-        Class="text-indigo-600 hover:text-indigo-800"
+        Class="text-indigo-400 hover:text-indigo-200"
     )
     container <= breadcrumb
 
     if is_completed:
         container <= html.DIV(
-            html.SPAN("✓ Ya completaste esta lección", Class="text-green-600 font-medium"),
+            html.SPAN("✓ Ya completaste esta lección", Class="text-green-400 font-medium"),
             Class="mb-4"
         )
 
@@ -52,8 +52,8 @@ def lesson_detail_page(params):
 def _render_not_found(lesson_id):
     return html.DIV(
         html.SPAN("📚", Class="text-6xl text-gray-300") +
-        html.H1(f"Lección '{lesson_id}' no encontrada", Class="text-xl font-bold text-gray-700 mt-4") +
-        html.A("← Volver a Lecciones", href="#lessons", Class="mt-4 text-indigo-600 hover:text-indigo-800"),
+        html.H1(f"Lección '{lesson_id}' no encontrada", Class="text-xl font-bold text-gray-300 mt-4") +
+        html.A("← Volver a Lecciones", href="#lessons", Class="mt-4 text-indigo-400 hover:text-indigo-200"),
         Class="text-center py-16"
     )
 
@@ -67,7 +67,7 @@ def _render_lesson_nav(loader, lesson):
     if prev_lesson:
         prev_btn = html.BUTTON(
             f"← {prev_lesson['title']}",
-            Class="px-4 py-2 text-gray-600 hover:text-gray-800"
+            Class="px-4 py-2 text-gray-400 hover:text-gray-100"
         )
         prev_btn.bind('click', lambda e, lid=prev_lesson['id']: navigate('lesson/:id', {'id': lid}))
         nav <= prev_btn
@@ -78,13 +78,13 @@ def _render_lesson_nav(loader, lesson):
     if lesson['id'] in ids:
         nav <= html.SPAN(
             f"Lección {ids.index(lesson['id']) + 1} de {len(ids)}",
-            Class="text-sm text-gray-500"
+            Class="text-sm text-gray-400"
         )
 
     if next_lesson:
         next_btn = html.BUTTON(
             f"{next_lesson['title']} →",
-            Class="px-4 py-2 text-gray-600 hover:text-gray-800"
+            Class="px-4 py-2 text-gray-400 hover:text-gray-100"
         )
         next_btn.bind('click', lambda e, lid=next_lesson['id']: navigate('lesson/:id', {'id': lid}))
         nav <= next_btn
@@ -122,7 +122,7 @@ def _render_complete_button(lesson, state):
             modal.show()
 
             btn.innerHTML = "✓ Completada"
-            btn.className = "px-8 py-3 bg-gray-400 text-white font-medium rounded-lg cursor-not-allowed"
+            btn.className = "px-8 py-3 bg-gray-700 text-white font-medium rounded-lg cursor-not-allowed"
             btn.disabled = True
 
     btn.bind('click', on_complete)

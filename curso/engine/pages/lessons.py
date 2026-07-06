@@ -14,8 +14,8 @@ def lessons_page(params):
     container = html.DIV(Class="max-w-5xl mx-auto")
 
     header = html.DIV(Class="mb-8")
-    header <= html.H1("📚 Lecciones", Class="text-3xl font-bold text-gray-800 mb-2")
-    header <= html.P(config.get('description') or config['tagline'], Class="text-gray-600")
+    header <= html.H1("📚 Lecciones", Class="text-3xl font-bold text-gray-100 mb-2")
+    header <= html.P(config.get('description') or config['tagline'], Class="text-gray-400")
     container <= header
 
     container <= _render_stats(state)
@@ -25,10 +25,10 @@ def lessons_page(params):
         section = html.DIV(Class="mb-10")
         section <= html.H2(
             f"{category.get('icon', '📂')} {category['name']}",
-            Class="text-xl font-semibold text-gray-700 mb-1"
+            Class="text-xl font-semibold text-gray-300 mb-1"
         )
         if category.get('description'):
-            section <= html.P(category['description'], Class="text-gray-500 text-sm mb-4")
+            section <= html.P(category['description'], Class="text-gray-400 text-sm mb-4")
         section <= _render_lesson_list(state, loader.get_lessons_by_category(category['id']))
         container <= section
 
@@ -43,26 +43,26 @@ def _render_stats(state):
     stats = html.DIV(Class="grid grid-cols-3 gap-4 mb-8")
 
     stats <= html.DIV(
-        html.SPAN(str(lessons_completed), Class="text-3xl font-bold text-indigo-600") +
+        html.SPAN(str(lessons_completed), Class="text-3xl font-bold text-indigo-400") +
         html.SPAN(f"/{total_lessons}", Class="text-xl text-gray-400") +
-        html.P("Lecciones completadas", Class="text-sm text-gray-500 mt-1"),
-        Class="bg-white rounded-lg p-4 border border-gray-100 text-center"
+        html.P("Lecciones completadas", Class="text-sm text-gray-400 mt-1"),
+        Class="bg-gray-800 rounded-lg p-4 border border-gray-700 text-center"
     )
 
     total_time = state.data.get('stats', {}).get('lessons', {}).get('total_time', 0)
     hours = total_time // 3600
     mins = (total_time % 3600) // 60
     stats <= html.DIV(
-        html.SPAN(f"{hours}h {mins}m", Class="text-3xl font-bold text-green-600") +
-        html.P("Tiempo de estudio", Class="text-sm text-gray-500 mt-1"),
-        Class="bg-white rounded-lg p-4 border border-gray-100 text-center"
+        html.SPAN(f"{hours}h {mins}m", Class="text-3xl font-bold text-green-400") +
+        html.P("Tiempo de estudio", Class="text-sm text-gray-400 mt-1"),
+        Class="bg-gray-800 rounded-lg p-4 border border-gray-700 text-center"
     )
 
     total_xp = loader.get_total_xp_available()
     stats <= html.DIV(
         html.SPAN(f"{total_xp} XP", Class="text-3xl font-bold text-amber-500") +
-        html.P("XP disponible en el curso", Class="text-sm text-gray-500 mt-1"),
-        Class="bg-white rounded-lg p-4 border border-gray-100 text-center"
+        html.P("XP disponible en el curso", Class="text-sm text-gray-400 mt-1"),
+        Class="bg-gray-800 rounded-lg p-4 border border-gray-700 text-center"
     )
 
     return stats
@@ -77,38 +77,38 @@ def _render_lesson_list(state, lessons):
         locked = i > 0 and lessons[i - 1]['id'] not in completed
         is_completed = lesson['id'] in completed
 
-        base_classes = "bg-white rounded-xl border border-gray-100 overflow-hidden transition-all p-5"
+        base_classes = "bg-gray-800 rounded-xl border border-gray-700 overflow-hidden transition-all p-5"
         if locked:
             state_classes = "opacity-60"
         elif is_completed:
-            state_classes = "border-green-200 bg-green-50/30"
+            state_classes = "border-green-800 bg-green-950/30"
         else:
-            state_classes = "hover:shadow-md hover:border-indigo-200 cursor-pointer"
+            state_classes = "hover:shadow-md hover:border-indigo-600 cursor-pointer"
 
         card = html.DIV(Class=f"{base_classes} {state_classes}")
 
         header = html.DIV(Class="flex items-center justify-between mb-2")
         header <= html.SPAN(
             f"{lesson.get('icon', '📄')} {lesson.get('duration', 10)} min",
-            Class="text-sm text-gray-500"
+            Class="text-sm text-gray-400"
         )
         if is_completed:
-            header <= html.SPAN("✓ Completada", Class="text-sm text-green-600")
+            header <= html.SPAN("✓ Completada", Class="text-sm text-green-400")
         elif locked:
             header <= html.SPAN("🔒 Bloqueada", Class="text-sm text-gray-400")
         card <= header
 
-        card <= html.H3(lesson.get('title', ''), Class="text-lg font-semibold text-gray-800")
-        card <= html.P(lesson.get('description', '')[:120], Class="text-gray-600 mt-2 text-sm")
+        card <= html.H3(lesson.get('title', ''), Class="text-lg font-semibold text-gray-100")
+        card <= html.P(lesson.get('description', '')[:120], Class="text-gray-400 mt-2 text-sm")
 
         footer = html.DIV(Class="flex items-center gap-4 mt-4")
         footer <= html.SPAN(
             lesson.get('difficulty', 'beginner').capitalize(),
-            Class="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-600"
+            Class="text-xs px-2 py-1 rounded-full bg-gray-700 text-gray-400"
         )
         footer <= html.SPAN(
             f"⭐ {lesson.get('xp_reward', 0)} XP",
-            Class="text-xs text-gray-500"
+            Class="text-xs text-gray-400"
         )
         card <= footer
 

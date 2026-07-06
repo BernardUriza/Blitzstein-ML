@@ -41,22 +41,22 @@ class Tabs(Component):
         """Renderiza los headers de las pestañas."""
         variant_styles = {
             'underline': {
-                'container': 'flex border-b border-gray-200',
+                'container': 'flex border-b border-gray-700',
                 'tab': 'px-4 py-2 text-sm font-medium border-b-2 -mb-px transition-colors',
-                'active': 'border-indigo-500 text-indigo-600',
-                'inactive': 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300',
+                'active': 'border-indigo-500 text-indigo-400',
+                'inactive': 'border-transparent text-gray-400 hover:text-gray-200 hover:border-gray-500',
             },
             'pills': {
-                'container': 'flex gap-2 p-1 bg-gray-100 rounded-lg',
+                'container': 'flex gap-2 p-1 bg-gray-900 rounded-lg',
                 'tab': 'px-4 py-2 text-sm font-medium rounded-md transition-colors',
-                'active': 'bg-white text-gray-900 shadow-sm',
-                'inactive': 'text-gray-500 hover:text-gray-700',
+                'active': 'bg-gray-700 text-gray-100 shadow-sm',
+                'inactive': 'text-gray-400 hover:text-gray-200',
             },
             'boxed': {
                 'container': 'flex',
-                'tab': 'px-4 py-2 text-sm font-medium border border-gray-200 first:rounded-l-lg last:rounded-r-lg -ml-px first:ml-0 transition-colors',
-                'active': 'bg-indigo-50 border-indigo-200 text-indigo-700 z-10',
-                'inactive': 'bg-white text-gray-500 hover:bg-gray-50',
+                'tab': 'px-4 py-2 text-sm font-medium border border-gray-700 first:rounded-l-lg last:rounded-r-lg -ml-px first:ml-0 transition-colors',
+                'active': 'bg-indigo-950/40 border-indigo-800 text-indigo-300 z-10',
+                'inactive': 'bg-gray-800 text-gray-400 hover:bg-gray-700',
             },
         }
 
@@ -138,7 +138,7 @@ class TabPanel(Component):
         panel = html.DIV(Class="p-4" if padding else "")
 
         if isinstance(content, str):
-            panel <= html.P(content, Class="text-gray-600")
+            panel <= html.P(content, Class="text-gray-400")
         elif callable(content):
             panel <= content()
         else:

@@ -23,9 +23,9 @@ class Button(Component):
 
     VARIANTS = {
         'primary': 'bg-indigo-600 text-white hover:bg-indigo-700 focus:ring-indigo-500',
-        'secondary': 'bg-gray-200 text-gray-800 hover:bg-gray-300 focus:ring-gray-500',
-        'outline': 'border-2 border-indigo-600 text-indigo-600 hover:bg-indigo-50 focus:ring-indigo-500',
-        'ghost': 'text-gray-600 hover:bg-gray-100 focus:ring-gray-500',
+        'secondary': 'bg-gray-700 text-gray-100 hover:bg-gray-600 focus:ring-gray-500',
+        'outline': 'border-2 border-indigo-600 text-indigo-400 hover:bg-indigo-900/40 focus:ring-indigo-500',
+        'ghost': 'text-gray-400 hover:bg-gray-700 focus:ring-gray-500',
         'danger': 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500',
         'success': 'bg-green-600 text-white hover:bg-green-700 focus:ring-green-500',
     }
@@ -48,7 +48,7 @@ class Button(Component):
         on_click = self.props.get('on_click')
 
         # Construir clases
-        base_classes = "inline-flex items-center justify-center font-medium rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-offset-2"
+        base_classes = "inline-flex items-center justify-center font-medium rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900"
         variant_classes = self.VARIANTS.get(variant, self.VARIANTS['primary'])
         size_classes = self.SIZES.get(size, self.SIZES['md'])
         disabled_classes = "opacity-50 cursor-not-allowed" if disabled or loading else "cursor-pointer"
@@ -119,12 +119,12 @@ class IconButton(Component):
 
         variant_classes = {
             'primary': 'bg-indigo-600 text-white hover:bg-indigo-700',
-            'secondary': 'bg-gray-200 text-gray-700 hover:bg-gray-300',
-            'ghost': 'text-gray-500 hover:bg-gray-100 hover:text-gray-700',
-            'danger': 'text-red-500 hover:bg-red-50 hover:text-red-700',
+            'secondary': 'bg-gray-700 text-gray-300 hover:bg-gray-600',
+            'ghost': 'text-gray-400 hover:bg-gray-700 hover:text-gray-200',
+            'danger': 'text-red-500 hover:bg-red-900/40 hover:text-red-300',
         }
 
-        base_classes = "inline-flex items-center justify-center rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2"
+        base_classes = "inline-flex items-center justify-center rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900"
         v_classes = variant_classes.get(variant, variant_classes['ghost'])
         s_classes = self.SIZES.get(size, self.SIZES['md'])
         disabled_classes = "opacity-50 cursor-not-allowed" if disabled else ""

@@ -29,10 +29,10 @@ def playground_page(params):
 
     # Header
     header = html.DIV(Class="mb-6")
-    header <= html.H1("🎮 Playground", Class="text-3xl font-bold text-gray-800 mb-2")
+    header <= html.H1("🎮 Playground", Class="text-3xl font-bold text-gray-100 mb-2")
     header <= html.P(
         "Experimenta con diferentes técnicas de prompting en un ambiente seguro.",
-        Class="text-gray-600"
+        Class="text-gray-400"
     )
     container <= header
 
@@ -61,8 +61,8 @@ def _render_editor_section():
     section = html.DIV(Class="lg:col-span-2 space-y-4")
 
     # Editor de prompt
-    editor_card = html.DIV(Class="bg-white rounded-xl p-4 border border-gray-100")
-    editor_card <= html.H3("Tu Prompt", Class="font-medium text-gray-700 mb-3")
+    editor_card = html.DIV(Class="bg-gray-800 rounded-xl p-4 border border-gray-700")
+    editor_card <= html.H3("Tu Prompt", Class="font-medium text-gray-300 mb-3")
 
     editor = PromptEditor(
         value="",
@@ -76,14 +76,14 @@ def _render_editor_section():
     section <= editor_card
 
     # Resultado
-    result_card = html.DIV(Class="bg-white rounded-xl p-4 border border-gray-100")
-    result_card <= html.H3("Resultado", Class="font-medium text-gray-700 mb-3")
+    result_card = html.DIV(Class="bg-gray-800 rounded-xl p-4 border border-gray-700")
+    result_card <= html.H3("Resultado", Class="font-medium text-gray-300 mb-3")
     result_card <= html.DIV(
         html.P(
             "El resultado de tu prompt aparecerá aquí. Haz clic en 'Ejecutar' para ver la respuesta simulada.",
             Class="text-gray-400 italic"
         ),
-        Class="min-h-[150px] p-4 bg-gray-50 rounded-lg",
+        Class="min-h-[150px] p-4 bg-gray-900 rounded-lg",
         id="playground-result"
     )
     section <= result_card
@@ -96,8 +96,8 @@ def _render_sidebar():
     sidebar = html.DIV(Class="space-y-4")
 
     # Técnicas rápidas
-    techniques_card = html.DIV(Class="bg-white rounded-xl p-4 border border-gray-100")
-    techniques_card <= html.H3("Técnicas", Class="font-medium text-gray-700 mb-3")
+    techniques_card = html.DIV(Class="bg-gray-800 rounded-xl p-4 border border-gray-700")
+    techniques_card <= html.H3("Técnicas", Class="font-medium text-gray-300 mb-3")
 
     techniques = [
         ('zero-shot', 'Zero-Shot', 'Sin ejemplos previos'),
@@ -108,9 +108,9 @@ def _render_sidebar():
 
     for tech_id, name, desc in techniques:
         tech_btn = html.DIV(
-            html.SPAN(name, Class="font-medium text-gray-700 block") +
-            html.SPAN(desc, Class="text-xs text-gray-500"),
-            Class="p-3 border border-gray-200 rounded-lg hover:border-indigo-200 hover:bg-indigo-50 cursor-pointer transition-colors mb-2"
+            html.SPAN(name, Class="font-medium text-gray-300 block") +
+            html.SPAN(desc, Class="text-xs text-gray-400"),
+            Class="p-3 border border-gray-700 rounded-lg hover:border-indigo-600 hover:bg-indigo-900/40 cursor-pointer transition-colors mb-2"
         )
         tech_btn.bind('click', lambda e, t=tech_id: _insert_technique(t))
         techniques_card <= tech_btn
@@ -118,8 +118,8 @@ def _render_sidebar():
     sidebar <= techniques_card
 
     # Consejos
-    tips_card = html.DIV(Class="bg-amber-50 rounded-xl p-4 border border-amber-100")
-    tips_card <= html.H3("💡 Consejos", Class="font-medium text-amber-700 mb-3")
+    tips_card = html.DIV(Class="bg-amber-950/40 rounded-xl p-4 border border-amber-800")
+    tips_card <= html.H3("💡 Consejos", Class="font-medium text-amber-300 mb-3")
 
     tips = [
         "Sé específico sobre lo que quieres.",
@@ -128,7 +128,7 @@ def _render_sidebar():
         "Usa ejemplos cuando sea posible.",
     ]
 
-    tips_list = html.UL(Class="space-y-2 text-sm text-amber-800")
+    tips_list = html.UL(Class="space-y-2 text-sm text-amber-200")
     for tip in tips:
         tips_list <= html.LI(f"• {tip}")
     tips_card <= tips_list
@@ -136,8 +136,8 @@ def _render_sidebar():
     sidebar <= tips_card
 
     # Historial
-    history_card = html.DIV(Class="bg-white rounded-xl p-4 border border-gray-100")
-    history_card <= html.H3("Historial", Class="font-medium text-gray-700 mb-3")
+    history_card = html.DIV(Class="bg-gray-800 rounded-xl p-4 border border-gray-700")
+    history_card <= html.H3("Historial", Class="font-medium text-gray-300 mb-3")
     history_card <= html.P(
         "Tu historial de prompts aparecerá aquí.",
         Class="text-sm text-gray-400 italic"
@@ -150,7 +150,7 @@ def _render_sidebar():
 def _render_templates():
     """Renderiza templates de ejemplo."""
     section = html.DIV(Class="mt-8")
-    section <= html.H2("📋 Templates de Ejemplo", Class="text-xl font-semibold text-gray-800 mb-4")
+    section <= html.H2("📋 Templates de Ejemplo", Class="text-xl font-semibold text-gray-100 mb-4")
 
     templates = [
         {
@@ -180,8 +180,8 @@ def _render_templates():
     for template in templates:
         card = html.DIV(
             html.SPAN(template['icon'], Class="text-2xl mb-2 block") +
-            html.SPAN(template['name'], Class="font-medium text-gray-700"),
-            Class="p-4 bg-white border border-gray-200 rounded-lg text-center hover:border-indigo-200 hover:bg-indigo-50 cursor-pointer transition-colors"
+            html.SPAN(template['name'], Class="font-medium text-gray-300"),
+            Class="p-4 bg-gray-800 border border-gray-700 rounded-lg text-center hover:border-indigo-600 hover:bg-indigo-900/40 cursor-pointer transition-colors"
         )
         card.bind('click', lambda e, p=template['prompt']: _load_template(p))
         grid <= card
@@ -198,8 +198,8 @@ def _on_run_prompt(prompt):
         return
 
     result_elem.innerHTML = ""
-    result_elem.className = "min-h-[150px] p-4 bg-gray-50 rounded-lg"
-    result_elem <= html.P("⏳ Procesando prompt...", Class="text-gray-500")
+    result_elem.className = "min-h-[150px] p-4 bg-gray-900 rounded-lg"
+    result_elem <= html.P("⏳ Procesando prompt...", Class="text-gray-400")
 
     def show_result():
         result_elem.innerHTML = ""
@@ -214,9 +214,9 @@ def _on_run_prompt(prompt):
         # Simular respuesta basada en el prompt
         response = _generate_mock_response(prompt)
 
-        result_elem.className = "min-h-[150px] p-4 bg-green-50 rounded-lg border border-green-100"
-        result_elem <= html.P("✅ Respuesta simulada:", Class="text-green-700 font-medium mb-2")
-        result_elem <= html.P(response, Class="text-gray-700 whitespace-pre-wrap")
+        result_elem.className = "min-h-[150px] p-4 bg-green-950/40 rounded-lg border border-green-800"
+        result_elem <= html.P("✅ Respuesta simulada:", Class="text-green-300 font-medium mb-2")
+        result_elem <= html.P(response, Class="text-gray-300 whitespace-pre-wrap")
 
         info("Prompt ejecutado exitosamente")
 

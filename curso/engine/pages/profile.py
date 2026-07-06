@@ -134,9 +134,9 @@ def _render_stats(state):
     for icon, value, label in stats_data:
         card = html.DIV(
             html.SPAN(icon, Class="text-2xl") +
-            html.SPAN(value, Class="text-3xl font-bold text-gray-800 ml-2") +
-            html.P(label, Class="text-sm text-gray-500 mt-1"),
-            Class="bg-white rounded-xl p-4 border border-gray-100 text-center"
+            html.SPAN(value, Class="text-3xl font-bold text-gray-100 ml-2") +
+            html.P(label, Class="text-sm text-gray-400 mt-1"),
+            Class="bg-gray-800 rounded-xl p-4 border border-gray-700 text-center"
         )
         section <= card
 
@@ -149,8 +149,8 @@ def _render_level_section(state):
     level_system = LevelSystem()
     all_levels = level_system.get_all_levels()
 
-    section = html.DIV(Class="bg-white rounded-xl p-6 border border-gray-100 mb-8")
-    section <= html.H2("🎖️ Tu Progreso de Nivel", Class="text-xl font-semibold text-gray-800 mb-4")
+    section = html.DIV(Class="bg-gray-800 rounded-xl p-6 border border-gray-700 mb-8")
+    section <= html.H2("🎖️ Tu Progreso de Nivel", Class="text-xl font-semibold text-gray-100 mb-4")
 
     # Grid de niveles
     levels_grid = html.DIV(Class="grid grid-cols-5 md:grid-cols-10 gap-2")
@@ -162,10 +162,10 @@ def _render_level_section(state):
         if is_achieved:
             level_class = "bg-indigo-600 text-white"
         else:
-            level_class = "bg-gray-100 text-gray-400"
+            level_class = "bg-gray-700 text-gray-400"
 
         if is_current:
-            level_class += " ring-2 ring-indigo-400 ring-offset-2"
+            level_class += " ring-2 ring-indigo-400 ring-offset-2 ring-offset-gray-900"
 
         level_item = html.DIV(
             html.SPAN(lvl['icon'], Class="text-lg") +
@@ -186,15 +186,15 @@ def _render_activity_calendar(state):
     calendar = streak_mgr.get_calendar(30)
     streak_info = streak_mgr.get_info()
 
-    section = html.DIV(Class="bg-white rounded-xl p-6 border border-gray-100 mb-8")
+    section = html.DIV(Class="bg-gray-800 rounded-xl p-6 border border-gray-700 mb-8")
 
     # Header
     header = html.DIV(Class="flex items-center justify-between mb-4")
-    header <= html.H2("📅 Actividad (últimos 30 días)", Class="text-xl font-semibold text-gray-800")
+    header <= html.H2("📅 Actividad (últimos 30 días)", Class="text-xl font-semibold text-gray-100")
     header <= html.DIV(
         html.SPAN("🔥 ", Class="text-lg") +
         html.SPAN(f"{streak_info['current']} días", Class="font-bold text-orange-500") +
-        html.SPAN(" de racha", Class="text-gray-500 text-sm"),
+        html.SPAN(" de racha", Class="text-gray-400 text-sm"),
         Class="flex items-center"
     )
     section <= header
@@ -206,7 +206,7 @@ def _render_activity_calendar(state):
         if day['active']:
             day_class = "bg-green-500"
         else:
-            day_class = "bg-gray-200"
+            day_class = "bg-gray-700"
 
         if day['is_today']:
             day_class += " ring-2 ring-indigo-400"
@@ -220,9 +220,9 @@ def _render_activity_calendar(state):
     section <= cal_grid
 
     # Leyenda
-    legend = html.DIV(Class="flex items-center gap-4 mt-4 text-sm text-gray-500")
+    legend = html.DIV(Class="flex items-center gap-4 mt-4 text-sm text-gray-400")
     legend <= html.DIV(
-        html.DIV(Class="w-4 h-4 rounded bg-gray-200 inline-block mr-1") +
+        html.DIV(Class="w-4 h-4 rounded bg-gray-700 inline-block mr-1") +
         html.SPAN("Sin actividad")
     )
     legend <= html.DIV(
@@ -236,7 +236,7 @@ def _render_activity_calendar(state):
     if freezes > 0:
         section <= html.P(
             f"❄️ Tienes {freezes} freeze(s) de racha disponibles",
-            Class="text-sm text-blue-600 mt-3"
+            Class="text-sm text-blue-400 mt-3"
         )
 
     return section
@@ -247,14 +247,14 @@ def _render_recent_badges(state):
     badge_mgr = BadgeManager(state)
     unlocked = badge_mgr.get_unlocked()
 
-    section = html.DIV(Class="bg-white rounded-xl p-6 border border-gray-100 mb-8")
+    section = html.DIV(Class="bg-gray-800 rounded-xl p-6 border border-gray-700 mb-8")
 
     header = html.DIV(Class="flex items-center justify-between mb-4")
-    header <= html.H2("🏆 Badges Desbloqueados", Class="text-xl font-semibold text-gray-800")
+    header <= html.H2("🏆 Badges Desbloqueados", Class="text-xl font-semibold text-gray-100")
     header <= html.A(
         "Ver todos →",
         href="#badges",
-        Class="text-indigo-600 hover:text-indigo-800 text-sm"
+        Class="text-indigo-400 hover:text-indigo-200 text-sm"
     )
     section <= header
 
@@ -266,8 +266,8 @@ def _render_recent_badges(state):
         for badge in recent:
             badge_elem = html.DIV(
                 html.SPAN(badge['icon'], Class="text-3xl") +
-                html.P(badge['name'], Class="text-xs text-gray-600 mt-1 text-center"),
-                Class="flex flex-col items-center p-3 bg-gray-50 rounded-lg"
+                html.P(badge['name'], Class="text-xs text-gray-400 mt-1 text-center"),
+                Class="flex flex-col items-center p-3 bg-gray-900 rounded-lg"
             )
             grid <= badge_elem
         section <= grid
@@ -285,8 +285,8 @@ def _render_xp_history(state):
     history = state.data.get('xp_history', [])[-10:]
     history = list(reversed(history))
 
-    section = html.DIV(Class="bg-white rounded-xl p-6 border border-gray-100")
-    section <= html.H2("📊 Historial de XP", Class="text-xl font-semibold text-gray-800 mb-4")
+    section = html.DIV(Class="bg-gray-800 rounded-xl p-6 border border-gray-700")
+    section <= html.H2("📊 Historial de XP", Class="text-xl font-semibold text-gray-100 mb-4")
 
     if history:
         list_elem = html.DIV(Class="space-y-2")
@@ -295,9 +295,9 @@ def _render_xp_history(state):
             amount = event.get('amount', 0)
 
             item = html.DIV(
-                html.SPAN(f"+{amount} XP", Class="font-bold text-indigo-600 w-20") +
-                html.SPAN(activity, Class="text-gray-700"),
-                Class="flex items-center p-2 hover:bg-gray-50 rounded"
+                html.SPAN(f"+{amount} XP", Class="font-bold text-indigo-400 w-20") +
+                html.SPAN(activity, Class="text-gray-300"),
+                Class="flex items-center p-2 hover:bg-gray-700 rounded"
             )
             list_elem <= item
         section <= list_elem

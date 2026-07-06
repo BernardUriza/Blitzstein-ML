@@ -70,7 +70,7 @@
         @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-900 antialiased" onload="brython({debug: 1, pythonpath: ['.']})">
+<body class="bg-gray-950 text-gray-100 antialiased" onload="brython({debug: 1, pythonpath: ['.']})">
 
     <div id="loading-screen">
         <div class="text-center text-white">
@@ -93,13 +93,13 @@ def show_error_on_page(error_msg, traceback_text=""):
         loading.remove()
     app_root = document.getElementById("app-root")
     app_root.innerHTML = ""
-    error_card = html.DIV(Class="bg-white rounded-xl shadow-lg p-8 max-w-2xl w-full")
-    error_card <= html.H1("❌ Error de carga", Class="text-2xl font-bold text-red-600 mb-4")
-    error_card <= html.P(str(error_msg), Class="text-red-800 font-mono bg-red-100 p-4 rounded mb-4")
+    error_card = html.DIV(Class="bg-gray-800 rounded-xl shadow-lg p-8 max-w-2xl w-full")
+    error_card <= html.H1("❌ Error de carga", Class="text-2xl font-bold text-red-400 mb-4")
+    error_card <= html.P(str(error_msg), Class="text-red-200 font-mono bg-red-900/40 p-4 rounded mb-4")
     if traceback_text:
-        error_card <= html.PRE(traceback_text, Class="text-xs text-gray-700 bg-gray-100 p-4 rounded overflow-auto max-h-64")
-    error_card <= html.P("Abre la consola del navegador (F12) para más detalles.", Class="text-gray-500 mt-4 text-sm")
-    app_root <= html.DIV(error_card, Class="min-h-screen flex items-center justify-center bg-red-50 p-8")
+        error_card <= html.PRE(traceback_text, Class="text-xs text-gray-300 bg-gray-900 p-4 rounded overflow-auto max-h-64")
+    error_card <= html.P("Abre la consola del navegador (F12) para más detalles.", Class="text-gray-400 mt-4 text-sm")
+    app_root <= html.DIV(error_card, Class="min-h-screen flex items-center justify-center bg-red-950/40 p-8")
 
 
 def start_app():

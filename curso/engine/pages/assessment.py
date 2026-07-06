@@ -39,18 +39,18 @@ def _render_question(container, question_idx, answers):
 
     # Header
     header = html.DIV(Class="mb-8")
-    header <= html.H1("🎯 Evaluación Diagnóstica", Class="text-3xl font-bold text-gray-800 mb-2")
+    header <= html.H1("🎯 Evaluación Diagnóstica", Class="text-3xl font-bold text-gray-100 mb-2")
     header <= html.P("Descubre tu nivel actual y recibe recomendaciones personalizadas",
-                     Class="text-gray-600")
+                     Class="text-gray-400")
     container <= header
 
     # Barra de progreso
     progress_container = html.DIV(Class="mb-8")
     progress_container <= html.DIV(
         f"Pregunta {question_idx + 1} de {len(ASSESSMENT_QUESTIONS)}",
-        Class="text-sm text-gray-600 mb-2"
+        Class="text-sm text-gray-400 mb-2"
     )
-    progress_bar = html.DIV(Class="w-full bg-gray-200 rounded-full h-3")
+    progress_bar = html.DIV(Class="w-full bg-gray-700 rounded-full h-3")
     progress_fill = html.DIV(
         Class="bg-gradient-to-r from-indigo-500 to-purple-500 h-3 rounded-full transition-all duration-500",
         style=f"width: {progress}%"
@@ -61,9 +61,9 @@ def _render_question(container, question_idx, answers):
 
     # Categoría badge
     category_colors = {
-        'fundamentals': 'bg-blue-100 text-blue-800',
-        'techniques': 'bg-green-100 text-green-800',
-        'claude-code': 'bg-purple-100 text-purple-800'
+        'fundamentals': 'bg-blue-900/40 text-blue-200',
+        'techniques': 'bg-green-900/40 text-green-200',
+        'claude-code': 'bg-purple-900/40 text-purple-200'
     }
     category_names = {
         'fundamentals': '📚 Fundamentos',
@@ -72,15 +72,15 @@ def _render_question(container, question_idx, answers):
     }
 
     # Card de pregunta
-    card = html.DIV(Class="bg-white rounded-2xl shadow-lg p-8")
+    card = html.DIV(Class="bg-gray-800 rounded-2xl shadow-lg p-8")
 
     category_badge = html.SPAN(
         category_names.get(question['category'], question['category']),
-        Class=f"inline-block px-3 py-1 rounded-full text-sm font-medium mb-4 {category_colors.get(question['category'], 'bg-gray-100')}"
+        Class=f"inline-block px-3 py-1 rounded-full text-sm font-medium mb-4 {category_colors.get(question['category'], 'bg-gray-700')}"
     )
     card <= category_badge
 
-    card <= html.H2(question['question'], Class="text-xl font-semibold text-gray-800 mb-6")
+    card <= html.H2(question['question'], Class="text-xl font-semibold text-gray-100 mb-6")
 
     # Opciones
     options_container = html.DIV(Class="space-y-3")
@@ -92,8 +92,8 @@ def _render_question(container, question_idx, answers):
         is_selected = answers.get(str(question['id'])) == idx
 
         option_btn = html.BUTTON(
-            Class=f"w-full text-left p-4 rounded-xl border-2 transition-all hover:border-indigo-400 hover:bg-indigo-50 " +
-                  ("border-indigo-500 bg-indigo-50" if is_selected else "border-gray-200 bg-white")
+            Class=f"w-full text-left p-4 rounded-xl border-2 transition-all hover:border-indigo-400 hover:bg-indigo-900/40 " +
+                  ("border-indigo-500 bg-indigo-950/40" if is_selected else "border-gray-700 bg-gray-800")
         )
 
         option_content = html.DIV(Class="flex items-center")
@@ -101,13 +101,13 @@ def _render_question(container, question_idx, answers):
         # Radio visual
         radio = html.DIV(
             Class=f"w-5 h-5 rounded-full border-2 mr-4 flex items-center justify-center " +
-                  ("border-indigo-500 bg-indigo-500" if is_selected else "border-gray-300")
+                  ("border-indigo-500 bg-indigo-500" if is_selected else "border-gray-600")
         )
         if is_selected:
             radio <= html.DIV(Class="w-2 h-2 rounded-full bg-white")
 
         option_content <= radio
-        option_content <= html.SPAN(option, Class="text-gray-700")
+        option_content <= html.SPAN(option, Class="text-gray-300")
         option_btn <= option_content
 
         def make_handler(opt_idx, q_id):
@@ -127,7 +127,7 @@ def _render_question(container, question_idx, answers):
     if question_idx > 0:
         prev_btn = html.BUTTON(
             "← Anterior",
-            Class="px-6 py-3 text-gray-600 hover:text-gray-800 font-medium"
+            Class="px-6 py-3 text-gray-400 hover:text-gray-100 font-medium"
         )
         prev_btn.bind('click', lambda ev: _go_to_question(question_idx - 1))
         nav_buttons <= prev_btn
@@ -243,8 +243,8 @@ def _render_results(container, assessment_data):
 
     # Header
     header = html.DIV(Class="text-center mb-8")
-    header <= html.H1("📊 Tus Resultados", Class="text-3xl font-bold text-gray-800 mb-2")
-    header <= html.P("Basado en tu evaluación, aquí está tu nivel actual", Class="text-gray-600")
+    header <= html.H1("📊 Tus Resultados", Class="text-3xl font-bold text-gray-100 mb-2")
+    header <= html.P("Basado en tu evaluación, aquí está tu nivel actual", Class="text-gray-400")
     container <= header
 
     # Score general
@@ -266,8 +266,8 @@ def _render_results(container, assessment_data):
     container <= score_card
 
     # Desglose por categoría
-    breakdown = html.DIV(Class="bg-white rounded-2xl shadow-lg p-6 mb-8")
-    breakdown <= html.H2("Desglose por Área", Class="text-xl font-bold text-gray-800 mb-6")
+    breakdown = html.DIV(Class="bg-gray-800 rounded-2xl shadow-lg p-6 mb-8")
+    breakdown <= html.H2("Desglose por Área", Class="text-xl font-bold text-gray-100 mb-6")
 
     categories_info = [
         ('fundamentals', '📚 Fundamentos', 'from-blue-500 to-blue-600'),
@@ -280,11 +280,11 @@ def _render_results(container, assessment_data):
 
         cat_row = html.DIV(Class="mb-4")
         cat_header = html.DIV(Class="flex justify-between mb-2")
-        cat_header <= html.SPAN(cat_name, Class="font-medium text-gray-700")
-        cat_header <= html.SPAN(f"{pct}%", Class="font-bold text-gray-800")
+        cat_header <= html.SPAN(cat_name, Class="font-medium text-gray-300")
+        cat_header <= html.SPAN(f"{pct}%", Class="font-bold text-gray-100")
         cat_row <= cat_header
 
-        bar_bg = html.DIV(Class="w-full bg-gray-200 rounded-full h-4")
+        bar_bg = html.DIV(Class="w-full bg-gray-700 rounded-full h-4")
         bar_fill = html.DIV(
             Class=f"bg-gradient-to-r {gradient} h-4 rounded-full transition-all duration-1000",
             style=f"width: {pct}%"
@@ -297,8 +297,8 @@ def _render_results(container, assessment_data):
     container <= breakdown
 
     # Recomendaciones
-    recs = html.DIV(Class="bg-white rounded-2xl shadow-lg p-6 mb-8")
-    recs <= html.H2("💡 Recomendaciones", Class="text-xl font-bold text-gray-800 mb-4")
+    recs = html.DIV(Class="bg-gray-800 rounded-2xl shadow-lg p-6 mb-8")
+    recs <= html.H2("💡 Recomendaciones", Class="text-xl font-bold text-gray-100 mb-4")
 
     recommendations = []
 
@@ -345,13 +345,13 @@ def _render_results(container, assessment_data):
     for rec in recommendations:
         rec_card = html.A(
             href=rec['link'],
-            Class="block p-4 border border-gray-200 rounded-xl hover:border-indigo-300 hover:bg-indigo-50 transition-all mb-3"
+            Class="block p-4 border border-gray-700 rounded-xl hover:border-indigo-500 hover:bg-indigo-900/40 transition-all mb-3"
         )
         rec_content = html.DIV(Class="flex items-start gap-4")
         rec_content <= html.SPAN(rec['icon'], Class="text-2xl")
         rec_text = html.DIV()
-        rec_text <= html.H3(rec['title'], Class="font-semibold text-gray-800")
-        rec_text <= html.P(rec['desc'], Class="text-sm text-gray-600")
+        rec_text <= html.H3(rec['title'], Class="font-semibold text-gray-100")
+        rec_text <= html.P(rec['desc'], Class="text-sm text-gray-400")
         rec_content <= rec_text
         rec_card <= rec_content
         recs <= rec_card
@@ -371,13 +371,13 @@ def _render_results(container, assessment_data):
     practice_btn = html.A(
         "✍️ Ir a Práctica",
         href="#practice",
-        Class="px-6 py-3 border-2 border-indigo-600 text-indigo-600 rounded-xl hover:bg-indigo-50 font-medium text-center"
+        Class="px-6 py-3 border-2 border-indigo-600 text-indigo-400 rounded-xl hover:bg-indigo-900/40 font-medium text-center"
     )
     actions <= practice_btn
 
     retake_btn = html.BUTTON(
         "🔄 Repetir Evaluación",
-        Class="px-6 py-3 text-gray-600 hover:text-gray-800 font-medium"
+        Class="px-6 py-3 text-gray-400 hover:text-gray-100 font-medium"
     )
     retake_btn.bind('click', _reset_assessment)
     actions <= retake_btn

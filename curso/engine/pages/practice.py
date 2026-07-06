@@ -14,9 +14,9 @@ def practice_page(params):
 
     # Header
     header = html.DIV(Class="mb-8")
-    header <= html.H1("✍️ Práctica", Class="text-3xl font-bold text-gray-800 mb-2")
+    header <= html.H1("✍️ Práctica", Class="text-3xl font-bold text-gray-100 mb-2")
     header <= html.P("Ejercicios con feedback instantáneo",
-                     Class="text-gray-600")
+                     Class="text-gray-400")
     container <= header
 
     # Progreso
@@ -25,12 +25,12 @@ def practice_page(params):
     total = len(PRACTICE_EXERCISES)
     done = len(completed)
 
-    progress_card = html.DIV(Class="bg-white rounded-xl shadow-sm p-4 mb-8 flex items-center justify-between")
+    progress_card = html.DIV(Class="bg-gray-800 rounded-xl shadow-sm p-4 mb-8 flex items-center justify-between")
     progress_left = html.DIV()
-    progress_left <= html.SPAN(f"Progreso: {done}/{total} ejercicios", Class="font-medium text-gray-700")
+    progress_left <= html.SPAN(f"Progreso: {done}/{total} ejercicios", Class="font-medium text-gray-300")
     progress_card <= progress_left
 
-    progress_bar = html.DIV(Class="w-48 bg-gray-200 rounded-full h-3")
+    progress_bar = html.DIV(Class="w-48 bg-gray-700 rounded-full h-3")
     pct = (done / total * 100) if total > 0 else 0
     progress_bar <= html.DIV(
         Class="bg-gradient-to-r from-green-500 to-emerald-500 h-3 rounded-full",
@@ -43,27 +43,27 @@ def practice_page(params):
     for exercise in PRACTICE_EXERCISES:
         is_completed = exercise['id'] in completed
 
-        card = html.DIV(Class=f"bg-white rounded-xl shadow-sm p-6 mb-4 border-2 " +
-                              ("border-green-300" if is_completed else "border-gray-100"))
+        card = html.DIV(Class=f"bg-gray-800 rounded-xl shadow-sm p-6 mb-4 border-2 " +
+                              ("border-green-700" if is_completed else "border-gray-700"))
 
         # Header del ejercicio
         card_header = html.DIV(Class="flex items-start justify-between mb-4")
 
         title_area = html.DIV()
         badge_colors = {
-            'beginner': 'bg-green-100 text-green-800',
-            'intermediate': 'bg-yellow-100 text-yellow-800',
-            'advanced': 'bg-red-100 text-red-800'
+            'beginner': 'bg-green-900/40 text-green-200',
+            'intermediate': 'bg-yellow-900/40 text-yellow-200',
+            'advanced': 'bg-red-900/40 text-red-200'
         }
         badge = html.SPAN(
             exercise['difficulty'].capitalize(),
-            Class=f"text-xs px-2 py-1 rounded-full font-medium {badge_colors.get(exercise['difficulty'], 'bg-gray-100')}"
+            Class=f"text-xs px-2 py-1 rounded-full font-medium {badge_colors.get(exercise['difficulty'], 'bg-gray-700')}"
         )
         title_area <= badge
 
         title_area <= html.H3(exercise['title'],
-                              Class="text-lg font-semibold text-gray-800 mt-2")
-        title_area <= html.P(exercise['scenario'], Class="text-gray-600 text-sm mt-1")
+                              Class="text-lg font-semibold text-gray-100 mt-2")
+        title_area <= html.P(exercise['scenario'], Class="text-gray-400 text-sm mt-1")
 
         card_header <= title_area
 
@@ -74,7 +74,7 @@ def practice_page(params):
 
         # Botón
         btn_class = "px-4 py-2 rounded-lg font-medium " + (
-            "bg-green-100 text-green-700" if is_completed else
+            "bg-green-900/40 text-green-300" if is_completed else
             "bg-indigo-600 text-white hover:bg-indigo-700"
         )
         btn_text = "Repetir" if is_completed else "Practicar"
@@ -109,65 +109,65 @@ def practice_exercise_page(params):
 
     if not exercise:
         container = html.DIV(Class="max-w-3xl mx-auto py-8 px-4")
-        container <= html.H1("Ejercicio no encontrado", Class="text-2xl text-gray-800")
+        container <= html.H1("Ejercicio no encontrado", Class="text-2xl text-gray-100")
         return container
 
     container = html.DIV(Class="max-w-3xl mx-auto py-8 px-4")
 
     # Back button
     back_btn = html.A("← Volver a Práctica", href="#practice",
-                      Class="text-indigo-600 hover:text-indigo-800 mb-4 inline-block")
+                      Class="text-indigo-400 hover:text-indigo-200 mb-4 inline-block")
     container <= back_btn
 
     # Header
     header = html.DIV(Class="mb-6")
-    header <= html.H1(exercise['title'], Class="text-2xl font-bold text-gray-800 mb-2")
+    header <= html.H1(exercise['title'], Class="text-2xl font-bold text-gray-100 mb-2")
 
     cat_badge_colors = {
-        'fundamentals': 'bg-blue-100 text-blue-800',
-        'techniques': 'bg-green-100 text-green-800',
-        'claude-code': 'bg-purple-100 text-purple-800',
-        'project': 'bg-orange-100 text-orange-800'
+        'fundamentals': 'bg-blue-900/40 text-blue-200',
+        'techniques': 'bg-green-900/40 text-green-200',
+        'claude-code': 'bg-purple-900/40 text-purple-200',
+        'project': 'bg-orange-900/40 text-orange-200'
     }
     header <= html.SPAN(exercise['category'].replace('-', ' ').title(),
-                        Class=f"px-3 py-1 rounded-full text-sm {cat_badge_colors.get(exercise['category'], 'bg-gray-100')}")
+                        Class=f"px-3 py-1 rounded-full text-sm {cat_badge_colors.get(exercise['category'], 'bg-gray-700')}")
     container <= header
 
     # Escenario
-    scenario_card = html.DIV(Class="bg-indigo-50 border border-indigo-200 rounded-xl p-4 mb-6")
-    scenario_card <= html.H3("📋 Escenario", Class="font-semibold text-indigo-800 mb-2")
-    scenario_card <= html.P(exercise['scenario'], Class="text-indigo-700")
+    scenario_card = html.DIV(Class="bg-indigo-950/40 border border-indigo-800 rounded-xl p-4 mb-6")
+    scenario_card <= html.H3("📋 Escenario", Class="font-semibold text-indigo-200 mb-2")
+    scenario_card <= html.P(exercise['scenario'], Class="text-indigo-300")
     container <= scenario_card
 
     # Tarea
-    task_card = html.DIV(Class="bg-white border border-gray-200 rounded-xl p-4 mb-6")
-    task_card <= html.H3("🎯 Tu tarea", Class="font-semibold text-gray-800 mb-2")
-    task_card <= html.P(exercise['task'], Class="text-gray-700")
+    task_card = html.DIV(Class="bg-gray-800 border border-gray-700 rounded-xl p-4 mb-6")
+    task_card <= html.H3("🎯 Tu tarea", Class="font-semibold text-gray-100 mb-2")
+    task_card <= html.P(exercise['task'], Class="text-gray-300")
     container <= task_card
 
     # Editor de prompt
     editor_section = html.DIV(Class="mb-6")
-    editor_section <= html.LABEL("✍️ Escribe tu prompt:", Class="block font-medium text-gray-700 mb-2")
+    editor_section <= html.LABEL("✍️ Escribe tu prompt:", Class="block font-medium text-gray-300 mb-2")
 
     textarea = html.TEXTAREA(
         placeholder="Escribe tu prompt aquí...",
-        Class="w-full h-48 p-4 border-2 border-gray-300 rounded-xl focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 resize-none font-mono",
+        Class="w-full h-48 p-4 border-2 border-gray-600 rounded-xl focus:border-indigo-500 focus:ring-2 focus:ring-indigo-800 resize-none font-mono",
         id=f"prompt-editor-{exercise_id}"
     )
     editor_section <= textarea
 
     # Contador de palabras
-    word_count = html.DIV("0 palabras", Class="text-sm text-gray-500 mt-2", id="word-count")
+    word_count = html.DIV("0 palabras", Class="text-sm text-gray-400 mt-2", id="word-count")
     editor_section <= word_count
 
     container <= editor_section
 
     # Hints (collapsible)
     hints_section = html.DIV(Class="mb-6")
-    hints_toggle = html.BUTTON("💡 Ver pistas", Class="text-indigo-600 hover:text-indigo-800 font-medium")
-    hints_content = html.DIV(Class="hidden mt-3 bg-yellow-50 border border-yellow-200 rounded-xl p-4",
+    hints_toggle = html.BUTTON("💡 Ver pistas", Class="text-indigo-400 hover:text-indigo-200 font-medium")
+    hints_content = html.DIV(Class="hidden mt-3 bg-yellow-950/40 border border-yellow-800 rounded-xl p-4",
                              id="hints-content")
-    hints_content <= html.UL(Class="list-disc list-inside space-y-1 text-yellow-800")
+    hints_content <= html.UL(Class="list-disc list-inside space-y-1 text-yellow-200")
     for hint in exercise['hints']:
         hints_content.select('ul')[0] <= html.LI(hint)
 
@@ -352,7 +352,7 @@ def _show_feedback(container, exercise, results, error_msg, user_prompt):
     if error_msg:
         feedback_area <= html.DIV(
             error_msg,
-            Class="bg-yellow-50 border border-yellow-200 text-yellow-800 rounded-xl p-4 mb-4"
+            Class="bg-yellow-950/40 border border-yellow-800 text-yellow-200 rounded-xl p-4 mb-4"
         )
         return
 
@@ -362,9 +362,9 @@ def _show_feedback(container, exercise, results, error_msg, user_prompt):
     score = int((passed / total) * 100) if total > 0 else 0
 
     # Header de resultados
-    result_card = html.DIV(Class="bg-white border border-gray-200 rounded-xl p-6 mb-4")
+    result_card = html.DIV(Class="bg-gray-800 border border-gray-700 rounded-xl p-6 mb-4")
 
-    score_color = "text-green-600" if score >= 80 else ("text-yellow-600" if score >= 60 else "text-red-600")
+    score_color = "text-green-400" if score >= 80 else ("text-yellow-400" if score >= 60 else "text-red-400")
     result_card <= html.DIV(
         f"Puntuación: {score}%",
         Class=f"text-3xl font-bold {score_color} mb-4"
@@ -377,14 +377,14 @@ def _show_feedback(container, exercise, results, error_msg, user_prompt):
         passed = results.get(criterion['id'], False)
 
         crit_item = html.DIV(Class="flex items-center gap-3 p-2 rounded-lg " +
-                                   ("bg-green-50" if passed else "bg-red-50"))
+                                   ("bg-green-950/40" if passed else "bg-red-950/40"))
         crit_item <= html.SPAN("✅" if passed else "❌", Class="text-lg")
 
         crit_text = html.DIV()
         crit_text <= html.SPAN(criterion['name'], Class="font-medium " +
-                                                        ("text-green-800" if passed else "text-red-800"))
+                                                        ("text-green-200" if passed else "text-red-200"))
         crit_text <= html.P(criterion['description'], Class="text-sm " +
-                                                             ("text-green-600" if passed else "text-red-600"))
+                                                             ("text-green-400" if passed else "text-red-400"))
         crit_item <= crit_text
         criteria_list <= crit_item
 
@@ -408,21 +408,21 @@ def _show_feedback(container, exercise, results, error_msg, user_prompt):
             award_xp(state, 'practice', exercise['xp_reward'], None, f"Completar ejercicio: {exercise['title']}")
 
             success_msg = html.DIV(
-                Class="bg-green-100 border border-green-300 rounded-xl p-4 mb-4 text-center"
+                Class="bg-green-900/40 border border-green-700 rounded-xl p-4 mb-4 text-center"
             )
-            success_msg <= html.P("🎉 ¡Excelente! Has completado este ejercicio.", Class="text-green-800 font-medium")
-            success_msg <= html.P(f"+{exercise['xp_reward']} XP ganados", Class="text-green-600")
+            success_msg <= html.P("🎉 ¡Excelente! Has completado este ejercicio.", Class="text-green-200 font-medium")
+            success_msg <= html.P(f"+{exercise['xp_reward']} XP ganados", Class="text-green-400")
             feedback_area <= success_msg
 
     # Ver ejemplo
     if exercise.get('example_prompt') and exercise['example_prompt'] != 'No hay ejemplo - ¡este es TU prompt único!':
         example_section = html.DIV(Class="mt-6")
-        example_toggle = html.BUTTON("📝 Ver ejemplo de prompt", Class="text-indigo-600 hover:text-indigo-800 font-medium")
+        example_toggle = html.BUTTON("📝 Ver ejemplo de prompt", Class="text-indigo-400 hover:text-indigo-200 font-medium")
         example_content = html.DIV(Class="hidden mt-3", id="example-content")
 
-        example_box = html.DIV(Class="bg-gray-50 border border-gray-200 rounded-xl p-4")
-        example_box <= html.H4("Ejemplo de buen prompt:", Class="font-semibold text-gray-700 mb-2")
-        example_box <= html.PRE(exercise['example_prompt'], Class="whitespace-pre-wrap text-sm text-gray-600 font-mono")
+        example_box = html.DIV(Class="bg-gray-900 border border-gray-700 rounded-xl p-4")
+        example_box <= html.H4("Ejemplo de buen prompt:", Class="font-semibold text-gray-300 mb-2")
+        example_box <= html.PRE(exercise['example_prompt'], Class="whitespace-pre-wrap text-sm text-gray-400 font-mono")
         example_content <= example_box
 
         def toggle_example(ev):

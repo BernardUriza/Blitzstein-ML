@@ -58,16 +58,16 @@ class LessonRenderer:
         if not questions:
             return html.DIV()
 
-        section = html.DIV(Class="bg-amber-50 rounded-xl p-6 border border-amber-100")
+        section = html.DIV(Class="bg-amber-950/40 rounded-xl p-6 border border-amber-800")
         section <= html.H3(
             "❓ Antes de empezar, ten estas preguntas en mente",
-            Class="font-semibold text-amber-800 mb-3"
+            Class="font-semibold text-amber-200 mb-3"
         )
         q_list = html.UL(Class="space-y-2")
         for q in questions:
             q_list <= html.LI(
                 html.SPAN("• ", Class="text-amber-500 font-bold") +
-                html.SPAN(q, Class="text-amber-700"),
+                html.SPAN(q, Class="text-amber-300"),
                 Class="flex items-start"
             )
         section <= q_list
@@ -79,16 +79,16 @@ class LessonRenderer:
         if not keypoints:
             return html.DIV()
 
-        section = html.DIV(Class="bg-green-50 rounded-xl p-6 border border-green-100")
+        section = html.DIV(Class="bg-green-950/40 rounded-xl p-6 border border-green-800")
         section <= html.H3(
             "🔑 Puntos clave",
-            Class="font-semibold text-green-800 mb-3"
+            Class="font-semibold text-green-200 mb-3"
         )
         kp_list = html.UL(Class="space-y-2")
         for kp in keypoints:
             kp_list <= html.LI(
                 html.SPAN("✓ ", Class="text-green-500 font-bold") +
-                html.SPAN(kp, Class="text-green-700"),
+                html.SPAN(kp, Class="text-green-300"),
                 Class="flex items-start"
             )
         section <= kp_list
@@ -101,9 +101,9 @@ class LessonRenderer:
         # Breadcrumb
         category = self.lesson.get('category', '')
         breadcrumb = html.DIV(
-            html.A("Lecciones", href="#lessons", Class="text-indigo-600 hover:underline") +
+            html.A("Lecciones", href="#lessons", Class="text-indigo-400 hover:underline") +
             html.SPAN(" / ", Class="text-gray-400 mx-2") +
-            html.SPAN(category.title(), Class="text-gray-500"),
+            html.SPAN(category.title(), Class="text-gray-400"),
             Class="text-sm mb-2"
         )
         header <= breadcrumb
@@ -113,11 +113,11 @@ class LessonRenderer:
         title = self.lesson.get('title', 'Lección')
         header <= html.H1(
             f"{icon} {title}",
-            Class="text-3xl font-bold text-gray-800 mb-3"
+            Class="text-3xl font-bold text-gray-100 mb-3"
         )
 
         # Meta información
-        meta = html.DIV(Class="flex flex-wrap gap-4 text-sm text-gray-500")
+        meta = html.DIV(Class="flex flex-wrap gap-4 text-sm text-gray-400")
 
         # Duración
         duration = self.lesson.get('duration', 10)
@@ -147,18 +147,18 @@ class LessonRenderer:
         if not objectives:
             return html.DIV()
 
-        section = html.DIV(Class="bg-indigo-50 rounded-xl p-6 border border-indigo-100")
+        section = html.DIV(Class="bg-indigo-950/40 rounded-xl p-6 border border-indigo-800")
 
         section <= html.H3(
             "🎯 Objetivos de Aprendizaje",
-            Class="font-semibold text-indigo-800 mb-3"
+            Class="font-semibold text-indigo-200 mb-3"
         )
 
         obj_list = html.UL(Class="space-y-2")
         for obj in objectives:
             obj_list <= html.LI(
                 html.SPAN("✓ ", Class="text-indigo-500 font-bold") +
-                html.SPAN(obj, Class="text-indigo-700"),
+                html.SPAN(obj, Class="text-indigo-300"),
                 Class="flex items-start"
             )
         section <= obj_list
@@ -198,7 +198,7 @@ class LessonRenderer:
 
         title = section.get('title')
         if title:
-            container <= html.H2(title, Class="text-xl font-semibold text-gray-800 mb-4")
+            container <= html.H2(title, Class="text-xl font-semibold text-gray-100 mb-4")
 
         content = section.get('content', '')
         # Procesar markdown básico
@@ -206,58 +206,58 @@ class LessonRenderer:
         for para in paragraphs:
             if para.strip():
                 processed = self._process_markdown(para.strip())
-                container <= html.DIV(processed, Class="text-gray-700 mb-4 leading-relaxed")
+                container <= html.DIV(processed, Class="text-gray-300 mb-4 leading-relaxed")
 
         return container
 
     def _render_tip_section(self, section):
         """Renderiza un tip/consejo."""
         container = html.DIV(
-            Class="bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-lg"
+            Class="bg-amber-950/40 border-l-4 border-amber-400 p-4 rounded-r-lg"
         )
 
         container <= html.DIV(
             html.SPAN("💡 ", Class="text-xl") +
-            html.SPAN("Tip", Class="font-semibold text-amber-800"),
+            html.SPAN("Tip", Class="font-semibold text-amber-200"),
             Class="mb-2"
         )
 
         content = section.get('content', '')
-        container <= html.P(content, Class="text-amber-700")
+        container <= html.P(content, Class="text-amber-300")
 
         return container
 
     def _render_warning_section(self, section):
         """Renderiza una advertencia."""
         container = html.DIV(
-            Class="bg-red-50 border-l-4 border-red-400 p-4 rounded-r-lg"
+            Class="bg-red-950/40 border-l-4 border-red-400 p-4 rounded-r-lg"
         )
 
         container <= html.DIV(
             html.SPAN("⚠️ ", Class="text-xl") +
-            html.SPAN("Advertencia", Class="font-semibold text-red-800"),
+            html.SPAN("Advertencia", Class="font-semibold text-red-200"),
             Class="mb-2"
         )
 
         content = section.get('content', '')
-        container <= html.P(content, Class="text-red-700")
+        container <= html.P(content, Class="text-red-300")
 
         return container
 
     def _render_note_section(self, section):
         """Renderiza una nota."""
         container = html.DIV(
-            Class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg"
+            Class="bg-blue-950/40 border-l-4 border-blue-400 p-4 rounded-r-lg"
         )
 
         container <= html.DIV(
             html.SPAN("📝 ", Class="text-xl") +
-            html.SPAN("Nota", Class="font-semibold text-blue-800"),
+            html.SPAN("Nota", Class="font-semibold text-blue-200"),
             Class="mb-2"
         )
 
         content = section.get('content', '')
-        container <= html.P(content, Class="text-blue-700")
+        container <= html.P(content, Class="text-blue-300")
 
         return container
 
@@ -267,45 +267,45 @@ class LessonRenderer:
 
         title = section.get('title')
         if title:
-            container <= html.H3(title, Class="text-lg font-semibold text-gray-800")
+            container <= html.H3(title, Class="text-lg font-semibold text-gray-100")
 
         # Ejemplo malo
         bad = section.get('bad_example', {})
         if bad:
-            bad_card = html.DIV(Class="bg-red-50 rounded-lg p-4 border border-red-100")
+            bad_card = html.DIV(Class="bg-red-950/40 rounded-lg p-4 border border-red-800")
             bad_card <= html.DIV(
                 html.SPAN("❌ ", Class="text-lg") +
-                html.SPAN("Incorrecto", Class="font-medium text-red-800"),
+                html.SPAN("Incorrecto", Class="font-medium text-red-200"),
                 Class="mb-2"
             )
             bad_card <= html.DIV(
                 html.CODE(bad.get('prompt', ''), Class="text-sm"),
-                Class="bg-white p-3 rounded border border-red-200 mb-2 block font-mono"
+                Class="bg-gray-800 p-3 rounded border border-red-800 mb-2 block font-mono"
             )
             if bad.get('issue'):
                 bad_card <= html.P(
                     f"⚠️ {bad['issue']}",
-                    Class="text-sm text-red-600"
+                    Class="text-sm text-red-400"
                 )
             container <= bad_card
 
         # Ejemplo bueno
         good = section.get('good_example', {})
         if good:
-            good_card = html.DIV(Class="bg-green-50 rounded-lg p-4 border border-green-100")
+            good_card = html.DIV(Class="bg-green-950/40 rounded-lg p-4 border border-green-800")
             good_card <= html.DIV(
                 html.SPAN("✅ ", Class="text-lg") +
-                html.SPAN("Correcto", Class="font-medium text-green-800"),
+                html.SPAN("Correcto", Class="font-medium text-green-200"),
                 Class="mb-2"
             )
             good_card <= html.DIV(
                 html.CODE(good.get('prompt', ''), Class="text-sm whitespace-pre-wrap"),
-                Class="bg-white p-3 rounded border border-green-200 mb-2 block font-mono"
+                Class="bg-gray-800 p-3 rounded border border-green-800 mb-2 block font-mono"
             )
             if good.get('why'):
                 good_card <= html.P(
                     f"✓ {good['why']}",
-                    Class="text-sm text-green-600"
+                    Class="text-sm text-green-400"
                 )
             container <= good_card
 
@@ -317,7 +317,7 @@ class LessonRenderer:
 
         title = section.get('title')
         if title:
-            container <= html.H3(title, Class="text-lg font-semibold text-gray-800 mb-3")
+            container <= html.H3(title, Class="text-lg font-semibold text-gray-100 mb-3")
 
         language = section.get('language', 'text')
         code = section.get('code', '')
@@ -351,7 +351,7 @@ class LessonRenderer:
 
         title = section.get('title')
         if title:
-            container <= html.H3(title, Class="text-lg font-semibold text-gray-800 mb-3")
+            container <= html.H3(title, Class="text-lg font-semibold text-gray-100 mb-3")
 
         holder = html.DIV()
         container <= holder
@@ -361,18 +361,18 @@ class LessonRenderer:
 
         caption = section.get('caption')
         if caption:
-            container <= html.P(caption, Class="text-sm text-gray-500 mt-2 italic")
+            container <= html.P(caption, Class="text-sm text-gray-400 mt-2 italic")
 
         return container
 
     def _render_quiz_section(self, section):
         """Renderiza una pregunta de quiz inline."""
-        container = html.DIV(Class="bg-purple-50 rounded-xl p-6 border border-purple-100")
+        container = html.DIV(Class="bg-purple-950/40 rounded-xl p-6 border border-purple-800")
 
         question = section.get('question', '')
         container <= html.P(
             f"❓ {question}",
-            Class="font-medium text-purple-800 mb-4"
+            Class="font-medium text-purple-200 mb-4"
         )
 
         options = section.get('options', [])
@@ -381,7 +381,7 @@ class LessonRenderer:
         for i, option in enumerate(options):
             opt_btn = html.BUTTON(
                 f"{chr(65 + i)}. {option}",
-                Class="w-full text-left p-3 bg-white rounded-lg border border-purple-200 hover:border-purple-400 hover:bg-purple-50 transition-colors"
+                Class="w-full text-left p-3 bg-gray-800 rounded-lg border border-purple-800 hover:border-purple-400 hover:bg-purple-900/40 transition-colors"
             )
             opt_btn.bind('click', lambda e, idx=i: self._check_answer(section, idx, e.target))
             options_div <= opt_btn
@@ -405,16 +405,16 @@ class LessonRenderer:
                 feedback_elem <= html.DIV(
                     html.SPAN("✅ ¡Correcto! ", Class="font-bold") +
                     html.SPAN(section.get('explanation', '')),
-                    Class="p-3 bg-green-100 text-green-800 rounded-lg"
+                    Class="p-3 bg-green-900/40 text-green-200 rounded-lg"
                 )
-                button.className = button.className.replace("border-purple-200", "border-green-500 bg-green-50")
+                button.className = button.className.replace("border-purple-800", "border-green-500 bg-green-950/40")
             else:
                 feedback_elem.innerHTML = ""
                 feedback_elem <= html.DIV(
                     "❌ Incorrecto. Intenta de nuevo.",
-                    Class="p-3 bg-red-100 text-red-800 rounded-lg"
+                    Class="p-3 bg-red-900/40 text-red-200 rounded-lg"
                 )
-                button.className = button.className.replace("border-purple-200", "border-red-300")
+                button.className = button.className.replace("border-purple-800", "border-red-700")
 
     def _render_exercise(self):
         """Renderiza el ejercicio de la lección."""
@@ -422,18 +422,18 @@ class LessonRenderer:
         if not exercise:
             return html.DIV()
 
-        container = html.DIV(Class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-6 border border-indigo-100 mt-8")
+        container = html.DIV(Class="bg-gradient-to-r from-indigo-950/40 to-purple-950/40 rounded-xl p-6 border border-indigo-800 mt-8")
 
         # Header
         container <= html.DIV(
             html.SPAN("🏋️ ", Class="text-2xl") +
-            html.SPAN("Ejercicio Práctico", Class="text-xl font-bold text-indigo-800"),
+            html.SPAN("Ejercicio Práctico", Class="text-xl font-bold text-indigo-200"),
             Class="mb-4"
         )
 
         # Instrucción
         instruction = exercise.get('instruction', '')
-        container <= html.P(instruction, Class="text-gray-700 mb-4")
+        container <= html.P(instruction, Class="text-gray-300 mb-4")
 
         # Tipo de ejercicio
         exercise_type = exercise.get('type', 'free_form')
@@ -455,14 +455,14 @@ class LessonRenderer:
             hints_div = html.DIV(Class="mt-6")
             hints_div <= html.BUTTON(
                 "💡 Ver pistas",
-                Class="text-indigo-600 hover:text-indigo-800 text-sm font-medium",
+                Class="text-indigo-400 hover:text-indigo-200 text-sm font-medium",
                 id="hints-toggle"
             )
             hints_content = html.DIV(
-                Class="hidden mt-3 bg-white rounded-lg p-4 border border-indigo-100",
+                Class="hidden mt-3 bg-gray-800 rounded-lg p-4 border border-indigo-800",
                 id="hints-content"
             )
-            hints_list = html.UL(Class="space-y-1 text-sm text-gray-600")
+            hints_list = html.UL(Class="space-y-1 text-sm text-gray-400")
             for hint in hints:
                 hints_list <= html.LI(f"• {hint}")
             hints_content <= hints_list
@@ -489,19 +489,19 @@ class LessonRenderer:
 
         original = exercise.get('original_prompt', '')
         container <= html.DIV(
-            html.P("Prompt original:", Class="text-sm text-gray-500 mb-1") +
+            html.P("Prompt original:", Class="text-sm text-gray-400 mb-1") +
             html.DIV(
                 html.CODE(original, Class="text-sm"),
-                Class="bg-gray-100 p-3 rounded-lg border border-gray-200 font-mono"
+                Class="bg-gray-800 p-3 rounded-lg border border-gray-700 font-mono"
             ),
             Class="mb-4"
         )
 
         # Editor
-        container <= html.P("Tu versión mejorada:", Class="text-sm text-gray-500 mb-1")
+        container <= html.P("Tu versión mejorada:", Class="text-sm text-gray-400 mb-1")
         textarea = html.TEXTAREA(
             placeholder="Escribe aquí tu versión mejorada del prompt...",
-            Class="w-full h-32 p-3 border border-gray-300 rounded-lg focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 font-mono text-sm",
+            Class="w-full h-32 p-3 border border-gray-600 rounded-lg focus:border-indigo-500 focus:ring-2 focus:ring-indigo-800 font-mono text-sm",
             id="exercise-answer"
         )
         container <= textarea
@@ -523,12 +523,12 @@ class LessonRenderer:
         if required:
             container <= html.P(
                 f"Tu prompt debe incluir: {', '.join(required)}",
-                Class="text-sm text-indigo-600 mb-3"
+                Class="text-sm text-indigo-400 mb-3"
             )
 
         textarea = html.TEXTAREA(
             placeholder="Construye tu prompt aquí...",
-            Class="w-full h-40 p-3 border border-gray-300 rounded-lg focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 font-mono text-sm",
+            Class="w-full h-40 p-3 border border-gray-600 rounded-lg focus:border-indigo-500 focus:ring-2 focus:ring-indigo-800 font-mono text-sm",
             id="exercise-answer"
         )
         container <= textarea
@@ -548,17 +548,17 @@ class LessonRenderer:
         test_input = exercise.get('test_input')
         if test_input:
             container <= html.DIV(
-                html.P("Entrada de prueba:", Class="text-sm text-gray-500 mb-1") +
+                html.P("Entrada de prueba:", Class="text-sm text-gray-400 mb-1") +
                 html.DIV(
                     test_input,
-                    Class="bg-gray-100 p-3 rounded-lg border border-gray-200 text-sm"
+                    Class="bg-gray-800 p-3 rounded-lg border border-gray-700 text-sm"
                 ),
                 Class="mb-4"
             )
 
         textarea = html.TEXTAREA(
             placeholder="Escribe tu prompt aquí...",
-            Class="w-full h-32 p-3 border border-gray-300 rounded-lg focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 font-mono text-sm",
+            Class="w-full h-32 p-3 border border-gray-600 rounded-lg focus:border-indigo-500 focus:ring-2 focus:ring-indigo-800 font-mono text-sm",
             id="exercise-answer"
         )
         container <= textarea
@@ -578,21 +578,21 @@ class LessonRenderer:
         test_case = exercise.get('test_case', {})
         if test_case:
             container <= html.DIV(
-                html.P("Tu prompt debe producir esta transformación:", Class="text-sm text-gray-500 mb-1") +
+                html.P("Tu prompt debe producir esta transformación:", Class="text-sm text-gray-400 mb-1") +
                 html.DIV(
                     html.SPAN("Input: ", Class="font-medium") +
                     html.SPAN(test_case.get('input', '')) +
                     html.BR() +
                     html.SPAN("Output esperado: ", Class="font-medium") +
                     html.SPAN(test_case.get('expected_output', '')),
-                    Class="bg-gray-100 p-3 rounded-lg border border-gray-200 text-sm"
+                    Class="bg-gray-800 p-3 rounded-lg border border-gray-700 text-sm"
                 ),
                 Class="mb-4"
             )
 
         textarea = html.TEXTAREA(
             placeholder="Escribe tu prompt few-shot con ejemplos...",
-            Class="w-full h-48 p-3 border border-gray-300 rounded-lg focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 font-mono text-sm",
+            Class="w-full h-48 p-3 border border-gray-600 rounded-lg focus:border-indigo-500 focus:ring-2 focus:ring-indigo-800 font-mono text-sm",
             id="exercise-answer"
         )
         container <= textarea
@@ -611,7 +611,7 @@ class LessonRenderer:
 
         textarea = html.TEXTAREA(
             placeholder="Escribe tu respuesta aquí...",
-            Class="w-full h-32 p-3 border border-gray-300 rounded-lg focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-sm",
+            Class="w-full h-32 p-3 border border-gray-600 rounded-lg focus:border-indigo-500 focus:ring-2 focus:ring-indigo-800 text-sm",
             id="exercise-answer"
         )
         container <= textarea
@@ -642,7 +642,7 @@ class LessonRenderer:
         text = re.sub(r'\*(.+?)\*', r'<em>\1</em>', text)
 
         # Code inline
-        text = re.sub(r'`(.+?)`', r'<code class="bg-gray-100 px-1 rounded">\1</code>', text)
+        text = re.sub(r'`(.+?)`', r'<code class="bg-gray-900 px-1 rounded">\1</code>', text)
 
         # Bullet points
         lines = text.split('\n')

@@ -75,30 +75,30 @@ def _render_hero(state, level_info):
 
 def _render_quick_actions():
     section = html.DIV(Class="space-y-4")
-    section <= html.H2("Explora el Curso", Class="text-lg font-semibold text-gray-800")
+    section <= html.H2("Explora el Curso", Class="text-lg font-semibold text-gray-100")
 
     actions = []
     if feature_enabled('lessons'):
-        actions.append(('📚', 'Lecciones', 'lessons', 'bg-blue-50 hover:bg-blue-100 border-blue-200'))
+        actions.append(('📚', 'Lecciones', 'lessons', 'bg-blue-950/40 hover:bg-blue-900/60 border-blue-800'))
     if feature_enabled('practice'):
-        actions.append(('✍️', 'Práctica', 'practice', 'bg-teal-50 hover:bg-teal-100 border-teal-200'))
+        actions.append(('✍️', 'Práctica', 'practice', 'bg-teal-950/40 hover:bg-teal-900/60 border-teal-800'))
     if feature_enabled('retrieval'):
-        actions.append(('🧠', 'Quiz de Repaso', 'quiz', 'bg-rose-50 hover:bg-rose-100 border-rose-200'))
+        actions.append(('🧠', 'Quiz de Repaso', 'quiz', 'bg-rose-950/40 hover:bg-rose-900/60 border-rose-800'))
     if feature_enabled('puzzles'):
-        actions.append(('🧩', 'Puzzles', 'puzzles', 'bg-purple-50 hover:bg-purple-100 border-purple-200'))
+        actions.append(('🧩', 'Puzzles', 'puzzles', 'bg-purple-950/40 hover:bg-purple-900/60 border-purple-800'))
     if feature_enabled('playground'):
-        actions.append(('🎮', 'Playground', 'playground', 'bg-green-50 hover:bg-green-100 border-green-200'))
+        actions.append(('🎮', 'Playground', 'playground', 'bg-green-950/40 hover:bg-green-900/60 border-green-800'))
     if feature_enabled('assessment'):
-        actions.append(('📝', 'Test Inicial', 'assessment', 'bg-orange-50 hover:bg-orange-100 border-orange-200'))
+        actions.append(('📝', 'Test Inicial', 'assessment', 'bg-orange-950/40 hover:bg-orange-900/60 border-orange-800'))
     if feature_enabled('final_project'):
-        actions.append(('🎓', 'Proyecto Final', 'final-project', 'bg-indigo-50 hover:bg-indigo-100 border-indigo-200'))
-    actions.append(('🏆', 'Badges', 'badges', 'bg-yellow-50 hover:bg-yellow-100 border-yellow-200'))
+        actions.append(('🎓', 'Proyecto Final', 'final-project', 'bg-indigo-950/40 hover:bg-indigo-900/60 border-indigo-800'))
+    actions.append(('🏆', 'Badges', 'badges', 'bg-yellow-950/40 hover:bg-yellow-900/60 border-yellow-800'))
 
     grid = html.DIV(Class="grid grid-cols-2 md:grid-cols-4 gap-4")
     for icon, label, route, colors in actions:
         card = html.DIV(
             html.SPAN(icon, Class="text-3xl mb-2 block") +
-            html.SPAN(label, Class="font-medium text-gray-700"),
+            html.SPAN(label, Class="font-medium text-gray-300"),
             Class=f"p-6 rounded-xl border text-center cursor-pointer transition-colors {colors}"
         )
         card.bind('click', lambda e, r=route: navigate(r))
@@ -111,8 +111,8 @@ def _render_quick_actions():
 def _render_progress_overview(state):
     from ..config import http_get_json
 
-    section = html.DIV(Class="bg-white rounded-xl p-6 border border-gray-100")
-    section <= html.H2("Tu Progreso", Class="text-lg font-semibold text-gray-800 mb-4")
+    section = html.DIV(Class="bg-gray-800 rounded-xl p-6 border border-gray-700")
+    section <= html.H2("Tu Progreso", Class="text-lg font-semibold text-gray-100 mb-4")
 
     progress_grid = html.DIV(Class="grid grid-cols-1 md:grid-cols-3 gap-4")
 
@@ -128,9 +128,9 @@ def _render_progress_overview(state):
     total_badges = len(get_all_badges())
 
     tiles = [
-        ('📖', lessons_completed, total_lessons, 'Lecciones', 'bg-blue-500', 'bg-blue-50'),
-        ('🧩', puzzles_solved, total_puzzles, 'Puzzles', 'bg-purple-500', 'bg-purple-50'),
-        ('🏆', badges_unlocked, total_badges, 'Badges', 'bg-yellow-500', 'bg-yellow-50'),
+        ('📖', lessons_completed, total_lessons, 'Lecciones', 'bg-blue-500', 'bg-blue-950/40'),
+        ('🧩', puzzles_solved, total_puzzles, 'Puzzles', 'bg-purple-500', 'bg-purple-950/40'),
+        ('🏆', badges_unlocked, total_badges, 'Badges', 'bg-yellow-500', 'bg-yellow-950/40'),
     ]
 
     for icon, done, total, label, bar_color, tile_color in tiles:
@@ -139,15 +139,15 @@ def _render_progress_overview(state):
             html.DIV(
                 html.SPAN(icon, Class="text-2xl") +
                 html.DIV(
-                    html.SPAN(f"{done}/{total}", Class="font-bold text-gray-800") +
-                    html.SPAN(f" {label}", Class="text-gray-500 text-sm"),
+                    html.SPAN(f"{done}/{total}", Class="font-bold text-gray-100") +
+                    html.SPAN(f" {label}", Class="text-gray-400 text-sm"),
                     Class="ml-3"
                 ),
                 Class="flex items-center mb-2"
             ) +
             html.DIV(
                 html.DIV(Class=f"h-full {bar_color} rounded-full", style=f"width: {pct}%"),
-                Class="w-full h-2 bg-gray-200 rounded-full overflow-hidden"
+                Class="w-full h-2 bg-gray-700 rounded-full overflow-hidden"
             ),
             Class=f"p-4 {tile_color} rounded-lg"
         )
@@ -157,8 +157,8 @@ def _render_progress_overview(state):
 
 
 def _render_continue_learning(state):
-    section = html.DIV(Class="bg-white rounded-xl p-6 border border-gray-100")
-    section <= html.H2("Continuar Aprendiendo", Class="text-lg font-semibold text-gray-800 mb-4")
+    section = html.DIV(Class="bg-gray-800 rounded-xl p-6 border border-gray-700")
+    section <= html.H2("Continuar Aprendiendo", Class="text-lg font-semibold text-gray-100 mb-4")
 
     suggestions = html.DIV(Class="grid grid-cols-1 md:grid-cols-2 gap-4")
 
@@ -173,31 +173,31 @@ def _render_continue_learning(state):
         lesson_card = html.DIV(
             html.DIV(
                 html.SPAN("📚", Class="text-xl") +
-                html.SPAN("Próxima Lección", Class="ml-2 font-medium text-gray-700"),
+                html.SPAN("Próxima Lección", Class="ml-2 font-medium text-gray-300"),
                 Class="flex items-center mb-2"
             ) +
-            html.P(next_lesson['title'], Class="text-gray-600 text-sm mb-3") +
-            html.BUTTON("Continuar →", Class="text-sm text-indigo-600 font-medium hover:text-indigo-800"),
-            Class="p-4 border border-gray-200 rounded-lg hover:border-indigo-200 cursor-pointer transition-colors"
+            html.P(next_lesson['title'], Class="text-gray-400 text-sm mb-3") +
+            html.BUTTON("Continuar →", Class="text-sm text-indigo-400 font-medium hover:text-indigo-200"),
+            Class="p-4 border border-gray-700 rounded-lg hover:border-indigo-600 cursor-pointer transition-colors"
         )
         lesson_card.bind('click', lambda e, lid=next_lesson['id']: navigate('lesson/:id', {'id': lid}))
         suggestions <= lesson_card
     else:
         suggestions <= html.DIV(
-            html.P("🎉 Completaste todas las lecciones.", Class="text-gray-600"),
-            Class="p-4 border border-green-200 bg-green-50 rounded-lg"
+            html.P("🎉 Completaste todas las lecciones.", Class="text-gray-400"),
+            Class="p-4 border border-green-800 bg-green-950/40 rounded-lg"
         )
 
     if feature_enabled('retrieval'):
         quiz_card = html.DIV(
             html.DIV(
                 html.SPAN("🧠", Class="text-xl") +
-                html.SPAN("Quiz de Repaso", Class="ml-2 font-medium text-gray-700"),
+                html.SPAN("Quiz de Repaso", Class="ml-2 font-medium text-gray-300"),
                 Class="flex items-center mb-2"
             ) +
-            html.P("Recuerda lo que ya cubriste: 5 preguntas mezclando reciente y antiguo.", Class="text-gray-600 text-sm mb-3") +
-            html.BUTTON("Empezar →", Class="text-sm text-rose-600 font-medium hover:text-rose-800"),
-            Class="p-4 border border-gray-200 rounded-lg hover:border-rose-200 cursor-pointer transition-colors"
+            html.P("Recuerda lo que ya cubriste: 5 preguntas mezclando reciente y antiguo.", Class="text-gray-400 text-sm mb-3") +
+            html.BUTTON("Empezar →", Class="text-sm text-rose-400 font-medium hover:text-rose-200"),
+            Class="p-4 border border-gray-700 rounded-lg hover:border-rose-600 cursor-pointer transition-colors"
         )
         quiz_card.bind('click', lambda e: navigate('quiz'))
         suggestions <= quiz_card

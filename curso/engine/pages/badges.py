@@ -43,10 +43,10 @@ def _render_header(badge_mgr):
     stats = badge_mgr.get_stats()
 
     header = html.DIV(Class="mb-8")
-    header <= html.H1("🏆 Colección de Badges", Class="text-3xl font-bold text-gray-800 mb-2")
+    header <= html.H1("🏆 Colección de Badges", Class="text-3xl font-bold text-gray-100 mb-2")
     header <= html.P(
         f"Has desbloqueado {stats['unlocked']} de {stats['total']} badges ({stats['percentage']:.0f}%)",
-        Class="text-gray-600"
+        Class="text-gray-400"
     )
     return header
 
@@ -59,10 +59,10 @@ def _render_stats(badge_mgr):
     section = html.DIV(Class="grid grid-cols-4 gap-4 mb-8")
 
     rarities = [
-        ('common', 'Común', 'bg-gray-100 text-gray-700 border-gray-300'),
-        ('rare', 'Raro', 'bg-blue-100 text-blue-700 border-blue-300'),
-        ('epic', 'Épico', 'bg-purple-100 text-purple-700 border-purple-300'),
-        ('legendary', 'Legendario', 'bg-yellow-100 text-yellow-700 border-yellow-300'),
+        ('common', 'Común', 'bg-gray-800 text-gray-300 border-gray-600'),
+        ('rare', 'Raro', 'bg-blue-900/40 text-blue-300 border-blue-700'),
+        ('epic', 'Épico', 'bg-purple-900/40 text-purple-300 border-purple-700'),
+        ('legendary', 'Legendario', 'bg-yellow-900/40 text-yellow-300 border-yellow-700'),
     ]
 
     for rarity, label, colors in rarities:
@@ -136,7 +136,7 @@ def _render_badges_grid(badge_mgr, state, category):
     if unlocked:
         container <= html.H3(
             f"✅ Desbloqueados ({len(unlocked)})",
-            Class="font-medium text-gray-700 mb-4"
+            Class="font-medium text-gray-300 mb-4"
         )
         container <= _render_badge_section(unlocked)
 
@@ -145,7 +145,7 @@ def _render_badges_grid(badge_mgr, state, category):
     if locked:
         container <= html.H3(
             f"🔒 Por Desbloquear ({len(locked)})",
-            Class="font-medium text-gray-700 mb-4 mt-8"
+            Class="font-medium text-gray-300 mb-4 mt-8"
         )
         container <= _render_badge_section(locked, show_progress=True, state=state)
 
@@ -177,10 +177,10 @@ def _render_badge_item(badge, show_progress=False, state=None):
 
     # Colores según rareza
     rarity_styles = {
-        'common': 'border-gray-300 bg-gray-50',
-        'rare': 'border-blue-300 bg-blue-50',
-        'epic': 'border-purple-300 bg-purple-50',
-        'legendary': 'border-yellow-300 bg-yellow-50',
+        'common': 'border-gray-600 bg-gray-900',
+        'rare': 'border-blue-700 bg-blue-950/40',
+        'epic': 'border-purple-700 bg-purple-950/40',
+        'legendary': 'border-yellow-700 bg-yellow-950/40',
     }
 
     style = rarity_styles.get(rarity, rarity_styles['common'])
@@ -200,13 +200,13 @@ def _render_badge_item(badge, show_progress=False, state=None):
     # Nombre
     container <= html.P(
         badge.get('name', 'Badge'),
-        Class="font-medium text-gray-800 text-sm text-center"
+        Class="font-medium text-gray-100 text-sm text-center"
     )
 
     # Descripción en tooltip
     container <= html.P(
         badge.get('description', ''),
-        Class="text-xs text-gray-500 text-center mt-1 line-clamp-2"
+        Class="text-xs text-gray-400 text-center mt-1 line-clamp-2"
     )
 
     # Progreso si no está desbloqueado
@@ -222,11 +222,11 @@ def _render_badge_item(badge, show_progress=False, state=None):
                     Class="h-full bg-indigo-500 rounded-full",
                     style=f"width: {pct}%"
                 ),
-                Class="w-full h-1.5 bg-gray-200 rounded-full overflow-hidden mt-2"
+                Class="w-full h-1.5 bg-gray-700 rounded-full overflow-hidden mt-2"
             )
             container <= html.P(
                 f"{progress['current']}/{progress['target']}",
-                Class="text-xs text-gray-500 text-center mt-1"
+                Class="text-xs text-gray-400 text-center mt-1"
             )
 
     return container

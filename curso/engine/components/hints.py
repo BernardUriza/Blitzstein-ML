@@ -28,13 +28,13 @@ class HintSystem(Component):
         xp_penalty = self.props.get('xp_penalty', 10)
         on_reveal_hint = self.props.get('on_reveal_hint')
 
-        container = html.DIV(Class="bg-amber-50 rounded-lg border border-amber-200 p-4")
+        container = html.DIV(Class="bg-amber-950/40 rounded-lg border border-amber-800 p-4")
 
         # Header
         header = html.DIV(Class="flex items-center justify-between mb-3")
         header <= html.DIV(
             html.SPAN("💡", Class="text-xl mr-2") +
-            html.SPAN("Pistas", Class="font-medium text-amber-800"),
+            html.SPAN("Pistas", Class="font-medium text-amber-200"),
             Class="flex items-center"
         )
 
@@ -42,7 +42,7 @@ class HintSystem(Component):
         hints_left = max_hints - self.revealed_hints
         header <= html.SPAN(
             f"{hints_left} disponibles",
-            Class="text-sm text-amber-600"
+            Class="text-sm text-amber-400"
         )
 
         container <= header
@@ -53,20 +53,20 @@ class HintSystem(Component):
             for i in range(self.revealed_hints):
                 if i < len(hints):
                     hint_div = html.DIV(
-                        html.SPAN(f"#{i+1}: ", Class="font-medium text-amber-700") +
-                        html.SPAN(hints[i], Class="text-amber-900"),
-                        Class="p-2 bg-white rounded border border-amber-100 text-sm"
+                        html.SPAN(f"#{i+1}: ", Class="font-medium text-amber-300") +
+                        html.SPAN(hints[i], Class="text-amber-100"),
+                        Class="p-2 bg-gray-900 rounded border border-amber-800 text-sm"
                     )
                     revealed_section <= hint_div
             container <= revealed_section
 
         # Botón para revelar siguiente pista
         if self.revealed_hints < max_hints and self.revealed_hints < len(hints):
-            reveal_section = html.DIV(Class="flex items-center justify-between p-2 bg-amber-100 rounded")
+            reveal_section = html.DIV(Class="flex items-center justify-between p-2 bg-amber-900/40 rounded")
 
-            info = html.DIV(Class="text-sm text-amber-700")
+            info = html.DIV(Class="text-sm text-amber-300")
             info <= html.SPAN("¿Necesitas ayuda? ")
-            info <= html.SPAN(f"(-{xp_penalty} XP)", Class="text-amber-600 font-medium")
+            info <= html.SPAN(f"(-{xp_penalty} XP)", Class="text-amber-400 font-medium")
 
             reveal_btn = html.BUTTON(
                 "Ver pista",
@@ -80,7 +80,7 @@ class HintSystem(Component):
         elif self.revealed_hints >= len(hints):
             container <= html.P(
                 "No hay más pistas disponibles",
-                Class="text-sm text-amber-600 italic"
+                Class="text-sm text-amber-400 italic"
             )
 
         return container
@@ -128,12 +128,12 @@ class ClueList(Component):
         clues = self.props.get('clues', [])
         on_clue_check = self.props.get('on_clue_check')
 
-        container = html.DIV(Class="bg-white rounded-lg border border-gray-200 p-4")
+        container = html.DIV(Class="bg-gray-800 rounded-lg border border-gray-700 p-4")
 
         # Header
         container <= html.H3(
             "📋 Pistas del Puzzle",
-            Class="font-medium text-gray-800 mb-3"
+            Class="font-medium text-gray-100 mb-3"
         )
 
         # Lista de pistas
@@ -145,18 +145,18 @@ class ClueList(Component):
             is_checked = idx in self.checked_clues
 
             clue_item = html.LI(
-                Class="flex items-start gap-2 p-2 rounded hover:bg-gray-50 cursor-pointer transition-colors"
+                Class="flex items-start gap-2 p-2 rounded hover:bg-gray-700 cursor-pointer transition-colors"
             )
 
             # Checkbox
-            checkbox_colors = "bg-green-500 border-green-500" if is_checked else "border-gray-300 bg-white"
+            checkbox_colors = "bg-green-500 border-green-500" if is_checked else "border-gray-600 bg-gray-800"
             checkbox = html.DIV(
                 html.SPAN("✓" if is_checked else "", Class="text-white text-xs"),
                 Class=f"w-5 h-5 rounded border-2 flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors {checkbox_colors}"
             )
 
             # Texto de la pista
-            text_class = "text-gray-400 line-through" if is_checked else "text-gray-700"
+            text_class = "text-gray-400 line-through" if is_checked else "text-gray-300"
             clue_text = html.SPAN(
                 f"{idx + 1}. {clue}",
                 Class=f"text-sm {text_class}"
@@ -180,7 +180,7 @@ class ClueList(Component):
         total = len(clues)
         container <= html.DIV(
             html.SPAN(f"Progreso: {progress}/{total} pistas verificadas"),
-            Class="mt-3 text-sm text-gray-500 text-center"
+            Class="mt-3 text-sm text-gray-400 text-center"
         )
 
         return container

@@ -50,9 +50,9 @@ def final_project_page(params):
     # Header
     header = html.DIV(Class="text-center mb-8")
     header <= html.DIV("🎓", Class="text-6xl mb-4")
-    header <= html.H1("Proyecto Final", Class="text-3xl font-bold text-gray-800 mb-2")
+    header <= html.H1("Proyecto Final", Class="text-3xl font-bold text-gray-100 mb-2")
     header <= html.P("Demuestra todo lo que aprendiste creando tu prompt maestro",
-                     Class="text-gray-600 text-lg")
+                     Class="text-gray-400 text-lg")
     container <= header
 
     # Progreso del curso
@@ -60,14 +60,14 @@ def final_project_page(params):
 
     if progress['percentage'] < 50:
         # No puede hacer el proyecto aún
-        locked_card = html.DIV(Class="bg-yellow-50 border border-yellow-300 rounded-xl p-6 text-center")
+        locked_card = html.DIV(Class="bg-yellow-950/40 border border-yellow-700 rounded-xl p-6 text-center")
         locked_card <= html.DIV("🔒", Class="text-4xl mb-4")
-        locked_card <= html.H2("Proyecto Bloqueado", Class="text-xl font-bold text-yellow-800 mb-2")
+        locked_card <= html.H2("Proyecto Bloqueado", Class="text-xl font-bold text-yellow-200 mb-2")
         locked_card <= html.P(f"Completa al menos el 50% del curso para desbloquear el proyecto final.",
-                              Class="text-yellow-700 mb-4")
-        locked_card <= html.P(f"Tu progreso actual: {progress['percentage']}%", Class="text-yellow-600 font-medium")
+                              Class="text-yellow-300 mb-4")
+        locked_card <= html.P(f"Tu progreso actual: {progress['percentage']}%", Class="text-yellow-400 font-medium")
 
-        progress_bar = html.DIV(Class="w-full max-w-md mx-auto bg-yellow-200 rounded-full h-4 mt-4")
+        progress_bar = html.DIV(Class="w-full max-w-md mx-auto bg-yellow-900/60 rounded-full h-4 mt-4")
         progress_bar <= html.DIV(
             Class="bg-yellow-500 h-4 rounded-full transition-all",
             style=f"width: {progress['percentage']}%"
@@ -77,7 +77,7 @@ def final_project_page(params):
 
         # Sugerencias
         suggestions = html.DIV(Class="mt-8")
-        suggestions <= html.H3("📚 Continúa aprendiendo:", Class="font-semibold text-gray-800 mb-4")
+        suggestions <= html.H3("📚 Continúa aprendiendo:", Class="font-semibold text-gray-100 mb-4")
 
         links = [
             ('#lessons', '📖 Lecciones', 'Aprende los conceptos'),
@@ -87,20 +87,20 @@ def final_project_page(params):
         for href, title, desc in links:
             link = html.A(
                 href=href,
-                Class="block p-4 bg-white rounded-xl border border-gray-200 hover:border-indigo-300 mb-3"
+                Class="block p-4 bg-gray-800 rounded-xl border border-gray-700 hover:border-indigo-500 mb-3"
             )
-            link <= html.SPAN(title, Class="font-medium text-gray-800")
-            link <= html.SPAN(f" - {desc}", Class="text-gray-500")
+            link <= html.SPAN(title, Class="font-medium text-gray-100")
+            link <= html.SPAN(f" - {desc}", Class="text-gray-400")
             suggestions <= link
 
         container <= suggestions
         return container
 
     # Instrucciones
-    instructions = html.DIV(Class="bg-indigo-50 border border-indigo-200 rounded-xl p-6 mb-8")
-    instructions <= html.H2("🎯 Tu Misión", Class="text-xl font-bold text-indigo-800 mb-4")
+    instructions = html.DIV(Class="bg-indigo-950/40 border border-indigo-800 rounded-xl p-6 mb-8")
+    instructions <= html.H2("🎯 Tu Misión", Class="text-xl font-bold text-indigo-200 mb-4")
 
-    mission_text = html.DIV(Class="text-indigo-700 space-y-2")
+    mission_text = html.DIV(Class="text-indigo-300 space-y-2")
     mission_text <= html.P("Crea un prompt profesional para un caso REAL de tu vida:")
     mission_items = html.UL(Class="list-disc list-inside ml-4 space-y-1")
     mission_items <= html.LI("Puede ser para tu trabajo, estudios o hobby")
@@ -111,16 +111,16 @@ def final_project_page(params):
     container <= instructions
 
     # Requisitos
-    req_section = html.DIV(Class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8")
-    req_section <= html.H3("📋 Requisitos del Proyecto", Class="font-bold text-gray-800 mb-4")
+    req_section = html.DIV(Class="bg-gray-800 rounded-xl shadow-sm border border-gray-700 p-6 mb-8")
+    req_section <= html.H3("📋 Requisitos del Proyecto", Class="font-bold text-gray-100 mb-4")
 
     req_grid = html.DIV(Class="grid grid-cols-1 md:grid-cols-2 gap-4")
     for req in PROJECT_REQUIREMENTS:
-        req_card = html.DIV(Class="flex items-start gap-3 p-3 bg-gray-50 rounded-lg")
+        req_card = html.DIV(Class="flex items-start gap-3 p-3 bg-gray-900 rounded-lg")
         req_card <= html.SPAN(req['icon'], Class="text-xl")
         req_text = html.DIV()
-        req_text <= html.P(req['name'], Class="font-medium text-gray-800")
-        req_text <= html.P(req['description'], Class="text-sm text-gray-600")
+        req_text <= html.P(req['name'], Class="font-medium text-gray-100")
+        req_text <= html.P(req['description'], Class="text-sm text-gray-400")
         req_card <= req_text
         req_grid <= req_card
 
@@ -128,14 +128,14 @@ def final_project_page(params):
     container <= req_section
 
     # Formulario del proyecto
-    form_section = html.DIV(Class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8")
+    form_section = html.DIV(Class="bg-gray-800 rounded-xl shadow-sm border border-gray-700 p-6 mb-8")
 
     # Campo: Título del proyecto
-    form_section <= html.LABEL("📌 Título de tu proyecto", Class="block font-medium text-gray-700 mb-2")
+    form_section <= html.LABEL("📌 Título de tu proyecto", Class="block font-medium text-gray-300 mb-2")
     title_input = html.INPUT(
         type="text",
         placeholder="Ej: Prompt para analizar reportes de ventas",
-        Class="w-full p-3 border border-gray-300 rounded-xl mb-6 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200",
+        Class="w-full p-3 border border-gray-600 rounded-xl mb-6 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-800",
         id="project-title"
     )
     # Cargar valor guardado
@@ -144,11 +144,11 @@ def final_project_page(params):
     form_section <= title_input
 
     # Campo: Contexto
-    form_section <= html.LABEL("📋 Contexto / Situación", Class="block font-medium text-gray-700 mb-2")
-    form_section <= html.P("¿Cuál es el problema que quieres resolver?", Class="text-sm text-gray-500 mb-2")
+    form_section <= html.LABEL("📋 Contexto / Situación", Class="block font-medium text-gray-300 mb-2")
+    form_section <= html.P("¿Cuál es el problema que quieres resolver?", Class="text-sm text-gray-400 mb-2")
     context_input = html.TEXTAREA(
         placeholder="Describe la situación: quién eres, qué necesitas, para quién es...",
-        Class="w-full h-24 p-3 border border-gray-300 rounded-xl mb-6 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200",
+        Class="w-full h-24 p-3 border border-gray-600 rounded-xl mb-6 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-800",
         id="project-context"
     )
     if project_data.get('context'):
@@ -156,11 +156,11 @@ def final_project_page(params):
     form_section <= context_input
 
     # Campo: Prompt
-    form_section <= html.LABEL("✍️ Tu Prompt Final", Class="block font-medium text-gray-700 mb-2")
-    form_section <= html.P("Escribe el prompt completo que usarías con una IA", Class="text-sm text-gray-500 mb-2")
+    form_section <= html.LABEL("✍️ Tu Prompt Final", Class="block font-medium text-gray-300 mb-2")
+    form_section <= html.P("Escribe el prompt completo que usarías con una IA", Class="text-sm text-gray-400 mb-2")
     prompt_input = html.TEXTAREA(
         placeholder="Escribe tu prompt aquí. Usa las técnicas aprendidas: especificidad, formato, técnicas como CoT o few-shot...",
-        Class="w-full h-48 p-3 border border-gray-300 rounded-xl mb-4 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 font-mono",
+        Class="w-full h-48 p-3 border border-gray-600 rounded-xl mb-4 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-800 font-mono",
         id="project-prompt"
     )
     if project_data.get('prompt'):
@@ -168,15 +168,15 @@ def final_project_page(params):
     form_section <= prompt_input
 
     # Contador de palabras
-    word_count = html.DIV("0 palabras", Class="text-sm text-gray-500 mb-6", id="prompt-word-count")
+    word_count = html.DIV("0 palabras", Class="text-sm text-gray-400 mb-6", id="prompt-word-count")
     form_section <= word_count
 
     # Campo: Técnica usada
-    form_section <= html.LABEL("🎯 Técnica(s) aplicada(s)", Class="block font-medium text-gray-700 mb-2")
+    form_section <= html.LABEL("🎯 Técnica(s) aplicada(s)", Class="block font-medium text-gray-300 mb-2")
     technique_input = html.INPUT(
         type="text",
         placeholder="Ej: Chain of Thought + Role Prompting",
-        Class="w-full p-3 border border-gray-300 rounded-xl mb-6 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200",
+        Class="w-full p-3 border border-gray-600 rounded-xl mb-6 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-800",
         id="project-technique"
     )
     if project_data.get('technique'):
@@ -184,11 +184,11 @@ def final_project_page(params):
     form_section <= technique_input
 
     # Campo: Reflexión
-    form_section <= html.LABEL("💭 Reflexión", Class="block font-medium text-gray-700 mb-2")
-    form_section <= html.P("¿Por qué elegiste esta técnica? ¿Qué aprendiste?", Class="text-sm text-gray-500 mb-2")
+    form_section <= html.LABEL("💭 Reflexión", Class="block font-medium text-gray-300 mb-2")
+    form_section <= html.P("¿Por qué elegiste esta técnica? ¿Qué aprendiste?", Class="text-sm text-gray-400 mb-2")
     reflection_input = html.TEXTAREA(
         placeholder="Comparte tu reflexión sobre el proceso de crear este prompt...",
-        Class="w-full h-24 p-3 border border-gray-300 rounded-xl mb-6 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200",
+        Class="w-full h-24 p-3 border border-gray-600 rounded-xl mb-6 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-800",
         id="project-reflection"
     )
     if project_data.get('reflection'):
@@ -280,7 +280,7 @@ def _save_project_draft():
     feedback = document.getElementById("project-feedback")
     feedback.innerHTML = ""
     msg = html.DIV("💾 Borrador guardado correctamente",
-                   Class="bg-green-100 border border-green-300 text-green-800 rounded-xl p-4 text-center")
+                   Class="bg-green-900/40 border border-green-700 text-green-200 rounded-xl p-4 text-center")
     feedback <= msg
 
 
@@ -311,7 +311,7 @@ def _submit_project():
         errors.append("Agrega una reflexión más completa")
 
     if errors:
-        error_msg = html.DIV(Class="bg-red-100 border border-red-300 text-red-800 rounded-xl p-4")
+        error_msg = html.DIV(Class="bg-red-900/40 border border-red-700 text-red-200 rounded-xl p-4")
         error_msg <= html.P("⚠️ Por favor corrige lo siguiente:", Class="font-medium mb-2")
         error_list = html.UL(Class="list-disc list-inside")
         for err in errors:
@@ -375,7 +375,7 @@ def _submit_project():
         continue_btn = html.A(
             "Ver mi Proyecto Completado →",
             href="#final-project",
-            Class="inline-block mt-6 px-6 py-3 bg-white text-indigo-600 rounded-xl font-medium hover:bg-indigo-50"
+            Class="inline-block mt-6 px-6 py-3 bg-gray-800 text-indigo-400 rounded-xl font-medium hover:bg-indigo-900/40"
         )
         success <= continue_btn
 
@@ -383,16 +383,16 @@ def _submit_project():
 
     else:
         # Necesita mejoras
-        improve_msg = html.DIV(Class="bg-yellow-100 border border-yellow-300 rounded-xl p-6")
-        improve_msg <= html.H3("⚠️ Tu proyecto necesita mejoras", Class="font-bold text-yellow-800 mb-4")
-        improve_msg <= html.P(f"Puntuación actual: {score}% (necesitas 60% para aprobar)", Class="text-yellow-700 mb-4")
+        improve_msg = html.DIV(Class="bg-yellow-900/40 border border-yellow-700 rounded-xl p-6")
+        improve_msg <= html.H3("⚠️ Tu proyecto necesita mejoras", Class="font-bold text-yellow-200 mb-4")
+        improve_msg <= html.P(f"Puntuación actual: {score}% (necesitas 60% para aprobar)", Class="text-yellow-300 mb-4")
 
         eval_list = html.DIV(Class="space-y-2")
         for req in PROJECT_REQUIREMENTS:
             passed_req = evaluation.get(req['id'], False)
             item = html.DIV(Class="flex items-center gap-2")
             item <= html.SPAN("✅" if passed_req else "❌")
-            item <= html.SPAN(req['name'], Class="text-yellow-800")
+            item <= html.SPAN(req['name'], Class="text-yellow-200")
             eval_list <= item
 
         improve_msg <= eval_list
@@ -404,9 +404,9 @@ def _render_completed_project(container, project_data):
     # Header con celebración
     header = html.DIV(Class="text-center mb-8")
     header <= html.DIV("🎓", Class="text-6xl mb-4")
-    header <= html.H1("¡Proyecto Completado!", Class="text-3xl font-bold text-gray-800 mb-2")
+    header <= html.H1("¡Proyecto Completado!", Class="text-3xl font-bold text-gray-100 mb-2")
     header <= html.P(f"Puntuación: {project_data.get('score', 0)}%",
-                     Class="text-xl text-indigo-600 font-medium")
+                     Class="text-xl text-indigo-400 font-medium")
     container <= header
 
     # Badge de graduación
@@ -417,45 +417,45 @@ def _render_completed_project(container, project_data):
     container <= badge_card
 
     # Tu proyecto
-    project_card = html.DIV(Class="bg-white rounded-xl shadow-lg border border-gray-200 p-6 mb-8")
+    project_card = html.DIV(Class="bg-gray-800 rounded-xl shadow-lg border border-gray-700 p-6 mb-8")
 
     project_card <= html.H2(project_data.get('title', 'Mi Proyecto'),
-                            Class="text-2xl font-bold text-gray-800 mb-4")
+                            Class="text-2xl font-bold text-gray-100 mb-4")
 
     # Contexto
-    project_card <= html.H3("📋 Contexto", Class="font-semibold text-gray-700 mb-2")
+    project_card <= html.H3("📋 Contexto", Class="font-semibold text-gray-300 mb-2")
     project_card <= html.P(project_data.get('context', ''),
-                           Class="text-gray-600 mb-4 bg-gray-50 p-3 rounded-lg")
+                           Class="text-gray-400 mb-4 bg-gray-900 p-3 rounded-lg")
 
     # El Prompt
-    project_card <= html.H3("✍️ Tu Prompt", Class="font-semibold text-gray-700 mb-2")
+    project_card <= html.H3("✍️ Tu Prompt", Class="font-semibold text-gray-300 mb-2")
     project_card <= html.PRE(project_data.get('prompt', ''),
-                             Class="text-gray-600 mb-4 bg-indigo-50 p-4 rounded-lg whitespace-pre-wrap font-mono text-sm")
+                             Class="text-gray-400 mb-4 bg-indigo-950/40 p-4 rounded-lg whitespace-pre-wrap font-mono text-sm")
 
     # Técnica
-    project_card <= html.H3("🎯 Técnica Usada", Class="font-semibold text-gray-700 mb-2")
+    project_card <= html.H3("🎯 Técnica Usada", Class="font-semibold text-gray-300 mb-2")
     project_card <= html.P(project_data.get('technique', ''),
-                           Class="text-gray-600 mb-4")
+                           Class="text-gray-400 mb-4")
 
     # Reflexión
-    project_card <= html.H3("💭 Reflexión", Class="font-semibold text-gray-700 mb-2")
+    project_card <= html.H3("💭 Reflexión", Class="font-semibold text-gray-300 mb-2")
     project_card <= html.P(project_data.get('reflection', ''),
-                           Class="text-gray-600 italic")
+                           Class="text-gray-400 italic")
 
     container <= project_card
 
     # Evaluación
     evaluation = project_data.get('evaluation', {})
-    eval_card = html.DIV(Class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8")
-    eval_card <= html.H3("📊 Evaluación", Class="font-bold text-gray-800 mb-4")
+    eval_card = html.DIV(Class="bg-gray-800 rounded-xl shadow-sm border border-gray-700 p-6 mb-8")
+    eval_card <= html.H3("📊 Evaluación", Class="font-bold text-gray-100 mb-4")
 
     for req in PROJECT_REQUIREMENTS:
         passed = evaluation.get(req['id'], False)
         item = html.DIV(Class=f"flex items-center gap-3 p-2 rounded-lg mb-2 " +
-                              ("bg-green-50" if passed else "bg-gray-50"))
+                              ("bg-green-950/40" if passed else "bg-gray-900"))
         item <= html.SPAN("✅" if passed else "⬜", Class="text-lg")
         item <= html.SPAN(req['name'], Class="font-medium " +
-                                             ("text-green-800" if passed else "text-gray-500"))
+                                             ("text-green-200" if passed else "text-gray-400"))
         eval_card <= item
 
     container <= eval_card
@@ -465,7 +465,7 @@ def _render_completed_project(container, project_data):
     buttons <= html.A("🏠 Volver al Inicio", href="#home",
                       Class="px-6 py-3 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 font-medium")
     buttons <= html.A("🏆 Ver Badges", href="#badges",
-                      Class="px-6 py-3 border-2 border-indigo-600 text-indigo-600 rounded-xl hover:bg-indigo-50 font-medium")
+                      Class="px-6 py-3 border-2 border-indigo-600 text-indigo-400 rounded-xl hover:bg-indigo-900/40 font-medium")
     container <= buttons
 
     return container

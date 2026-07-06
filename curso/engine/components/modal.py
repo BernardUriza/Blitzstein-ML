@@ -55,23 +55,23 @@ class Modal(Component):
 
         # Modal container
         modal = html.DIV(
-            Class=f"bg-white rounded-xl shadow-xl w-full {size_class} max-h-[90vh] flex flex-col animate-scale-in"
+            Class=f"bg-gray-800 rounded-xl shadow-xl w-full {size_class} max-h-[90vh] flex flex-col animate-scale-in"
         )
         modal.bind('click', lambda e: e.stopPropagation())
 
         # Header
         if title or closable:
-            header = html.DIV(Class="flex items-center justify-between p-4 border-b border-gray-100")
+            header = html.DIV(Class="flex items-center justify-between p-4 border-b border-gray-700")
 
             if title:
-                header <= html.H2(title, Class="text-lg font-semibold text-gray-800")
+                header <= html.H2(title, Class="text-lg font-semibold text-gray-100")
             else:
                 header <= html.DIV()  # Spacer
 
             if closable:
                 close_btn = html.BUTTON(
                     icon('x', 'w-5 h-5'),
-                    Class="p-1 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors"
+                    Class="p-1 rounded-lg text-gray-400 hover:text-gray-300 hover:bg-gray-700 transition-colors"
                 )
                 close_btn.bind('click', lambda e: self._close(on_close))
                 header <= close_btn
@@ -81,14 +81,14 @@ class Modal(Component):
         # Content
         content_div = html.DIV(Class="p-4 overflow-y-auto flex-1")
         if isinstance(content, str):
-            content_div <= html.P(content, Class="text-gray-600")
+            content_div <= html.P(content, Class="text-gray-400")
         else:
             content_div <= content
         modal <= content_div
 
         # Footer
         if footer:
-            footer_div = html.DIV(Class="p-4 border-t border-gray-100 flex justify-end gap-2")
+            footer_div = html.DIV(Class="p-4 border-t border-gray-700 flex justify-end gap-2")
             if isinstance(footer, str):
                 footer_div <= html.P(footer)
             else:
@@ -182,7 +182,7 @@ class ConfirmModal(Modal):
         footer <= confirm_btn
 
         # Actualizar props con footer
-        self.props['content'] = html.P(message, Class="text-gray-600")
+        self.props['content'] = html.P(message, Class="text-gray-400")
         self.props['footer'] = footer
         self.props['size'] = 'sm'
 
@@ -224,21 +224,21 @@ class SuccessModal(Modal):
         content <= html.SPAN("🎉", Class="text-6xl block mb-4")
 
         # Mensaje
-        content <= html.P(message, Class="text-lg text-gray-700 mb-4")
+        content <= html.P(message, Class="text-lg text-gray-300 mb-4")
 
         # XP ganado
         if xp_gained > 0:
             content <= html.DIV(
-                html.SPAN(f"+{xp_gained}", Class="text-2xl font-bold text-indigo-600") +
-                html.SPAN(" XP", Class="text-lg text-gray-500"),
+                html.SPAN(f"+{xp_gained}", Class="text-2xl font-bold text-indigo-400") +
+                html.SPAN(" XP", Class="text-lg text-gray-400"),
                 Class="mb-4"
             )
 
         # Badge ganado
         if badge_earned:
-            badge_div = html.DIV(Class="bg-yellow-50 rounded-lg p-4 mb-4")
-            badge_div <= html.P("🏆 ¡Nuevo badge desbloqueado!", Class="text-sm text-yellow-700 mb-2")
-            badge_div <= html.P(badge_earned.get('name', ''), Class="font-bold text-yellow-800")
+            badge_div = html.DIV(Class="bg-yellow-950/40 rounded-lg p-4 mb-4")
+            badge_div <= html.P("🏆 ¡Nuevo badge desbloqueado!", Class="text-sm text-yellow-300 mb-2")
+            badge_div <= html.P(badge_earned.get('name', ''), Class="font-bold text-yellow-200")
             content <= badge_div
 
         # Footer con botón

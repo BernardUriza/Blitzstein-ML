@@ -54,8 +54,8 @@ class LogicPuzzle(Component):
         # Descripción
         if description:
             container <= html.DIV(
-                html.P(description, Class="text-gray-600"),
-                Class="bg-white rounded-lg p-4 mb-4 border border-gray-100"
+                html.P(description, Class="text-gray-400"),
+                Class="bg-gray-800 rounded-lg p-4 mb-4 border border-gray-700"
             )
 
         # Layout principal: Grid + Sidebar
@@ -83,7 +83,7 @@ class LogicPuzzle(Component):
 
         # Título y metadata
         title_section = html.DIV()
-        title_section <= html.H1(title, Class="text-2xl font-bold text-gray-800")
+        title_section <= html.H1(title, Class="text-2xl font-bold text-gray-100")
 
         meta = html.DIV(Class="flex items-center gap-4 mt-2")
 
@@ -95,7 +95,7 @@ class LogicPuzzle(Component):
         meta <= stars
 
         # XP
-        meta <= html.SPAN(f"+{xp_reward} XP", Class="text-sm font-medium text-indigo-600")
+        meta <= html.SPAN(f"+{xp_reward} XP", Class="text-sm font-medium text-indigo-400")
 
         title_section <= meta
         header <= title_section
@@ -111,7 +111,7 @@ class LogicPuzzle(Component):
         if on_exit:
             exit_btn = html.BUTTON(
                 "✕ Salir",
-                Class="px-3 py-1 text-sm text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded"
+                Class="px-3 py-1 text-sm text-gray-400 hover:text-gray-200 hover:bg-gray-700 rounded"
             )
             exit_btn.bind('click', lambda e: on_exit())
             controls <= exit_btn
@@ -124,8 +124,8 @@ class LogicPuzzle(Component):
         """Renderiza los grids del puzzle."""
         categories = self.engine.categories
 
-        wrapper = html.DIV(Class="bg-white rounded-lg p-4 border border-gray-100")
-        wrapper <= html.H3("Tabla de Eliminación", Class="font-medium text-gray-700 mb-4")
+        wrapper = html.DIV(Class="bg-gray-800 rounded-lg p-4 border border-gray-700")
+        wrapper <= html.H3("Tabla de Eliminación", Class="font-medium text-gray-300 mb-4")
 
         # Crear MultiGrid
         self.multi_grid = MultiGrid(
@@ -166,15 +166,15 @@ class LogicPuzzle(Component):
 
     def _render_tools(self):
         """Renderiza herramientas adicionales."""
-        tools = html.DIV(Class="bg-white rounded-lg p-4 border border-gray-100")
-        tools <= html.H3("Herramientas", Class="font-medium text-gray-700 mb-3")
+        tools = html.DIV(Class="bg-gray-800 rounded-lg p-4 border border-gray-700")
+        tools <= html.H3("Herramientas", Class="font-medium text-gray-300 mb-3")
 
         buttons = html.DIV(Class="space-y-2")
 
         # Deshacer
         undo_btn = html.BUTTON(
             "↩️ Deshacer",
-            Class="w-full px-3 py-2 text-sm text-left text-gray-700 hover:bg-gray-50 rounded border border-gray-200"
+            Class="w-full px-3 py-2 text-sm text-left text-gray-300 hover:bg-gray-700 rounded border border-gray-700"
         )
         undo_btn.bind('click', lambda e: self._on_undo())
         buttons <= undo_btn
@@ -182,7 +182,7 @@ class LogicPuzzle(Component):
         # Reiniciar
         reset_btn = html.BUTTON(
             "🔄 Reiniciar",
-            Class="w-full px-3 py-2 text-sm text-left text-gray-700 hover:bg-gray-50 rounded border border-gray-200"
+            Class="w-full px-3 py-2 text-sm text-left text-gray-300 hover:bg-gray-700 rounded border border-gray-700"
         )
         reset_btn.bind('click', lambda e: self._on_reset())
         buttons <= reset_btn
@@ -265,7 +265,7 @@ class LogicPuzzle(Component):
         # Crear contenido del modal
         content = html.DIV(Class="text-center py-4")
         content <= html.SPAN("🎉", Class="text-6xl block mb-4")
-        content <= html.P("¡Puzzle Completado!", Class="text-xl font-bold text-gray-800 mb-2")
+        content <= html.P("¡Puzzle Completado!", Class="text-xl font-bold text-gray-100 mb-2")
 
         # Estrellas
         stars_div = html.DIV(Class="flex justify-center gap-1 mb-4")
@@ -281,28 +281,28 @@ class LogicPuzzle(Component):
         minutes = result['time'] // 60
         seconds = result['time'] % 60
         stats <= html.DIV(
-            html.P(f"{minutes}:{seconds:02d}", Class="text-2xl font-bold text-gray-800") +
-            html.P("Tiempo", Class="text-sm text-gray-500")
+            html.P(f"{minutes}:{seconds:02d}", Class="text-2xl font-bold text-gray-100") +
+            html.P("Tiempo", Class="text-sm text-gray-400")
         )
 
         # Movimientos
         stats <= html.DIV(
-            html.P(str(result['moves']), Class="text-2xl font-bold text-gray-800") +
-            html.P("Movimientos", Class="text-sm text-gray-500")
+            html.P(str(result['moves']), Class="text-2xl font-bold text-gray-100") +
+            html.P("Movimientos", Class="text-sm text-gray-400")
         )
 
         # Pistas
         stats <= html.DIV(
-            html.P(str(result['hints_used']), Class="text-2xl font-bold text-gray-800") +
-            html.P("Pistas", Class="text-sm text-gray-500")
+            html.P(str(result['hints_used']), Class="text-2xl font-bold text-gray-100") +
+            html.P("Pistas", Class="text-sm text-gray-400")
         )
 
         content <= stats
 
         # XP ganado
         content <= html.DIV(
-            html.SPAN(f"+{xp_gained}", Class="text-3xl font-bold text-indigo-600") +
-            html.SPAN(" XP", Class="text-xl text-gray-500"),
+            html.SPAN(f"+{xp_gained}", Class="text-3xl font-bold text-indigo-400") +
+            html.SPAN(" XP", Class="text-xl text-gray-400"),
             Class="mb-4"
         )
 

@@ -53,9 +53,9 @@ class ProgressBar(Component):
         if label or show_label:
             label_row = html.DIV(Class="flex justify-between mb-1 text-sm")
             if label:
-                label_row <= html.SPAN(label, Class="text-gray-600")
+                label_row <= html.SPAN(label, Class="text-gray-400")
             if show_label:
-                label_row <= html.SPAN(f"{int(percentage)}%", Class="text-gray-500 font-medium")
+                label_row <= html.SPAN(f"{int(percentage)}%", Class="text-gray-400 font-medium")
             container <= label_row
 
         # Barra
@@ -64,7 +64,7 @@ class ProgressBar(Component):
         animation_class = "transition-all duration-500" if animated else ""
 
         bar_container = html.DIV(
-            Class=f"w-full bg-gray-200 rounded-full overflow-hidden {size_class}"
+            Class=f"w-full bg-gray-700 rounded-full overflow-hidden {size_class}"
         )
 
         bar_fill = html.DIV(
@@ -116,26 +116,26 @@ class XPBar(Component):
                     Class="h-full bg-indigo-500 rounded-full transition-all duration-500",
                     style=f"width: {progress}%"
                 ),
-                Class="w-full h-2 bg-gray-200 rounded-full overflow-hidden"
+                Class="w-full h-2 bg-gray-700 rounded-full overflow-hidden"
             )
             container <= bar_container
 
             # XP
-            container <= html.SPAN(f"{current_xp} XP", Class="text-sm text-gray-600 font-medium")
+            container <= html.SPAN(f"{current_xp} XP", Class="text-sm text-gray-400 font-medium")
 
             return container
 
         # Versión completa
-        container = html.DIV(Class="bg-white rounded-xl p-4 border border-gray-100")
+        container = html.DIV(Class="bg-gray-800 rounded-xl p-4 border border-gray-700")
 
         # Header
         header = html.DIV(Class="flex items-center justify-between mb-3")
         header <= html.DIV(
-            html.SPAN(f"Nivel {level}", Class="text-lg font-bold text-gray-800") +
-            html.SPAN(f" - {title}", Class="text-gray-500"),
+            html.SPAN(f"Nivel {level}", Class="text-lg font-bold text-gray-100") +
+            html.SPAN(f" - {title}", Class="text-gray-400"),
             Class="flex items-center"
         )
-        header <= html.SPAN(f"{current_xp} XP total", Class="text-sm text-indigo-600 font-medium")
+        header <= html.SPAN(f"{current_xp} XP total", Class="text-sm text-indigo-400 font-medium")
         container <= header
 
         # Barra de progreso
@@ -145,13 +145,13 @@ class XPBar(Component):
                 Class="h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full transition-all duration-500",
                 style=f"width: {progress}%"
             ),
-            Class="w-full h-3 bg-gray-200 rounded-full overflow-hidden"
+            Class="w-full h-3 bg-gray-700 rounded-full overflow-hidden"
         )
 
         # Info bajo la barra
         bar_info = html.DIV(Class="flex justify-between mt-2 text-sm")
-        bar_info <= html.SPAN(f"{xp_in_level} XP", Class="text-gray-500")
-        bar_info <= html.SPAN(f"{xp_for_next} XP para nivel {level + 1}", Class="text-gray-500")
+        bar_info <= html.SPAN(f"{xp_in_level} XP", Class="text-gray-400")
+        bar_info <= html.SPAN(f"{xp_for_next} XP para nivel {level + 1}", Class="text-gray-400")
         bar_section <= bar_info
 
         container <= bar_section
@@ -208,7 +208,7 @@ class LevelBadge(Component):
 
         # Título
         if show_title and title:
-            container <= html.SPAN(title, Class="text-sm text-gray-600 mt-1")
+            container <= html.SPAN(title, Class="text-sm text-gray-400 mt-1")
 
         return container
 

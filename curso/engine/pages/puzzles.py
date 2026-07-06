@@ -30,10 +30,10 @@ def puzzles_page(params):
     container = html.DIV(Class="max-w-5xl mx-auto")
 
     header = html.DIV(Class="mb-8")
-    header <= html.H1("🧩 Puzzles de Lógica", Class="text-3xl font-bold text-gray-800 mb-2")
+    header <= html.H1("🧩 Puzzles de Lógica", Class="text-3xl font-bold text-gray-100 mb-2")
     header <= html.P(
         "Pon a prueba tus conocimientos con puzzles de eliminación lógica.",
-        Class="text-gray-600"
+        Class="text-gray-400"
     )
     container <= header
 
@@ -53,17 +53,17 @@ def _render_stats(state):
     stats = html.DIV(Class="grid grid-cols-3 gap-4 mb-8")
 
     stats <= html.DIV(
-        html.SPAN(str(solved), Class="text-3xl font-bold text-purple-600") +
+        html.SPAN(str(solved), Class="text-3xl font-bold text-purple-400") +
         html.SPAN(f"/{total_puzzles}", Class="text-xl text-gray-400") +
-        html.P("Puzzles resueltos", Class="text-sm text-gray-500 mt-1"),
-        Class="bg-white rounded-lg p-4 border border-gray-100 text-center"
+        html.P("Puzzles resueltos", Class="text-sm text-gray-400 mt-1"),
+        Class="bg-gray-800 rounded-lg p-4 border border-gray-700 text-center"
     )
 
     stats <= html.DIV(
         html.SPAN("⭐⭐⭐", Class="text-xl") +
         html.SPAN(f" {three_stars}", Class="text-2xl font-bold text-yellow-500") +
-        html.P("Perfectos", Class="text-sm text-gray-500 mt-1"),
-        Class="bg-white rounded-lg p-4 border border-gray-100 text-center"
+        html.P("Perfectos", Class="text-sm text-gray-400 mt-1"),
+        Class="bg-gray-800 rounded-lg p-4 border border-gray-700 text-center"
     )
 
     best_time = None
@@ -80,18 +80,18 @@ def _render_stats(state):
         time_str = "--:--"
 
     stats <= html.DIV(
-        html.SPAN(time_str, Class="text-2xl font-bold text-green-600") +
-        html.P("Mejor tiempo", Class="text-sm text-gray-500 mt-1"),
-        Class="bg-white rounded-lg p-4 border border-gray-100 text-center"
+        html.SPAN(time_str, Class="text-2xl font-bold text-green-400") +
+        html.P("Mejor tiempo", Class="text-sm text-gray-400 mt-1"),
+        Class="bg-gray-800 rounded-lg p-4 border border-gray-700 text-center"
     )
 
     return stats
 
 
 def _render_how_to_play():
-    section = html.DIV(Class="bg-indigo-50 rounded-xl p-6 border border-indigo-100 mb-8")
+    section = html.DIV(Class="bg-indigo-950/40 rounded-xl p-6 border border-indigo-800 mb-8")
 
-    section <= html.H3("¿Cómo se juega?", Class="font-semibold text-indigo-800 mb-4")
+    section <= html.H3("¿Cómo se juega?", Class="font-semibold text-indigo-200 mb-4")
 
     steps = [
         ("1", "Lee las pistas", "Cada puzzle tiene pistas que te ayudarán a deducir las relaciones."),
@@ -103,8 +103,8 @@ def _render_how_to_play():
     for num, title, desc in steps:
         instructions <= html.DIV(
             html.SPAN(num, Class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold mb-2") +
-            html.P(title, Class="font-medium text-gray-700") +
-            html.P(desc, Class="text-sm text-gray-600"),
+            html.P(title, Class="font-medium text-gray-300") +
+            html.P(desc, Class="text-sm text-gray-400"),
             Class="text-center"
         )
     section <= instructions

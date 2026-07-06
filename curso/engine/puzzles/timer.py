@@ -27,7 +27,7 @@ class PuzzleTimer(Component):
         count_down = self.props.get('count_down', False)
         show_milliseconds = self.props.get('show_milliseconds', False)
 
-        container = html.DIV(Class="flex items-center gap-2 bg-gray-100 rounded-lg px-3 py-2")
+        container = html.DIV(Class="flex items-center gap-2 bg-gray-800 rounded-lg px-3 py-2")
 
         # Icono de reloj
         container <= html.SPAN("⏱️", Class="text-lg")
@@ -35,7 +35,7 @@ class PuzzleTimer(Component):
         # Display del tiempo
         self._display_elem = html.SPAN(
             self._format_time(),
-            Class="font-mono text-lg font-medium text-gray-700",
+            Class="font-mono text-lg font-medium text-gray-300",
             id="timer-display"
         )
         container <= self._display_elem
@@ -137,7 +137,7 @@ class CountdownTimer(PuzzleTimer):
         super().__init__(**props)
 
     def render(self):
-        container = html.DIV(Class="flex items-center gap-2 bg-red-50 rounded-lg px-3 py-2 border border-red-100")
+        container = html.DIV(Class="flex items-center gap-2 bg-red-950/40 rounded-lg px-3 py-2 border border-red-800")
 
         # Icono de reloj
         container <= html.SPAN("⏳", Class="text-lg")
@@ -145,7 +145,7 @@ class CountdownTimer(PuzzleTimer):
         # Display del tiempo
         self._display_elem = html.SPAN(
             self._format_time(),
-            Class="font-mono text-lg font-medium text-red-700",
+            Class="font-mono text-lg font-medium text-red-300",
             id="countdown-display"
         )
         container <= self._display_elem

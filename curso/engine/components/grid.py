@@ -23,9 +23,9 @@ class LogicGrid(Component):
     CELL_STATES = ['empty', 'check', 'x']
     CELL_SYMBOLS = {'empty': '', 'check': '✓', 'x': '✗'}
     CELL_CLASSES = {
-        'empty': 'bg-white hover:bg-gray-50',
-        'check': 'bg-green-100 text-green-600 font-bold',
-        'x': 'bg-red-50 text-red-400',
+        'empty': 'bg-gray-800 hover:bg-gray-700',
+        'check': 'bg-green-900/40 text-green-400 font-bold',
+        'x': 'bg-red-950/40 text-red-400',
     }
 
     def __init__(self, **props):
@@ -51,13 +51,13 @@ class LogicGrid(Component):
         # Celda vacía esquina
         header_row <= html.TH(
             row_category,
-            Class="p-2 text-xs text-gray-500 font-normal text-right border-b border-r border-gray-200"
+            Class="p-2 text-xs text-gray-400 font-normal text-right border-b border-r border-gray-700"
         )
 
         for col in cols:
             header_row <= html.TH(
                 self._truncate_label(col),
-                Class="p-2 text-sm font-medium text-gray-700 border-b border-gray-200 min-w-[60px] text-center",
+                Class="p-2 text-sm font-medium text-gray-300 border-b border-gray-700 min-w-[60px] text-center",
                 title=col
             )
 
@@ -72,7 +72,7 @@ class LogicGrid(Component):
             # Label de fila
             tr <= html.TH(
                 self._truncate_label(row_label),
-                Class="p-2 text-sm font-medium text-gray-700 border-r border-gray-200 text-right",
+                Class="p-2 text-sm font-medium text-gray-300 border-r border-gray-700 text-right",
                 title=row_label
             )
 
@@ -95,7 +95,7 @@ class LogicGrid(Component):
         symbol = self.CELL_SYMBOLS[state]
         cell_class = self.CELL_CLASSES[state]
 
-        base_classes = "w-12 h-12 text-center border border-gray-200 text-lg transition-colors"
+        base_classes = "w-12 h-12 text-center border border-gray-700 text-lg transition-colors"
         interactive_class = "cursor-pointer select-none" if not readonly else ""
 
         cell = html.TD(
@@ -188,12 +188,12 @@ class MultiGrid(Component):
                 grid_state = self.grid_states.get(grid_key, {})
 
                 # Wrapper
-                grid_wrapper = html.DIV(Class="bg-white rounded-lg p-4 shadow-sm border border-gray-100")
+                grid_wrapper = html.DIV(Class="bg-gray-800 rounded-lg p-4 shadow-sm border border-gray-700")
 
                 # Título
                 grid_wrapper <= html.H4(
                     f"{cat1['name']} vs {cat2['name']}",
-                    Class="text-sm font-medium text-gray-600 mb-3"
+                    Class="text-sm font-medium text-gray-400 mb-3"
                 )
 
                 # Grid

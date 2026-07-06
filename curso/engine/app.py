@@ -41,7 +41,7 @@ class App:
             # Footer
             self._create_footer(),
 
-            Class="min-h-screen bg-gray-50"
+            Class="min-h-screen bg-gray-900"
         )
 
         app_container <= layout
@@ -69,7 +69,7 @@ class App:
                 html.SPAN(icon_emoji, Class="text-lg") +
                 html.SPAN(label, Class="ml-1 hidden sm:inline"),
                 href=f"#{route}",
-                Class="flex items-center px-3 py-2 rounded-lg text-gray-600 hover:text-indigo-600 hover:bg-indigo-50 transition-colors"
+                Class="flex items-center px-3 py-2 rounded-lg text-gray-400 hover:text-indigo-400 hover:bg-indigo-900/40 transition-colors"
             )
             return link
 
@@ -82,8 +82,8 @@ class App:
 
         xp_display = html.DIV(
             html.DIV(
-                html.SPAN("Nv." + str(level_info['level']), Class="font-bold text-indigo-600 mr-1") +
-                html.SPAN(level_info['title'], Class="text-gray-500 text-sm hidden md:inline"),
+                html.SPAN("Nv." + str(level_info['level']), Class="font-bold text-indigo-400 mr-1") +
+                html.SPAN(level_info['title'], Class="text-gray-400 text-sm hidden md:inline"),
                 Class="flex items-center"
             ) +
             html.DIV(
@@ -91,9 +91,9 @@ class App:
                     Class="h-full bg-indigo-500 rounded-full transition-all",
                     style="width: " + str(level_info['progress']) + "%"
                 ),
-                Class="w-16 h-2 bg-gray-200 rounded-full overflow-hidden ml-2"
+                Class="w-16 h-2 bg-gray-700 rounded-full overflow-hidden ml-2"
             ) +
-            html.SPAN(str(current_xp) + " XP", Class="text-xs text-gray-500 ml-2"),
+            html.SPAN(str(current_xp) + " XP", Class="text-xs text-gray-400 ml-2"),
             Class="flex items-center",
             id="navbar-xp"
         )
@@ -111,7 +111,7 @@ class App:
             html.DIV(
                 html.A(
                     html.SPAN(config['logo'], Class="text-2xl") +
-                    html.SPAN(config['name'], Class="ml-2 text-xl font-bold text-gray-800"),
+                    html.SPAN(config['name'], Class="ml-2 text-xl font-bold text-gray-100"),
                     href="#home",
                     Class="flex items-center"
                 ) +
@@ -130,7 +130,7 @@ class App:
 
                 Class="container mx-auto px-4 flex items-center justify-between"
             ),
-            Class="bg-white shadow-sm py-3 sticky top-0 z-50"
+            Class="bg-gray-800 shadow-sm py-3 sticky top-0 z-50"
         )
 
         return navbar
@@ -142,7 +142,7 @@ class App:
             html.DIV(
                 html.P(
                     config['name'] + " - " + config['tagline'],
-                    Class="text-gray-500"
+                    Class="text-gray-400"
                 ) +
                 html.P(
                     config['footer'],
@@ -150,7 +150,7 @@ class App:
                 ),
                 Class="container mx-auto px-4 text-center"
             ),
-            Class="bg-white border-t py-6 mt-12"
+            Class="bg-gray-800 border-t py-6 mt-12"
         )
 
     def setup_routes(self):
@@ -216,8 +216,8 @@ class App:
         if xp_elem:
             xp_elem.innerHTML = ""
             xp_elem <= html.DIV(
-                html.SPAN("Nv." + str(level_info['level']), Class="font-bold text-indigo-600") +
-                html.SPAN(" " + level_info['title'], Class="text-gray-500 text-sm hidden md:inline"),
+                html.SPAN("Nv." + str(level_info['level']), Class="font-bold text-indigo-400") +
+                html.SPAN(" " + level_info['title'], Class="text-gray-400 text-sm hidden md:inline"),
                 Class="flex items-center"
             )
             xp_elem <= html.DIV(
@@ -225,19 +225,19 @@ class App:
                     Class="h-full bg-indigo-500 rounded-full transition-all",
                     style="width: " + str(level_info['progress']) + "%"
                 ),
-                Class="w-20 h-2 bg-gray-200 rounded-full overflow-hidden"
+                Class="w-20 h-2 bg-gray-700 rounded-full overflow-hidden"
             )
-            xp_elem <= html.SPAN(str(current_xp) + " XP", Class="text-xs text-gray-500")
+            xp_elem <= html.SPAN(str(current_xp) + " XP", Class="text-xs text-gray-400")
 
     def _not_found_page(self, path):
         """Página de error 404."""
         return html.DIV(
             html.DIV(
                 html.SPAN("🔍", Class="text-6xl") +
-                html.H1("Página no encontrada", Class="text-2xl font-bold mt-4 text-gray-700") +
+                html.H1("Página no encontrada", Class="text-2xl font-bold mt-4 text-gray-300") +
                 html.P(
                     "La ruta '" + str(path) + "' no existe en este curso.",
-                    Class="text-gray-500 mt-2"
+                    Class="text-gray-400 mt-2"
                 ) +
                 html.A(
                     "← Volver al inicio",

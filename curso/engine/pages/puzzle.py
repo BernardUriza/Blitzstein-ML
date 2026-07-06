@@ -31,7 +31,7 @@ def puzzle_page(params):
     breadcrumb <= html.A(
         "← Volver a Puzzles",
         href="#puzzles",
-        Class="text-indigo-600 hover:text-indigo-800"
+        Class="text-indigo-400 hover:text-indigo-200"
     )
     container <= breadcrumb
 
@@ -65,12 +65,12 @@ def _render_not_found(puzzle_id):
     """Renderiza mensaje de puzzle no encontrado."""
     return html.DIV(
         html.SPAN("🧩", Class="text-6xl text-gray-300") +
-        html.H1(f"Puzzle '{puzzle_id}' no encontrado", Class="text-xl font-bold text-gray-700 mt-4") +
-        html.P("Este puzzle no existe o aún no está disponible.", Class="text-gray-500 mt-2") +
+        html.H1(f"Puzzle '{puzzle_id}' no encontrado", Class="text-xl font-bold text-gray-300 mt-4") +
+        html.P("Este puzzle no existe o aún no está disponible.", Class="text-gray-400 mt-2") +
         html.A(
             "← Volver a Puzzles",
             href="#puzzles",
-            Class="mt-4 inline-block text-indigo-600 hover:text-indigo-800"
+            Class="mt-4 inline-block text-indigo-400 hover:text-indigo-200"
         ),
         Class="text-center py-16"
     )
@@ -83,7 +83,7 @@ def _render_completed_banner(completed):
     secs = best_time % 60
     stars = completed.get('best_stars', 0)
 
-    banner = html.DIV(Class="bg-green-50 border border-green-200 rounded-lg p-4 mb-6")
+    banner = html.DIV(Class="bg-green-950/40 border border-green-800 rounded-lg p-4 mb-6")
 
     content = html.DIV(Class="flex items-center justify-between")
 
@@ -91,8 +91,8 @@ def _render_completed_banner(completed):
     info = html.DIV(Class="flex items-center gap-3")
     info <= html.SPAN("✅", Class="text-2xl")
     info <= html.DIV(
-        html.P("¡Ya resolviste este puzzle!", Class="font-medium text-green-700") +
-        html.P(f"Mejor tiempo: {mins}:{secs:02d}", Class="text-sm text-green-600")
+        html.P("¡Ya resolviste este puzzle!", Class="font-medium text-green-300") +
+        html.P(f"Mejor tiempo: {mins}:{secs:02d}", Class="text-sm text-green-400")
     )
     content <= info
 
@@ -108,7 +108,7 @@ def _render_completed_banner(completed):
     # Opción de reintentar
     banner <= html.P(
         "Puedes volver a jugarlo para mejorar tu tiempo y estrellas.",
-        Class="text-sm text-green-600 mt-2"
+        Class="text-sm text-green-400 mt-2"
     )
 
     return banner

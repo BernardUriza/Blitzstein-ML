@@ -30,8 +30,8 @@ class Card(Component):
         extra_class = self.props.get('class', '')
 
         # Clases base
-        base_classes = "bg-white rounded-xl shadow-sm border border-gray-100"
-        hover_classes = "hover:shadow-md hover:border-gray-200 transition-all cursor-pointer" if hover else ""
+        base_classes = "bg-gray-800 rounded-xl shadow-sm border border-gray-700"
+        hover_classes = "hover:shadow-md hover:border-gray-600 transition-all cursor-pointer" if hover else ""
         padding_classes = "p-6" if padding else ""
 
         card = html.DIV(Class=f"{base_classes} {hover_classes} {extra_class}")
@@ -40,9 +40,9 @@ class Card(Component):
         if title or subtitle:
             header = html.DIV(Class=f"{'px-6 pt-6' if not padding else ''}")
             if title:
-                header <= html.H3(title, Class="text-lg font-semibold text-gray-800")
+                header <= html.H3(title, Class="text-lg font-semibold text-gray-100")
             if subtitle:
-                header <= html.P(subtitle, Class="text-sm text-gray-500 mt-1")
+                header <= html.P(subtitle, Class="text-sm text-gray-400 mt-1")
             card <= header
 
         # Content
@@ -57,10 +57,10 @@ class Card(Component):
         # Footer
         if footer:
             footer_div = html.DIV(
-                Class=f"{'px-6 pb-6' if not padding else 'pt-4 border-t border-gray-100 mt-4'}"
+                Class=f"{'px-6 pb-6' if not padding else 'pt-4 border-t border-gray-700 mt-4'}"
             )
             if isinstance(footer, str):
-                footer_div <= html.P(footer, Class="text-sm text-gray-500")
+                footer_div <= html.P(footer, Class="text-sm text-gray-400")
             else:
                 footer_div <= footer
             card <= footer_div
@@ -89,9 +89,9 @@ class LessonCard(Component):
     """
 
     DIFFICULTY_COLORS = {
-        'beginner': 'bg-green-100 text-green-700',
-        'intermediate': 'bg-yellow-100 text-yellow-700',
-        'advanced': 'bg-red-100 text-red-700',
+        'beginner': 'bg-green-900/40 text-green-300',
+        'intermediate': 'bg-yellow-900/40 text-yellow-300',
+        'advanced': 'bg-red-900/40 text-red-300',
     }
 
     DIFFICULTY_LABELS = {
@@ -121,31 +121,31 @@ class LessonCard(Component):
         locked = lesson.get('locked', False)
 
         # Clases base
-        base_classes = "bg-white rounded-xl border border-gray-100 overflow-hidden transition-all"
+        base_classes = "bg-gray-800 rounded-xl border border-gray-700 overflow-hidden transition-all"
         if locked:
             state_classes = "opacity-60"
         elif completed:
-            state_classes = "border-green-200 bg-green-50/30"
+            state_classes = "border-green-800 bg-green-950/30"
         else:
-            state_classes = "hover:shadow-md hover:border-indigo-200 cursor-pointer"
+            state_classes = "hover:shadow-md hover:border-indigo-600 cursor-pointer"
 
         card = html.DIV(Class=f"{base_classes} {state_classes}")
 
         # Header con categoría y estado
-        header = html.DIV(Class="px-5 py-3 border-b border-gray-50 flex items-center justify-between")
+        header = html.DIV(Class="px-5 py-3 border-b border-gray-700 flex items-center justify-between")
 
         # Categoría
         cat_icon = self.CATEGORY_ICONS.get(category, '📖')
         header <= html.SPAN(
             f"{cat_icon} {category.capitalize()}",
-            Class="text-sm text-gray-500"
+            Class="text-sm text-gray-400"
         )
 
         # Estado (completado/bloqueado)
         if completed:
             header <= html.SPAN(
                 icon('check', 'w-4 h-4 mr-1') + "Completada",
-                Class="flex items-center text-sm text-green-600 font-medium"
+                Class="flex items-center text-sm text-green-400 font-medium"
             )
         elif locked:
             header <= html.SPAN(
@@ -159,19 +159,19 @@ class LessonCard(Component):
         content = html.DIV(Class="p-5")
 
         # Título
-        content <= html.H3(title, Class="text-lg font-semibold text-gray-800")
+        content <= html.H3(title, Class="text-lg font-semibold text-gray-100")
 
         # Descripción
         content <= html.P(
             description[:100] + ('...' if len(description) > 100 else ''),
-            Class="text-gray-600 mt-2 text-sm"
+            Class="text-gray-400 mt-2 text-sm"
         )
 
         # Footer con metadata
         meta = html.DIV(Class="flex items-center gap-4 mt-4")
 
         # Dificultad
-        diff_classes = self.DIFFICULTY_COLORS.get(difficulty, 'bg-gray-100 text-gray-700')
+        diff_classes = self.DIFFICULTY_COLORS.get(difficulty, 'bg-gray-700 text-gray-300')
         meta <= html.SPAN(
             self.DIFFICULTY_LABELS.get(difficulty, difficulty),
             Class=f"text-xs px-2 py-1 rounded-full {diff_classes}"
@@ -180,7 +180,7 @@ class LessonCard(Component):
         # Duración
         meta <= html.SPAN(
             f"⏱️ {duration}",
-            Class="text-xs text-gray-500"
+            Class="text-xs text-gray-400"
         )
 
         content <= meta
@@ -225,13 +225,13 @@ class PuzzleCard(Component):
         best_time = puzzle.get('best_time')
 
         # Clases base
-        base_classes = "bg-white rounded-xl border overflow-hidden transition-all hover:shadow-md cursor-pointer"
-        border_class = "border-green-200" if solved else "border-gray-100 hover:border-indigo-200"
+        base_classes = "bg-gray-800 rounded-xl border overflow-hidden transition-all hover:shadow-md cursor-pointer"
+        border_class = "border-green-800" if solved else "border-gray-700 hover:border-indigo-600"
 
         card = html.DIV(Class=f"{base_classes} {border_class}")
 
         # Header con dificultad visual
-        header = html.DIV(Class="px-5 py-3 border-b border-gray-50 flex items-center justify-between")
+        header = html.DIV(Class="px-5 py-3 border-b border-gray-700 flex items-center justify-between")
 
         # Estrellas de dificultad
         stars = html.DIV(Class="flex items-center gap-0.5")
@@ -243,7 +243,7 @@ class PuzzleCard(Component):
         # XP reward
         header <= html.SPAN(
             f"+{xp_reward} XP",
-            Class="text-sm font-medium text-indigo-600"
+            Class="text-sm font-medium text-indigo-400"
         )
 
         card <= header
@@ -255,20 +255,20 @@ class PuzzleCard(Component):
         title_row = html.DIV(Class="flex items-center gap-3")
         puzzle_emoji = "✅" if solved else "🧩"
         title_row <= html.SPAN(puzzle_emoji, Class="text-2xl")
-        title_row <= html.H3(title, Class="text-lg font-semibold text-gray-800")
+        title_row <= html.H3(title, Class="text-lg font-semibold text-gray-100")
         content <= title_row
 
         # Descripción
         content <= html.P(
             description[:80] + ('...' if len(description) > 80 else ''),
-            Class="text-gray-600 mt-2 text-sm"
+            Class="text-gray-400 mt-2 text-sm"
         )
 
         # Mejor tiempo si está resuelto
         if solved and best_time:
             content <= html.DIV(
-                html.SPAN("🏆 Mejor tiempo: ", Class="text-gray-500") +
-                html.SPAN(best_time, Class="font-medium text-gray-700"),
+                html.SPAN("🏆 Mejor tiempo: ", Class="text-gray-400") +
+                html.SPAN(best_time, Class="font-medium text-gray-300"),
                 Class="mt-3 text-sm"
             )
 
