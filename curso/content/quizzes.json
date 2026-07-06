@@ -22,12 +22,22 @@
     },
     {
       "question": "Con 9 piedras en total, |A| = 5, |B| = 4 y |A ∩ B| = 1: ¿cuántas piedras tiene A ∪ B?",
-      "options": ["9", "8", "10", "7"],
+      "options": [
+        "9",
+        "8",
+        "10",
+        "7"
+      ],
       "answer": 1
     },
     {
       "question": "Con las mismas 9 piedras y |B| = 4, ¿cuántas piedras tiene Bᶜ?",
-      "options": ["4", "5", "6", "3"],
+      "options": [
+        "4",
+        "5",
+        "6",
+        "3"
+      ],
       "answer": 1
     },
     {
@@ -47,6 +57,48 @@
         "Inclusión-exclusión",
         "Regla de la multiplicación",
         "Teorema de Bayes"
+      ],
+      "answer": 1
+    }
+  ],
+  "cap1-naive-definition": [
+    {
+      "question": "¿Cuáles son las DOS condiciones para que P(A) = |A|/|S| sea válida?",
+      "options": [
+        "S finito y outcomes equiprobables",
+        "S finito y eventos disjuntos",
+        "Outcomes equiprobables y S infinito numerable",
+        "Que el experimento sea repetible y S finito"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "«Me gano la lotería o no me la gano, ergo P = 1/2» es inválido porque…",
+      "options": [
+        "el sample space es infinito",
+        "las dos piedras no pesan lo mismo — los outcomes no son equiprobables",
+        "la lotería no es un experimento",
+        "faltó contar los empates"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "Dos monedas justas: ¿P(exactamente 1 águila) y con qué sample space?",
+      "options": [
+        "1/3, con S = {0, 1, 2 águilas}",
+        "1/2, con S = {AA, AS, SA, SS} que sí es equiprobable",
+        "1/4, con S = {AA, AS, SA, SS}",
+        "2/3, con S = {0, 1, 2 águilas}"
+      ],
+      "answer": 1
+    },
+    {
+      "question": "¿Cómo se justifica la equiprobabilidad de un sample space?",
+      "options": [
+        "Por intuición del que resuelve",
+        "Por simetría del experimento o por diseño (muestreo aleatorio deliberado)",
+        "Porque la fórmula lo exige",
+        "Contando los outcomes"
       ],
       "answer": 1
     }

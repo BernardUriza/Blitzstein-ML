@@ -1,0 +1,58 @@
+{
+  "id": "cap1-naive-definition",
+  "title": "La definición naive de probabilidad (§1.3)",
+  "category": "cap1",
+  "difficulty": "beginner",
+  "duration": 30,
+  "xp_reward": 50,
+  "icon": "⚖️",
+  "description": "P(A) = |A|/|S| — cuándo es legal contar piedras y qué se rompe cuando no.",
+  "questions": [
+    "¿Cuáles son las dos condiciones para que la naive definition sea válida?",
+    "¿Por qué 'me gano la lotería o no, ergo 1/2' es un abuso de la fórmula?",
+    "Del mismo experimento pueden salir dos sample spaces distintos — ¿cuál eliges y por qué?"
+  ],
+  "objectives": [
+    "Enunciar la naive definition y sus dos condiciones de validez",
+    "Detectar el abuso clásico: aplicar la fórmula a outcomes no equiprobables",
+    "Elegir, entre varios sample spaces del mismo experimento, el que sí es equiprobable"
+  ],
+  "sections": [
+    {
+      "type": "text",
+      "title": "Piedras favorables entre piedras totales",
+      "content": "Si en Pebble World **todas las piedras pesan lo mismo**, la probabilidad de un evento es pura cuenta: $$P(A) = \\frac{|A|}{|S|}$$\n\nEso es toda la fórmula: **outcomes favorables entre outcomes totales**. Cuando contaste que Bᶜ tiene 5 de 9 piedras, ya estabas diciendo \\(P(B^c) = 5/9\\) — solo faltaba ponerle nombre."
+    },
+    {
+      "type": "text",
+      "title": "Las dos condiciones (la letra chica)",
+      "content": "1. **S es finito.** Con infinitas piedras, |A|/|S| no significa nada.\n\n2. **Todos los outcomes son equiprobables** — todas las piedras pesan igual. Se justifica por **simetría** (un dado justo no distingue sus caras; una baraja bien barajada no distingue órdenes) o por **diseño** (muestreo aleatorio deliberado, como una encuesta bien hecha)."
+    },
+    {
+      "type": "warning",
+      "content": "El abuso clásico: «¿Hay vida en otros planetas? Dos posibilidades — sí o no — así que 1/2». Con ese argumento, ganarte la lotería también sería 1/2: te la ganas o no. La fórmula no falla por aritmética; falla porque le metiste piedras de pesos distintos y ella asume balanza perfecta. Sin equiprobabilidad, el resultado es un invento con disfraz de matemática."
+    },
+    {
+      "type": "example",
+      "title": "Mismo experimento, dos sample spaces — solo uno es legal",
+      "bad_example": {
+        "prompt": "Dos monedas justas → S = {0 águilas, 1 águila, 2 águilas} → P(1 águila) = 1/3",
+        "issue": "Tres outcomes, pero NO equiprobables: '1 águila' pasa de dos maneras (AS y SA) y pesa el doble. La naive definition aquí miente."
+      },
+      "good_example": {
+        "prompt": "Dos monedas justas → S = {AA, AS, SA, SS} → P(exactamente 1 águila) = 2/4 = 1/2",
+        "why": "Cuatro outcomes equiprobables por simetría. Elegir el sample space donde las piedras pesan igual ES la habilidad de esta sección — y suele ser el espacio grande, por eso §1.4 enseña a contarlos."
+      }
+    },
+    {
+      "type": "tip",
+      "content": "Regla práctica: ante un problema de probabilidad, tu primer movimiento es preguntar «¿cuál es el sample space equiprobable de este experimento?». Si no existe o no lo encuentras, la naive definition no aplica y necesitas la definición general (§1.6)."
+    }
+  ],
+  "keypoints": [
+    "Naive definition: P(A) = |A|/|S| — favorables entre totales",
+    "Solo es válida con S finito Y outcomes equiprobables (por simetría o por diseño)",
+    "Sin equiprobabilidad la fórmula produce números que parecen probabilidades pero son inventos",
+    "Del mismo experimento salen varios sample spaces; elige el equiprobable, que suele ser el grande — contar esos es el trabajo de §1.4"
+  ]
+}

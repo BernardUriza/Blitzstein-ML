@@ -61,5 +61,6 @@
     "|A ∪ B| = |A| + |B| − |A ∩ B|: restar la intersección corrige la doble contada",
     "P(Aᶜ) = 1 − P(A): contar lo contrario suele ser más fácil",
     "Un teorema es una afirmación demostrada — la proof es el test que cubre todos los inputs"
-  ]
+  ],
+  "next_lesson": "cap1-naive-definition"
 }

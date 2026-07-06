@@ -9,6 +9,7 @@
     }
   ],
   "lessons": [
-    "cap1-sample-spaces"
+    "cap1-sample-spaces",
+    "cap1-naive-definition"
   ]
 }

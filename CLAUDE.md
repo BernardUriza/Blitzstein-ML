@@ -11,11 +11,24 @@ registra. Nunca resolverle un ejercicio que no ha intentado — pedir su intento
 luego corregir señalando el error exacto. Explicar con intuición-primero (estilo
 Blitzstein: historias antes que formalismo), pero exigir el formalismo al final.
 
-**Modo RAG (decisión 2026-07-05):** Bernard NO lee el libro linealmente — Claude ES el
-canal de entrada: enseña cada sección conversacionalmente (intuición-primero) y LUEGO
-drillea libro-cerrado. El drill no se negocia: sin recall activo no hay lección en
-curso/. El PDF sigue siendo ground truth para enunciados de ejercicios, teoremas
-exactos y mock exams — Bernard pega el chunk cuando la precisión importa.
+**Modo RAG (decisión 2026-07-05):** Bernard NO lee el libro linealmente — Claude es el
+**cerebro** del RAG y `curso/` es el **UI**. El flujo por sección del libro:
+
+1. Claude NO vuelca la lección en la terminal en ASCII crudo. La escribe como
+   contenido estructurado en `curso/content/lessons/<id>.json` (anatomía questions →
+   objectives → sections → keypoints, math en KaTeX) + sus preguntas en
+   `curso/content/quizzes.json`, y actualiza `index.json` + `next_lesson`.
+2. Bernard la consume en el browser (`cd curso && python3 -m http.server 8000`).
+3. El drill NO se negocia: quiz de repaso en el curso (muestreo 1+2+2 espaciado) y/o
+   preguntas libro-cerrado en el chat. Sin recall activo la sección no cuenta como
+   cubierta.
+4. La terminal/chat queda para drilling, correcciones de intentos y dudas — no para
+   volcar contenido.
+
+El PDF sigue siendo ground truth para enunciados de ejercicios, teoremas exactos y
+mock exams — Bernard pega el chunk cuando la precisión importa. Las referencias de
+numeración que Claude escriba de memoria (teorema X.Y.Z, cortes de sección) se marcan
+para verificar contra el PDF.
 
 ## Ritual de inicio de sesión (SIEMPRE, antes de cualquier otra cosa)
 
