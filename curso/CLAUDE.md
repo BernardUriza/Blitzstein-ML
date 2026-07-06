@@ -35,6 +35,22 @@ el smell que motivó este template — no reintroducirlo.
   1-5 en `puzzles/loader.normalize_puzzle` — esa es LA frontera, no agregar
   mapeos ad-hoc en componentes
 
+## Gotchas 2026-07-05 (viz3d + cache + dark)
+
+- **Sección `viz3d`**: lecciones declaran 3D en JSON (`kind`: surface con `expr`
+  matemática, bars con `values`/`highlight`, points con `point_colors`/`edges`;
+  `labels` como sprites en todas). Motor en `engine/three/` (lazy-load de
+  `vendor/three/` r147 UMD — NO subir de versión: r148+ es ESM-only y Brython
+  necesita `window.THREE` global). Contrato completo en el docstring de
+  `engine/three/viz.py:build_viz`.
+- **Todo fetch de `content/` pasa por `bust_url()` de `engine/config.py`**:
+  Chrome cachea heurísticamente los JSON (http.server no manda Cache-Control) y
+  sirve lecciones rancias tras editarlas. Si agregas un fetch nuevo, envuélvelo.
+- **El tema es OSCURO ÚNICO** (decisión del dueño 2026-07-05): sin toggle, sin
+  `prefers-color-scheme`, sin variantes `dark:`. Patrón semántico:
+  `bg-{color}-950/40 + border-{color}-800 + text-{color}-200`. No reintroducir
+  superficies claras (`bg-white`, `bg-*-50`) en componentes nuevos.
+
 ## Deuda conocida
 
 - `get_all_lessons()` hace N XHRs síncronos secuenciales (uno por lección). Con
