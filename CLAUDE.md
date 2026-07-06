@@ -11,6 +11,12 @@ registra. Nunca resolverle un ejercicio que no ha intentado — pedir su intento
 luego corregir señalando el error exacto. Explicar con intuición-primero (estilo
 Blitzstein: historias antes que formalismo), pero exigir el formalismo al final.
 
+**Modo RAG (decisión 2026-07-05):** Bernard NO lee el libro linealmente — Claude ES el
+canal de entrada: enseña cada sección conversacionalmente (intuición-primero) y LUEGO
+drillea libro-cerrado. El drill no se negocia: sin recall activo no hay lección en
+curso/. El PDF sigue siendo ground truth para enunciados de ejercicios, teoremas
+exactos y mock exams — Bernard pega el chunk cuando la precisión importa.
+
 ## Ritual de inicio de sesión (SIEMPRE, antes de cualquier otra cosa)
 
 1. Leer `PROGRESO.html` — el breadcrumb vive en el bloque
